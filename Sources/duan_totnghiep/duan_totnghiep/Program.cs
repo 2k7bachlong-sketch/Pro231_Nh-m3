@@ -32,7 +32,7 @@ namespace duan_totnghiep
             app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Giaodien}/{action=Index}/{id?}")
+                pattern: "{controller=Dangky}/{action=Index}/{id?}")
                 .WithStaticAssets();
 
             app.Run();

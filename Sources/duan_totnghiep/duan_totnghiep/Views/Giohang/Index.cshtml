@@ -1,6 +1,6 @@
 ﻿@model List<duan_totnghiep.Models.Giohang>
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
 @{
     ViewData["Title"] = "Giỏ hàng";
@@ -76,37 +76,51 @@
             <th>Thao tác</th>
         </tr>
 
-        @foreach (var item in Model)
+        @if (Model.Count == 0)
         {
             <tr>
-
-                <td>
-                    <img src="~/images/@item.Sanpham.Hinhanh" />
+                <td colspan="6"
+                    style="text-align:center;
+                       padding:40px;
+                       font-size:24px;
+                       color:red;">
+                    🛒 Giỏ hàng trống!
                 </td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
 
-                <td>
-                    @item.Sanpham.Tensp
-                </td>
+                    <td>
+                        <img src="~/images/@item.Sanpham.Hinhanh" />
+                    </td>
 
-                <td>
-                    @String.Format("{0:N0} đ", item.Sanpham.Gia)
-                </td>
+                    <td>
+                        @item.Sanpham.Tensp
+                    </td>
 
-                <td>
-                    <a class="btn btn-minus"
-                       asp-action="GiamSL"
-                       asp-route-id="@item.Magh">-</a>
+                    <td>
+                        @String.Format("{0:N0} đ", item.Sanpham.Gia)
+                    </td>
 
-                    @item.Soluong
+                    <td>
+                        <a class="btn btn-minus"
+                           asp-action="GiamSL"
+                           asp-route-id="@item.Magh">-</a>
 
-                    <a class="btn btn-plus"
-                       asp-action="TangSL"
-                       asp-route-id="@item.Magh">+</a>
-                </td>
+                        @item.Soluong
 
-                <td>
-                    @String.Format("{0:N0} đ",
-                    item.Soluong* item.Sanpham.Gia)
+                        <a class="btn btn-plus"
+                           asp-action="TangSL"
+                           asp-route-id="@item.Magh">+</a>
+                    </td>
+
+                    <td>
+                        @String.Format("{0:N0} đ",
+                        item.Soluong* item.Sanpham.Gia)
             </td>
 
             <td>
@@ -119,13 +133,17 @@
 
         </tr>
                 }
+        }
 
     </table>
 
-    <h3 style="margin-top:20px">
-        Tổng tiền:
-        @String.Format("{0:N0} đ",
-        Model.Sum(x => x.Soluong * x.Sanpham.Gia))
+    @if (Model.Count > 0)
+    {
+        <h3 style="margin-top:20px">
+            Tổng tiền:
+            @String.Format("{0:N0} đ",
+            Model.Sum(x => x.Soluong * x.Sanpham.Gia))
     </h3>
+        }
 
 </div>

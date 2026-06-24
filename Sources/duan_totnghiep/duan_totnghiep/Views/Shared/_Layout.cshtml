@@ -1,162 +1,87 @@
-﻿<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - StarPard</title>
-
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+﻿    <style>
+        .footer {
+            margin-top: 100px;
+            background: #333;
+            color: white;
+            padding: 40px 0;
         }
 
-        body {
-            background: #b3b3b3;
-        }
+    .main-content {
+        min-height: 700px; /* hoặc 1200px tùy ý */
+    }
 
-        /* HEADER */
-        .header {
-            width: 100%;
-            height: 90px;
-            background: #999;
+    .footer-content {
+            width: 80%;
+            margin: auto;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 0 40px;
         }
 
-        .logo img {
-            width: 90px;
-            height: 90px;
+        .footer-box {
+            width: 30%;
         }
 
-        .search-box {
-            width: 500px;
-            height: 45px;
-            background: white;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
-
-            .search-box input {
-                flex: 1;
-                border: none;
-                outline: none;
-                padding-left: 20px;
-                font-size: 18px;
+            .footer-box h3 {
+                margin-bottom: 15px;
             }
 
-            .search-box button {
-                width: 60px;
-                border: none;
-                background: white;
-                font-size: 25px;
-                cursor: pointer;
+            .footer-box p {
+                line-height: 30px;
             }
 
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 25px;
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            border-top: 1px solid #555;
+            padding-top: 20px;
         }
 
-            .header-right a {
-                text-decoration: none;
-                color: black;
-                font-size: 40px;
-            }
+    .top-banner {
+        width: 100%;
+        height: 150px;
+        overflow: hidden;
+    }
 
-        .btn-dangky {
-            background: black;
-            color: white !important;
-            padding: 10px 25px;
-            border-radius: 30px;
-            font-size: 22px !important;
-        }
-
-        /* MENU */
-        .menu {
+        .top-banner img {
             width: 100%;
-            height: 70px;
-            background: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 70px;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
+</style>
+<!-- Banner đầu trang -->
+<div class="top-banner">
+    <img src="~/images/header.avif" alt="Banner">
+</div>
+<div class="main-content">
+    @RenderBody()
+</div>
+<footer class="footer">
+        <div class="footer-content">
+           
+            <div class="footer-box">
+                <h3>Về chúng tôi</h3>
+                <p>Cửa hàng chuyên cung cấp quần áo thời trang chất lượng cao.</p>
+            </div>
 
-            .menu a {
-                text-decoration: none;
-                color: black;
-                font-size: 28px;
-                font-weight: bold;
-            }
+            <div class="footer-box">
+                <h3>Liên hệ</h3>
+                <p>📍 Biên Hoà, Việt Nam</p>
+                <p>📞 0353279883</p>
+                <p>✉️ hungndtb02210@gmail.com</p>
+            </div>
 
-        /* CONTENT */
-        .container-body {
-            padding: 30px;
-        }
-    </style>
-</head>
-
-<body>
-
-    <!-- HEADER -->
-    <div class="header">
-
-        <!-- LOGO -->
-        <div class="logo">
-            <a asp-controller="Home" asp-action="Index">
-                <img src="~/images/logo.png" alt="Logo" />
-            </a>
-        </div>
-
-        <!-- SEARCH -->
-        <div class="search-box">
-            <input type="text" placeholder="Tìm kiếm..." />
-            <button>
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-        </div>
-
-        <!-- RIGHT -->
-        <div class="header-right">
-
-            <a asp-controller="Giohang" asp-action="Index">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </a>
-
-            <a asp-controller="DangNhap" asp-action="Index">
-                <i class="fa-solid fa-circle-user"></i>
-            </a>
-
-            <a asp-controller="DangKy"
-               asp-action="Index"
-               class="btn-dangky">
-                Đăng kí
-            </a>
+            <div class="footer-box">
+                <h3>Chính sách</h3>
+                <p>Chính sách đổi trả</p>
+                <p>Chính sách bảo mật</p>
+                <p>Điều khoản sử dụng</p>
+            </div>
 
         </div>
 
-    </div>
+        <div class="footer-bottom">
+            © 2026 - Website bán hàng thời trang uy tín StarPard
+        </div>
+    </footer>
 
-    <!-- NỘI DUNG CÁC TRANG -->
-    <div class="container-body">
-        @RenderBody()
-    </div>
-
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-    @await RenderSectionAsync("Scripts", required: false)
-
-</body>
-</html>
