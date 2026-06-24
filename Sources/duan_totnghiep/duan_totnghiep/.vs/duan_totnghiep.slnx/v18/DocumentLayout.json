@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\Download\\PRO231\\Pro231_Nh-m3\\Sources\\duan_totnghiep\\duan_totnghiep\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2DA270C4-FAF9-CA8D-7C11-94CFE3D626E8}|duan_totnghiep.csproj|f:\\download\\pro231\\pro231_nh-m3\\sources\\duan_totnghiep\\duan_totnghiep\\views\\giaodien\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2DA270C4-FAF9-CA8D-7C11-94CFE3D626E8}|duan_totnghiep.csproj|solutionrelative:views\\giaodien\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "F:\\Download\\PRO231\\Pro231_Nh-m3\\Sources\\duan_totnghiep\\duan_totnghiep\\Views\\Giaodien\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Giaodien\\Index.cshtml",
+              "ToolTip": "F:\\Download\\PRO231\\Pro231_Nh-m3\\Sources\\duan_totnghiep\\duan_totnghiep\\Views\\Giaodien\\Index.cshtml",
+              "RelativeToolTip": "Views\\Giaodien\\Index.cshtml",
+              "ViewState": "AgIAAMMAAAAAAAAAAAAAAKQAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-24T03:06:21.779Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

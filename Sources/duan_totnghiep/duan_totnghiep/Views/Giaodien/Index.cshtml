@@ -23,7 +23,7 @@
         }
 
         body {
-            background: #a9a9a9;
+                background: #f5f5f5;
             font-family: Arial, sans-serif;
         }
 
@@ -80,14 +80,31 @@
                 color: black;
             }
 
-        .btn-dangki {
-            background: black;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 22px;
-        }
+            .btn-dangki {
+                background: black;
+                color: white;
+                padding: 12px 25px;
+                border-radius: 30px;
+                text-decoration: none;
+                font-size: 22px;
+                position: relative;
+                overflow: hidden;
+                transition: all 0.3s ease;
+            }
+                .btn-dangki::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient( 120deg, transparent, rgba(255,255,255,0.4), transparent );
+                    transition: 0.6s;
+                }
+
+                .btn-dangki:hover::before {
+                    left: 100%;
+                }
 
         /* DANH MỤC */
 
@@ -107,6 +124,28 @@
                 color: black;
             }
 
+                    .category a:hover {
+                        color: tomato;
+                        transform: translateY(-3px);
+                    }
+
+
+            /* BANNER */
+
+            .banner {
+                width: 1550px;
+                height: 600px;               
+                display: block;
+                justify-content: center;
+                overflow: hidden;
+            }
+
+                .banner img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;                  
+                    
+                }
         /* SẢN PHẨM */
 
         .products {
@@ -116,15 +155,22 @@
             gap: 80px;
         }
 
-        .card {
-            width: 220px;
-            height: 270px;
-            background: white;
-            border: 5px solid black;
-            border-radius: 20px;
-            text-align: center;
-            padding: 15px;
-        }
+            .card {
+                width: 320px;
+                height: 240px;
+                background: white;
+                border: 5px solid black;
+                border-radius: 20px;
+                text-align: center;
+                padding: 15px;
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
+
+                .card:hover {
+                    transform: translateY(-12px);
+                    box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+                }
 
             .card img {
                 width: 120px;
@@ -193,6 +239,23 @@
 
     </div>
 
+    <!-- BANNER -->
+
+    <div class="banner">
+
+        <img id="banner-image"
+             src="/images/banner1.jpg"
+             alt="Banner">   
+
+        <img id="banner-image"
+             src="/images/banner2.jpg"
+             alt="Banner">
+
+        <img id="banner-image"
+             src="/images/banner3.jpg"
+             alt="Banner">
+    </div>
+
     <!-- SẢN PHẨM -->
 
     <div class="products">
@@ -217,5 +280,29 @@
 
     </div>
 
+    <script>
+
+            let banners = [
+                "/images/banner1.jpg",
+                "/images/banner2.jpg",
+                "/images/banner3.jpg"
+            ];
+
+            let current = 0;
+
+            setInterval(function () {
+
+                current++;
+
+                if (current >= banners.length) {
+                    current = 0;
+                }
+
+                document.getElementById("banner-image").src =
+                    banners[current];
+
+            }, 3000);
+
+    </script>
 </body>
 </html>
