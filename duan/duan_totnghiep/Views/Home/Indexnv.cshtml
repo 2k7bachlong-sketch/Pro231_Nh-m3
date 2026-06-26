@@ -1,0 +1,108 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            background: #f5f6fa;
+        }
+
+        /* Sidebar */
+
+        .sidebar {
+            width: 250px;
+            min-height: 100vh;
+            background: #1e501b;
+            color: white;
+        }
+
+        .logo {
+            text-align: center;
+            padding: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            border-bottom: 1px solid #334155;
+        }
+
+        .menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 18px 25px;
+            border-bottom: 1px solid #334155;
+            transition: .3s;
+        }
+
+            .menu a:hover {
+                background: green;
+            }
+
+        .menu i {
+            margin-right: 10px;
+        }
+
+        /* Main */
+
+        .main {
+            flex: 1;
+        }
+
+        .header {
+            background: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+
+        <div class="logo">
+            StarPard
+        </div>
+
+        <div class="menu">
+            <a href="#"><i class="fa fa-house"></i> Trang chính</a>
+            <a href="/Sanpham/Index"><i class="fa fa-box"></i> Quản lý sản phẩm</a>
+            <a href="/Thuonghieu/Index"><i class="fa fa-tags"></i> Quản lý thương hiệu</a>
+            <a href="/Danhmuc/Index"><i class="fa fa-list"></i> Quản lý danh mục</a>
+            <a href="#"><i class="fa fa-cart-shopping"></i> Quản lý đơn hàng</a>
+            <a href="#"><i class="fa fa-users"></i> Quản lý khách hàng</a>
+            <a href="#"><i class="fa fa-chart-line"></i> Thống kê</a>
+            <a href="/Taikhoan/Index"><i class="fa fa-right-from-bracket"></i> Đăng xuất</a>
+        </div>
+
+    </div>
+
+    <div class="main">
+
+        <div class="header">
+            <h2>Trang chính</h2>
+
+            <div>
+                Xin chào Nhân viên!
+            </div>
+        </div>
+    </div>
+</body>
+</html>

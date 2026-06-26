@@ -1,0 +1,16 @@
+﻿@model duan_totnghiep.Models.Danhmuc
+@{
+    Layout = "_Layout";
+}
+<h2>Xác nhận xóa</h2>
+
+<p>Bạn có chắc muốn xóa danh mục này không?</p>
+
+<p><b>@Model.Tendm</b></p>
+
+<form asp-action="Xoa">
+    <input type="hidden" asp-for="Madm" />
+
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a asp-action="Index" class="btn btn-cancel">Hủy</a>
+</form>

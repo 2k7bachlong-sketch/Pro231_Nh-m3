@@ -1,0 +1,33 @@
+﻿@model duan_totnghiep.Models.Thuonghieu
+@{
+    Layout = "_Layout";
+}
+
+<div class="detail-container">
+
+    <div class="detail-card">
+
+        <h2>CHI TIẾT THƯƠNG HIỆU</h2>
+
+        <div class="info-row">
+            <span>Mã thương hiệu:</span>
+            <p>@Model.Math</p>
+        </div>
+
+        <div class="info-row">
+            <span>Tên thương hiệu:</span>
+            <p>@Model.Tenth</p>
+        </div>
+
+        <div class="info-row">
+            <span>Mô tả:</span>
+            <p>@Model.Mota</p>
+        </div>
+
+        <a asp-action="Index" class="btn-back">
+            ← Quay lại
+        </a>
+
+    </div>
+
+</div>

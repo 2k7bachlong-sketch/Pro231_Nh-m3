@@ -1,0 +1,30 @@
+﻿@model duan_totnghiep.Models.Sanpham
+@{
+    Layout = "_Layout";
+}
+
+<div class="detail-container">
+
+    <h2>XÓA SẢN PHẨM</h2>
+
+    <h3>@Model.Tensp</h3>
+
+    <img src="~/images/@Model.Hinhanh" width="150" />
+
+    <h4>Bạn có chắc muốn xóa không?</h4>
+
+    <form asp-action="Xoa" method="post">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" asp-for="Masp" />
+
+        <button type="submit" class="btn btn-delete">
+            Xóa
+        </button>
+
+        <a asp-action="Index" class="btn btn-cancel">
+            Hủy
+        </a>
+    </form>
+
+</div>

@@ -1,0 +1,41 @@
+﻿@model duan_totnghiep.Models.Nhanvien
+@{
+    Layout = "_Layout";
+}
+
+<div class="detail-container">
+
+    <div class="detail-card">
+
+        <h2>XÓA NHÂN VIÊN</h2>
+
+        <p>Bạn có chắc muốn xóa nhân viên này không?</p>
+
+        <div class="info-row">
+            <span>Tên:</span>
+            <p>@Model.Hoten</p>
+        </div>
+
+        <div class="info-row">
+            <span>SĐT:</span>
+            <p>@Model.Sdt</p>
+        </div>
+
+        <form asp-action="Xoa">
+
+            <input asp-for="Manv" hidden />
+
+            <button class="btn btn-danger">
+                Xóa
+            </button>
+
+            <a asp-action="Index"
+               class="btn btn-cancel">
+                Hủy
+            </a>
+
+        </form>
+
+    </div>
+
+</div>

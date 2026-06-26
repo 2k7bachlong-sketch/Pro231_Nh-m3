@@ -1,0 +1,317 @@
+﻿@{
+    ViewData["Title"] = "Trang chủ";
+}
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>StarPard Shop</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+                background: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        /* HEADER */
+
+        .header {
+            height: 90px;
+            background: gray;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .logo img {
+            width: 100px;
+            height: 100px;
+            
+        }
+
+        .search-box {
+            width: 770px;
+            height: 35px;
+            background: white;
+            border: 2px solid black;
+            border-radius: 30px;
+            display: flex;
+            overflow: hidden;
+        }
+
+            .search-box input {
+                flex: 1;
+                border: none;
+                outline: none;
+                padding-left: 20px;
+                font-size: 16px;
+            }
+
+            .search-box button {
+                width: 60px;
+                border: none;
+                background: white;
+                font-size: 18px;
+                cursor: pointer;
+            }
+
+        .right-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+            .right-menu i {
+                font-size: 22px;
+                color: black;
+            }
+
+            .btn-dangki {
+                background: black;
+                color: white;
+                padding: 12px 25px;
+                border-radius: 30px;
+                text-decoration: none;
+                font-size: 22px;
+                position: relative;
+                overflow: hidden;
+                transition: all 0.3s ease;
+            }
+                .btn-dangki::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient( 120deg, transparent, rgba(255,255,255,0.4), transparent );
+                    transition: 0.6s;
+                }
+
+                .btn-dangki:hover::before {
+                    left: 100%;
+                }
+
+        /* DANH MỤC */
+
+        .category {
+            height: 70px;
+            background: #e5e5e5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 70px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+            .category a {
+                text-decoration: none;
+                color: black;
+            }
+
+                    .category a:hover {
+                        color: tomato;
+                        transform: translateY(-3px);
+                    }
+
+
+            /* BANNER */
+
+            .banner {
+                width: 100% ;
+                height: 600px;               
+                display: block;
+                justify-content: center;
+                overflow: hidden;
+            }
+
+                .banner img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;                  
+                    
+                }
+        /* SẢN PHẨM */
+
+        .products {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+        }
+
+            .card {
+                width: 220px;
+                height: 240px;
+                background: white;
+                border: 5px solid black;
+                border-radius: 20px;
+                text-align: center;
+                padding: 15px;
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
+
+                .card:hover {
+                    transform: translateY(-12px);
+                    box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+                }
+
+            .card img {
+                width: 120px;
+                height: 120px;
+                object-fit: cover;
+            }
+
+            .card h3 {
+                margin-top: 10px;
+                font-size: 15px;
+            }
+
+        .price {
+            margin-top: 25px;
+            font-size: 22px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="logo">
+            <img src="~/images/starlogo.png" />
+        </div>
+
+        <div class="search-box">
+            <input type="text" placeholder="Tìm kiếm..." />
+            <button>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+
+        <div class="right-menu">
+
+            <a href="/Giohang/Index">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+
+            <a href="/Taikhoan/Index " class="btn-dangki">
+                Đăng nhập
+            </a>
+
+            <a href="/DangKy/Index" class="btn-dangki">
+                Đăng kí
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- DANH MỤC -->
+
+    <div class="category">
+
+        <a href="#">Giày thể thao</a>
+
+        <a href="#">Giày da</a>
+
+        <a href="#">Giày cao gót</a>
+
+    </div>
+
+    <!-- BANNER -->
+
+    <div class="banner">
+
+        <img id="banner-image"
+             src="/images/banner1.jpg"
+             alt="Banner">   
+
+        <img id="banner-image"
+             src="/images/banner2.jpg"
+             alt="Banner">
+
+        <img id="banner-image"
+             src="/images/banner3.jpg"
+             alt="Banner">
+    </div>
+
+    <!-- SẢN PHẨM -->
+
+    <div class="products">
+
+        <div class="card">
+            <img src="~/images/shoes1.jpg" />
+            <h3>Giày Grand sport</h3>
+            <div class="price">720.000đ</div>
+        </div>
+
+        <div class="card">
+            <img src="~/images/shoes2.jpg" />
+            <h3>Giày da nữ</h3>
+            <div class="price">250.000đ</div>
+        </div>
+
+        <div class="card">
+            <img src="~/images/shoes3.webp" />
+            <h3>Giày Convert chuck taylor</h3>
+            <div class="price">320.000đ</div>
+        </div>
+        <div class="card">
+            <img src="~/images/shoes4.webp" />
+            <h3>Giày Format</h3>
+            <div class="price">820.000đ</div>
+        </div>
+        <div class="card">
+            <img src="~/images/shoes5.webp" />
+            <h3>Giày Second Sunday</h3>
+            <div class="price">460.000đ</div>
+        </div>
+
+    </div>
+
+    <script>
+
+            let banners = [
+                "/images/banner1.jpg",
+                "/images/banner2.jpeg",
+                "/images/banner3.jpg"
+            ];
+
+            let current = 0;
+
+            setInterval(function () {
+
+                current++;
+
+                if (current >= banners.length) {
+                    current = 0;
+                }
+
+                document.getElementById("banner-image").src =
+                    banners[current];
+
+            }, 3000);
+
+    </script>
+</body>
+</html>

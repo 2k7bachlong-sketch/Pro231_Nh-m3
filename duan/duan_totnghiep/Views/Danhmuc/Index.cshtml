@@ -1,0 +1,57 @@
+﻿@model List<duan_totnghiep.Models.Danhmuc>
+@{
+    Layout = "_Layout";
+}
+
+<div class="crud-container">
+
+    <div class="crud-header">
+        <h2>Danh mục sản phẩm</h2>
+
+        <a asp-action="Them" class="btn btn-add">
+            + Thêm danh mục
+        </a>
+    </div>
+
+    <table class="crud-table">
+        <thead>
+            <tr>
+                <th>Mã</th>
+                <th>Tên danh mục</th>
+                <th>Mô tả</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Madm</td>
+                    <td>@item.Tendm</td>
+                    <td>@item.Mota</td>
+                    <td>
+                        <a asp-action="Sua"
+                           asp-route-id="@item.Madm"
+                           class="btn btn-category-edit">
+                            Sửa
+                        </a>
+
+                        <a asp-action="Chitiet"
+                           asp-route-id="@item.Madm"
+                           class="btn btn-category-detail">
+                            Chi tiết
+                        </a>
+
+                        <a asp-action="Xoa"
+                           asp-route-id="@item.Madm"
+                           class="btn btn-category-delete">
+                            Xóa
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

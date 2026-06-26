@@ -1,0 +1,62 @@
+﻿@model List<duan_totnghiep.Models.Nhanvien>
+@{
+    Layout = "_Layout";
+}
+
+<div class="crud-container">
+
+    <div class="crud-header">
+        <h2>QUẢN LÝ NHÂN VIÊN</h2>
+
+        <a asp-action="Them" class="btn btn-add">
+            + Thêm nhân viên
+        </a>
+    </div>
+
+    <table class="crud-table">
+
+        <thead>
+            <tr>
+                <th>Mã NV</th>
+                <th>Tên NV</th>
+                <th>SĐT</th>
+                <th>Tài khoản</th>
+                <th>Chức năng</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Manv</td>
+                    <td>@item.Hoten</td>
+                    <td>@item.Sdt</td>
+                    <td>@item.Taikhoan?.Tendangnhap</td>
+
+                    <td>
+                        <a asp-action="Chitiet"
+                           asp-route-id="@item.Manv"
+                           class="btn btn-detail">
+                            Chi tiết
+                        </a>
+
+                        <a asp-action="Sua"
+                           asp-route-id="@item.Manv"
+                           class="btn btn-edit">
+                            Sửa
+                        </a>
+
+                        <a asp-action="Xoa"
+                           asp-route-id="@item.Manv"
+                           class="btn btn-delete">
+                            Xóa
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>

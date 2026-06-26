@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - StarPard</title>
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+        .footer {
+            margin-top: 100px;
+            background: #333;
+            color: white;
+            padding: 40px 0;
+        }
+
+        .main-content {
+            min-height: 700px;
+        }
+
+        .footer-content {
+            width: 80%;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-box {
+            width: 30%;
+        }
+
+            .footer-box h3 {
+                margin-bottom: 15px;
+            }
+
+            .footer-box p {
+                line-height: 30px;
+            }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            border-top: 1px solid #555;
+            padding-top: 20px;
+        }
+
+      
+</head>
+
+<body>
+
+    <!-- Banner đầu trang -->
+  
+
+    <div class="main-content">
+        @RenderBody()
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+
+            <div class="footer-box">
+                <h3>Về chúng tôi</h3>
+                <p>Cửa hàng chuyên cung cấp quần áo thời trang chất lượng cao.</p>
+            </div>
+
+            <div class="footer-box">
+                <h3>Liên hệ</h3>
+                <p>📍 Biên Hoà, Việt Nam</p>
+                <p>📞 0353279883</p>
+                <p>✉️ hungndtb02210@gmail.com</p>
+            </div>
+
+            <div class="footer-box">
+                <h3>Chính sách</h3>
+                <p>Chính sách đổi trả</p>
+                <p>Chính sách bảo mật</p>
+                <p>Điều khoản sử dụng</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 - Website bán hàng thời trang uy tín StarPard
+        </div>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

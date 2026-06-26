@@ -1,0 +1,39 @@
+﻿@model duan_totnghiep.Models.Danhmuc
+@{
+    Layout = "_Layout";
+}
+
+<div class="detail-container">
+
+    <div class="detail-card">
+
+        <h2>CHI TIẾT DANH MỤC</h2>
+
+        <div class="info-row">
+            <span>Tên danh mục:</span>
+            <p>@Model.Tendm</p>
+        </div>
+
+        <div class="info-row">
+            <span>Mô tả:</span>
+            <p>@Model.Mota</p>
+        </div>
+
+        <h4 class="product-title">
+            Sản phẩm thuộc danh mục
+        </h4>
+
+        <ul class="product-list">
+            @foreach (var sp in Model.Sanphams)
+            {
+                <li>@sp.Tensp</li>
+            }
+        </ul>
+
+        <a asp-action="Index" class="btn-back">
+            ← Quay lại
+        </a>
+
+    </div>
+
+</div>

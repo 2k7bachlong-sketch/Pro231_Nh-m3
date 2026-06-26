@@ -1,0 +1,73 @@
+﻿@model IEnumerable<duan_totnghiep.Models.Sanpham>
+@{
+    Layout = "_Layout";
+}
+<div class="crud-container">
+
+    <div class="crud-header">
+        <h2>Quản lý sản phẩm</h2>
+
+        <a asp-action="Them" class="btn btn-add">
+            + Thêm sản phẩm
+        </a>
+    </div>
+
+    <table class="crud-table">
+        <thead>
+            <tr>
+                <th>Mã</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Hình ảnh</th>
+                <th>Số lượng</th>
+                <th>Danh mục</th>
+                <th>Thương hiệu</th>
+                <th>Chức năng</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Masp</td>
+
+                    <td>@item.Tensp</td>
+
+                    <td>@item.Gia.ToString("N0") VNĐ</td>
+
+                    <td>
+                        <img src="~/images/@item.Hinhanh" />
+                    </td>
+
+                    <td>@item.Soluongton</td>
+
+                    <td>@item.Danhmuc?.Tendm</td>
+
+                    <td>@item.Thuonghieu?.Tenth</td>
+
+                    <td>
+                        <a asp-action="Sua"
+                           asp-route-id="@item.Masp"
+                           class="btn btn-edit">
+                            Sửa
+                        </a>
+
+                        <a asp-action="Chitiet"
+                           asp-route-id="@item.Masp"
+                           class="btn btn-detail">
+                            Chi tiết
+                        </a>
+
+                        <a asp-action="Xoa"
+                           asp-route-id="@item.Masp"
+                           class="btn btn-delete">
+                            Xóa
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
