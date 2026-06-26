@@ -112,7 +112,7 @@
               "RelativeDocumentMoniker": "Views\\Giohang\\Index.cshtml",
               "ToolTip": "D:\\Nopbaigit\\Pro231_Nh-m3\\Sources\\duan_totnghiep\\duan_totnghiep\\Views\\Giohang\\Index.cshtml",
               "RelativeToolTip": "Views\\Giohang\\Index.cshtml",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAAAIAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-06-26T08:40:50.495Z",
               "EditorCaption": ""
@@ -127,7 +127,8 @@
               "RelativeToolTip": "Views\\Trangmua\\Index.cshtml",
               "ViewState": "AgIAANsAAAAAAAAAAAAAAO8AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-26T08:38:06.149Z"
+              "WhenOpened": "2026-06-26T08:38:06.149Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -139,7 +140,8 @@
               "RelativeToolTip": "Views\\Giaodien\\Index.cshtml",
               "ViewState": "AgIAAAsBAAAAAAAAAAAAANgAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-26T08:34:34.719Z"
+              "WhenOpened": "2026-06-26T08:34:34.719Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -151,7 +153,8 @@
               "RelativeToolTip": "Views\\Shared\\_LayoutAdmin.cshtml",
               "ViewState": "AgIAACQAAAAAAAAAAAAAAC8AAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-26T07:47:05.622Z"
+              "WhenOpened": "2026-06-26T07:47:05.622Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -163,7 +166,8 @@
               "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAADYAAAAAAAAAAAAAAEkAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-26T07:46:47.986Z"
+              "WhenOpened": "2026-06-26T07:46:47.986Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -175,7 +179,8 @@
               "RelativeToolTip": "Views\\Sanpham\\Index.cshtml",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAAQAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-26T07:30:32.796Z"
+              "WhenOpened": "2026-06-26T07:30:32.796Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -187,7 +192,8 @@
               "RelativeToolTip": "Views\\Nhanvien\\Index.cshtml",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAUAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-26T06:55:56.489Z"
+              "WhenOpened": "2026-06-26T06:55:56.489Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -199,7 +205,8 @@
               "RelativeToolTip": "Views\\Nhanvien\\Chitiet.cshtml",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAABIAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-26T06:59:05.835Z"
+              "WhenOpened": "2026-06-26T06:59:05.835Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -211,7 +218,8 @@
               "RelativeToolTip": "Views\\Danhmuc\\Xoa.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-25T13:56:43.019Z"
+              "WhenOpened": "2026-06-25T13:56:43.019Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -223,7 +231,8 @@
               "RelativeToolTip": "Views\\Danhmuc\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-26T07:37:13.883Z"
+              "WhenOpened": "2026-06-26T07:37:13.883Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -235,7 +244,8 @@
               "RelativeToolTip": "Views\\Thuonghieu\\Index.cshtml",
               "ViewState": "AgIAADMAAAAAAAAAAAAAABEAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-26T07:30:20.616Z"
+              "WhenOpened": "2026-06-26T07:30:20.616Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -247,7 +257,8 @@
               "RelativeToolTip": "Views\\Thuonghieu\\Sua.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-26T07:40:40.438Z"
+              "WhenOpened": "2026-06-26T07:40:40.438Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -259,7 +270,8 @@
               "RelativeToolTip": "Views\\Thuonghieu\\Them.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-26T07:40:25.733Z"
+              "WhenOpened": "2026-06-26T07:40:25.733Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -271,7 +283,8 @@
               "RelativeToolTip": "Views\\Thuonghieu\\Xoa.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-26T07:27:53.587Z"
+              "WhenOpened": "2026-06-26T07:27:53.587Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -283,7 +296,8 @@
               "RelativeToolTip": "Views\\Nhanvien\\Sua.cshtml",
               "ViewState": "AgIAABUAAAAAAAAAAAAAAA8AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-26T06:57:54.608Z"
+              "WhenOpened": "2026-06-26T06:57:54.608Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -295,7 +309,8 @@
               "RelativeToolTip": "Views\\Nhanvien\\Them.cshtml",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-26T06:57:03.549Z"
+              "WhenOpened": "2026-06-26T06:57:03.549Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -307,7 +322,8 @@
               "RelativeToolTip": "Views\\Nhanvien\\Xoa.cshtml",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-26T06:59:42.515Z"
+              "WhenOpened": "2026-06-26T06:59:42.515Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -319,7 +335,8 @@
               "RelativeToolTip": "Views\\Sanpham\\Xoa.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-26T07:27:38.467Z"
+              "WhenOpened": "2026-06-26T07:27:38.467Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -331,7 +348,8 @@
               "RelativeToolTip": "Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFsAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-26T07:01:07.442Z"
+              "WhenOpened": "2026-06-26T07:01:07.442Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
