@@ -1,38 +1,21 @@
-﻿using duan_totnghiep.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿    using duan_totnghiep.Models;
+    using Microsoft.AspNetCore.Mvc;
 
 namespace duan_totnghiep.Controllers
 {
     public class GiaodienController : Controller
     {
-              public IActionResult Index()
+
+        private readonly AppDbContext _context;
+
+        public GiaodienController(AppDbContext context)
         {
-            List<Sanpham> dsSanPham = new List<Sanpham>()
-            {
-                new Sanpham
-                {
-                    Masp = 1,
-                    Tensp = "Giày Grand sport",
-                    Gia = 720000,
-                    Hinhanh = "giay1.png"
-                },
+            _context = context;
+        }
 
-                new Sanpham
-                {
-                    Masp = 2,
-                    Tensp = "Giày da nữ",
-                    Gia = 250000,
-                    Hinhanh = "giay2.png"
-                },
-
-                new Sanpham
-                {
-                    Masp = 3,
-                    Tensp = "Giày Convert chuck taylor",
-                    Gia = 320000,
-                    Hinhanh = "giay3.png"
-                }
-            };
+        public IActionResult Index()
+        {
+            var dsSanPham = _context.Sanphams.ToList();
 
             return View(dsSanPham);
         }

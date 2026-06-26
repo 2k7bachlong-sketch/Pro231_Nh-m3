@@ -19,7 +19,7 @@ public partial class Nhanvien
 
     public int? Matk { get; set; }
 
-    public virtual Taikhoan? Taikhoan { get; set; }
+    public virtual ICollection<Donhang> Donhangs { get; set; } = new List<Donhang>();
 
-    public virtual ICollection<Thongke> Thongkes { get; set; } = new List<Thongke>();
+    public virtual Taikhoan? Taikhoan { get; set; }
 }

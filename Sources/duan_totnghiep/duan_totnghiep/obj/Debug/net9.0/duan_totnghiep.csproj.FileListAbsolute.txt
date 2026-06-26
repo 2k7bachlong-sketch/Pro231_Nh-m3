@@ -586,7 +586,6 @@ D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0
 D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\scopedcss\bundle\duan_totnghiep.styles.css
 D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\scopedcss\projectbundle\duan_totnghiep.bundle.scp.css
-D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\compressed\l4lyddmde9-b9sayid5wm.gz
 D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\compressed\s5lum5a15k-61n19gt1b8.gz
 D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\compressed\okupp21yai-xtxxf3hu2r.gz
 D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\compressed\dvbcaqgocy-t1cqhe9u97.gz
@@ -654,10 +653,11 @@ D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0
 D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\staticwebassets.build.json.cache
 D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\staticwebassets.development.json
 D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\duan_tot.9C7FC3FF.Up2Date
 D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\duan_totnghiep.dll
 D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\refint\duan_totnghiep.dll
 D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\duan_totnghiep.pdb
 D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\duan_totnghiep.genruntimeconfig.cache
 D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\ref\duan_totnghiep.dll
+D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+D:\Nopbaigit\Pro231_Nh-m3\Sources\duan_totnghiep\duan_totnghiep\obj\Debug\net9.0\compressed\l4lyddmde9-aet7d4dynv.gz

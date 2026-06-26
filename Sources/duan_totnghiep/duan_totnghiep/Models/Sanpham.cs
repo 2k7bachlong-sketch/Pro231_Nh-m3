@@ -17,6 +17,8 @@ public partial class Sanpham
 
     public int? Soluongton { get; set; }
 
+    public DateTime? Ngaytao { get; set; }
+
     public int? Math { get; set; }
 
     public int? Madm { get; set; }

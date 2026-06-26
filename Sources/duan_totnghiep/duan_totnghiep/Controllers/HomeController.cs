@@ -17,7 +17,10 @@ namespace duan_totnghiep.Controllers
         {
             return View();
         }
-
+        public IActionResult Indexnv()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

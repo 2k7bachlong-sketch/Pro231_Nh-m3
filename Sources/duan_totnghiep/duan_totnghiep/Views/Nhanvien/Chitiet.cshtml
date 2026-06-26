@@ -1,0 +1,38 @@
+﻿@model duan_totnghiep.Models.Nhanvien
+@{
+    Layout = "_Layout";
+}
+
+<div class="detail-container">
+
+    <div class="detail-card">
+
+        <h2>CHI TIẾT NHÂN VIÊN</h2>
+
+        <div class="info-row">
+            <span>Mã nhân viên:</span>
+            <p>@Model.Manv</p>
+        </div>
+
+        <div class="info-row">
+            <span>Tên nhân viên:</span>
+            <p>@Model.Hoten</p>
+        </div>
+
+        <div class="info-row">
+            <span>SĐT:</span>
+            <p>@Model.Sdt</p>
+        </div>
+
+        <div class="info-row">
+            <span>Tài khoản:</span>
+            <p>@Model.Taikhoan?.Tendangnhap</p>
+        </div>
+
+        <a asp-action="Index" class="btn-back">
+            ← Quay lại
+        </a>
+
+    </div>
+
+</div>

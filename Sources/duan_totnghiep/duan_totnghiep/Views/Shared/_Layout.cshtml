@@ -1,4 +1,13 @@
-﻿    <style>
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - StarPard</title>
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
         .footer {
             margin-top: 100px;
             background: #333;
@@ -6,11 +15,11 @@
             padding: 40px 0;
         }
 
-    .main-content {
-        min-height: 700px; /* hoặc 1200px tùy ý */
-    }
+        .main-content {
+            min-height: 700px;
+        }
 
-    .footer-content {
+        .footer-content {
             width: 80%;
             margin: auto;
             display: flex;
@@ -36,29 +45,45 @@
             padding-top: 20px;
         }
 
-    .top-banner {
-        width: 100%;
-        height: 150px;
-        overflow: hidden;
-    }
+       
 
-        .top-banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+        .back-home {
+            padding: 15px 30px;
         }
-</style>
-<!-- Banner đầu trang -->
-<div class="top-banner">
-    <img src="~/images/header.avif" alt="Banner">
-</div>
-<div class="main-content">
-    @RenderBody()
-</div>
-<footer class="footer">
+
+        .btn-home {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+            .btn-home:hover {
+                background: #0056b3;
+                color: white;
+            }
+    </style>
+</head>
+
+<body>
+
+    <!-- Banner đầu trang -->
+    
+    <div class="back-home">
+        <a asp-controller="Home" asp-action="Index" class="btn-home">
+            ← Quay về trang chủ
+        </a>
+    </div>
+    <div class="main-content">
+        @RenderBody()
+    </div>
+
+    <footer class="footer">
         <div class="footer-content">
-           
+
             <div class="footer-box">
                 <h3>Về chúng tôi</h3>
                 <p>Cửa hàng chuyên cung cấp quần áo thời trang chất lượng cao.</p>
@@ -85,3 +110,6 @@
         </div>
     </footer>
 
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

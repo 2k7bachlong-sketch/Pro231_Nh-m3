@@ -1,8 +1,11 @@
 wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\images\3d4906e8-a414-4f3c-8e83-0f448fb4dd8d.jpg
+wwwroot\images\8593d2cf-b338-4a65-823f-27c2e3af6f77.jpg
 wwwroot\images\banner1.jpg
 wwwroot\images\banner2.jpeg
 wwwroot\images\banner3.jpg
+wwwroot\images\d16a66b6-12b7-424b-89b8-a01b070b7ab3.jpeg
 wwwroot\images\header.avif
 wwwroot\images\shoes1.jpg
 wwwroot\images\shoes2.jpg

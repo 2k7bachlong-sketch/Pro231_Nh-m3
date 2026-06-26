@@ -32,6 +32,26 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFuZ2t5XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Danhmuc/Chitiet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFuaG11Y1xDaGl0aWV0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Danhmuc/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFuaG11Y1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Danhmuc/Sua.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFuaG11Y1xTdWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Danhmuc/Them.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFuaG11Y1xUaGVtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Danhmuc/Xoa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFuaG11Y1xYb2EuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Giaodien/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2lhb2RpZW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -44,12 +64,60 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Home/Indexnv.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleG52LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Nhanvien/Chitiet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhbnZpZW5cQ2hpdGlldC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Nhanvien/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhbnZpZW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Nhanvien/Sua.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhbnZpZW5cU3VhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Nhanvien/Them.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhbnZpZW5cVGhlbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Nhanvien/Xoa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmhhbnZpZW5cWG9hLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Sanpham/Chitiet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FucGhhbVxDaGl0aWV0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Sanpham/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FucGhhbVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Sanpham/Sua.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FucGhhbVxTdWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Sanpham/Them.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FucGhhbVxUaGVtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Sanpham/Xoa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FucGhhbVxYb2EuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Shared/_LayoutAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRBZG1pbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Shared/_ValidationScriptsPartial.cshtml]
@@ -58,6 +126,30 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Taikhoan/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFpa2hvYW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Thuonghieu/Chitiet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGh1b25naGlldVxDaGl0aWV0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Thuonghieu/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGh1b25naGlldVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Thuonghieu/Sua.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGh1b25naGlldVxTdWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Thuonghieu/Them.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGh1b25naGlldVxUaGVtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Thuonghieu/Xoa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGh1b25naGlldVxYb2EuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/Trangmua/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhbmdtdWFcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Nopbaigit/Pro231_Nh-m3/Sources/duan_totnghiep/duan_totnghiep/Views/_ViewImports.cshtml]

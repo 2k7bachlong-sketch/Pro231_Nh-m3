@@ -1,76 +1,117 @@
 ﻿@model List<duan_totnghiep.Models.Giohang>
 @{
-    Layout = "_Layout";
+    Layout = "_LayoutAdmin";
 }
 @{
     ViewData["Title"] = "Giỏ hàng";
 }
-
 <style>
-    .container {
-        width: 80%;
-        margin: 30px auto;
+
+    body {
+        background-color: #f5f5f5;
+        font-family: Arial, sans-serif;
     }
 
-    h2 {
+    .title {
         text-align: center;
-        margin-bottom: 30px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .cart-container {
+        width: 90%;
+        margin: auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        overflow: hidden;
     }
 
     table {
         width: 100%;
         border-collapse: collapse;
-        background: white;
     }
 
-        table th, table td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-
-        table th {
-            background: #333;
-            color: white;
-        }
-
-    img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-    }
-
-    .btn {
-        padding: 6px 12px;
-        text-decoration: none;
-        border-radius: 5px;
+    th {
+        background: #333;
         color: white;
+        padding: 20px;
+        font-size: 18px;
     }
+
+    td {
+        padding: 20px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+        td img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+    .quantity a {
+        text-decoration: none;
+        background: black;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 5px;
+        margin: 0 10px;
+        font-size: 18px;
+    }
+
+        .quantity a:hover {
+            background: #555;
+        }
 
     .btn-delete {
         background: red;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 8px;
+        text-decoration: none;
     }
 
-    .btn-plus {
-        background: green;
+        .btn-delete:hover {
+            background: darkred;
+        }
+
+    .btn-clear {
+        display: inline-block;
+        margin: 30px;
+        background: black;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 10px;
+        text-decoration: none;
     }
 
-    .btn-minus {
-        background: orange;
+        .btn-clear:hover {
+            background: #444;
+        }
+
+    .empty-cart {
+        color: red;
+        font-size: 28px;
+        padding: 50px;
+        text-align: center;
     }
+
 </style>
 
-<div class="container">
-    <a asp-controller="Giohang" asp-action="Index">
-        <i class="fa-solid fa-cart-shopping"></i>
-    </a>
-    <h2>GIỎ HÀNG</h2>
+<h1 class="title">GIỎ HÀNG</h1>
+
+<div class="cart-container">
 
     <table>
+
         <tr>
-            <th>Ảnh</th>
+            <th>Hình ảnh</th>
             <th>Tên sản phẩm</th>
-            <th>Giá</th>
+            <th>Đơn giá</th>
             <th>Số lượng</th>
             <th>Thành tiền</th>
             <th>Thao tác</th>
@@ -79,12 +120,8 @@
         @if (Model.Count == 0)
         {
             <tr>
-                <td colspan="6"
-                    style="text-align:center;
-                       padding:40px;
-                       font-size:24px;
-                       color:red;">
-                    🛒 Giỏ hàng trống!
+                <td colspan="6" class="empty-cart">
+                    🛒 Giỏ hàng trống
                 </td>
             </tr>
         }
@@ -103,32 +140,38 @@
                     </td>
 
                     <td>
-                        @String.Format("{0:N0} đ", item.Sanpham.Gia)
+                        @string.Format("{0:N0}", item.Sanpham.Gia) đ
                     </td>
 
-                    <td>
-                        <a class="btn btn-minus"
-                           asp-action="GiamSL"
-                           asp-route-id="@item.Magh">-</a>
+                    <td class="quantity">
+
+                        <a asp-action="Giam"
+                           asp-route-id="@item.Magh">
+                            -
+                        </a>
 
                         @item.Soluong
 
-                        <a class="btn btn-plus"
-                           asp-action="TangSL"
-                           asp-route-id="@item.Magh">+</a>
+                        <a asp-action="Tang"
+                           asp-route-id="@item.Magh">
+                            +
+                        </a>
+
                     </td>
 
                     <td>
-                        @String.Format("{0:N0} đ",
-                        item.Soluong* item.Sanpham.Gia)
+                        @string.Format("{0:N0}",
+                        item.Soluong* item.Sanpham.Gia) đ
             </td>
 
             <td>
-                <a class="btn btn-delete"
-                   asp-action="Xoa"
-                   asp-route-id="@item.Magh">
+
+                <a asp-action="Xoa"
+                   asp-route-id="@item.Magh"
+                   class="btn-delete">
                     Xóa
                 </a>
+
             </td>
 
         </tr>
@@ -137,13 +180,9 @@
 
     </table>
 
-    @if (Model.Count > 0)
-    {
-        <h3 style="margin-top:20px">
-            Tổng tiền:
-            @String.Format("{0:N0} đ",
-            Model.Sum(x => x.Soluong * x.Sanpham.Gia))
-    </h3>
-        }
+    <a asp-action="XoaTatCa"
+       class="btn-clear">
+        Xóa toàn bộ giỏ hàng
+    </a>
 
 </div>

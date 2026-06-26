@@ -135,7 +135,12 @@
 </head>
 
 <body>
-
+    @if (ViewBag.Loi != null)
+    {
+        <div style="color:red">
+            @ViewBag.Loi
+        </div>
+    }
     <div class="header">
 
         <img src="~/images/starlogo.png" class="logo" />
@@ -181,10 +186,11 @@
                            name="MatKhau"
                            placeholder="Mật khẩu" />
                 </div>
-                <select name="Vaitro" class="input-role">
-                    <option value="User">Người dùng</option>
-                    <option value="Admin">Quản trị viên</option>
-                </select>
+                <div class="form-group">
+                    <input type="password"
+                           name="NhapLaiMatKhau"
+                           placeholder="Nhập lại mật khẩu" />
+                </div>
 
                 <button type="submit" class="btnDangKy">
                     Đăng ký

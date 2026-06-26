@@ -9,7 +9,7 @@ public partial class Khuyenmai
 
     public string Tenkm { get; set; } = null!;
 
-    public int? Phantramgiam { get; set; }
+    public int Phantramgiam { get; set; }
 
     public DateOnly? Ngaybatdau { get; set; }
 

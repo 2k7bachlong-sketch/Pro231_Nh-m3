@@ -1,0 +1,47 @@
+﻿@model duan_totnghiep.Models.Sanpham
+@{
+    Layout = "_Layout";
+}
+
+<div class="detail-container">
+
+    <div class="detail-card">
+
+        <h2>CHI TIẾT SẢN PHẨM</h2>
+
+        <div class="image-box">
+            <img src="~/images/@Model.Hinhanh" alt="@Model.Tensp">
+        </div>
+
+        <div class="info-row">
+            <span>Tên sản phẩm:</span>
+            <p>@Model.Tensp</p>
+        </div>
+
+        <div class="info-row">
+            <span>Giá:</span>
+            <p>@String.Format("{0:N0} VNĐ", Model.Gia)</p>
+        </div>
+
+        <div class="info-row">
+            <span>Số lượng:</span>
+            <p>@Model.Soluongton</p>
+        </div>
+
+        <div class="info-row">
+            <span>Danh mục:</span>
+            <p>@Model.Danhmuc?.Tendm</p>
+        </div>
+
+        <div class="info-row">
+            <span>Thương hiệu:</span>
+            <p>@Model.Thuonghieu?.Tenth</p>
+        </div>
+
+        <a asp-action="Index" class="btn-back">
+            ← Quay lại
+        </a>
+
+    </div>
+
+</div>

@@ -18,36 +18,47 @@ namespace duan_totnghiep.Controllers
         }
 
         [HttpPost]
-
-        public IActionResult Login(Taikhoan model)
+        public IActionResult Index(Taikhoan model)
         {
-            var tk = _context.Taikhoans.FirstOrDefault(x =>
-                x.Tendangnhap == model.Tendangnhap &&
-                x.Matkhau == model.Matkhau);
+            // Tài khoản Admin cố định
+            if (model.Tendangnhap == "Admin" &&
+                model.Matkhau == "123456")
+            {
+                HttpContext.Session.SetString("Username", "Admin");
+                HttpContext.Session.SetString("Role", "Admin");
+
+                return RedirectToAction("Index", "Home");
+            }
+            // Nhân viên
+            if (model.Tendangnhap == "Nhanvien" &&
+                model.Matkhau == "12345")
+            {
+                HttpContext.Session.SetString("Username", "Nhanvien");
+                HttpContext.Session.SetString("Role", "Nhanvien");
+
+                return RedirectToAction("Indexnv", "Home");
+            }
+
+            // Mọi tài khoản khác đều vào giao diện người dùng
+            // Tìm tài khoản trong database
+            var tk = _context.Taikhoans
+                             .FirstOrDefault(x =>
+                                 x.Tendangnhap == model.Tendangnhap &&
+                                 x.Matkhau == model.Matkhau);
 
             if (tk != null)
             {
                 HttpContext.Session.SetString("Username", tk.Tendangnhap);
+                HttpContext.Session.SetString("Role", "User");
 
-                // Lưu quyền
-                HttpContext.Session.SetString("Role", tk.Vaitro);
+                // Lưu mã khách hàng vào Session
+                HttpContext.Session.SetInt32("Makh", tk.Matk);
 
-                if (tk.Vaitro == "Admin")
-                {
-                    return RedirectToAction("Index", "Admin");
-                }
-
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Trangmua");
             }
 
-            ViewBag.Error = "Sai tài khoản hoặc mật khẩu";
+            ViewBag.Error = "Vui lòng nhập đầy đủ thông tin";
             return View("Index");
-        }
-
-        public IActionResult Logout()
-        {
-            HttpContext.Session.Clear();
-            return RedirectToAction("Login");
         }
     }
 }

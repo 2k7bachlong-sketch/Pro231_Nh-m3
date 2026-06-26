@@ -33,15 +33,13 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<Taikhoan> Taikhoans { get; set; }
 
-    public virtual DbSet<Thongke> Thongkes { get; set; }
-
     public virtual DbSet<Thuonghieu> Thuonghieus { get; set; }
 
     public virtual DbSet<Tonkho> Tonkhos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-9JAC447\\SQLEXPRESS02;Database=SHOPGIAY_StarPard;Trusted_Connection=True;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-9JAC447\\SQLEXPRESS02;Database=SHOPGIAY_StarPard;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -276,27 +274,6 @@ public partial class AppDbContext : DbContext
                 .HasColumnName("VAITRO");
         });
 
-        modelBuilder.Entity<Thongke>(entity =>
-        {
-            entity.HasKey(e => e.Matkke).HasName("PK__THONGKE__67EFB32879DACCD9");
-
-            entity.ToTable("THONGKE");
-
-            entity.Property(e => e.Matkke).HasColumnName("MATKKE");
-            entity.Property(e => e.Doanhthu)
-                .HasColumnType("decimal(18, 2)")
-                .HasColumnName("DOANHTHU");
-            entity.Property(e => e.Manv).HasColumnName("MANV");
-            entity.Property(e => e.Ngaythongke).HasColumnName("NGAYTHONGKE");
-            entity.Property(e => e.Soluongdonhang).HasColumnName("SOLUONGDONHANG");
-            entity.Property(e => e.Soluongkhachhang).HasColumnName("SOLUONGKHACHHANG");
-            entity.Property(e => e.Soluongsanphamban).HasColumnName("SOLUONGSANPHAMBAN");
-
-            entity.HasOne(d => d.Nhanvien).WithMany(p => p.Thongkes)
-                .HasForeignKey(d => d.Manv)
-                .HasConstraintName("FK__THONGKE__MANV__02FC7413");
-        });
-
         modelBuilder.Entity<Thuonghieu>(entity =>
         {
             entity.HasKey(e => e.Math).HasName("PK__THUONGHI__6023721B1BF9AE32");
@@ -329,7 +306,7 @@ public partial class AppDbContext : DbContext
                 .HasDefaultValue(0)
                 .HasColumnName("SOLUONGXUAT");
 
-            entity.HasOne(d => d.MaspNavigation).WithMany(p => p.Tonkhos)
+            entity.HasOne(d => d.Sanpham).WithMany(p => p.Tonkhos)
                 .HasForeignKey(d => d.Masp)
                 .HasConstraintName("FK__TONKHO__MASP__693CA210");
         });
