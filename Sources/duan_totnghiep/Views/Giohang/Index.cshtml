@@ -1,0 +1,131 @@
+﻿@model List<duan_totnghiep.Models.Giohang>
+@{
+    Layout = null;
+}
+@{
+    ViewData["Title"] = "Giỏ hàng";
+}
+
+<style>
+    .container {
+        width: 80%;
+        margin: 30px auto;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+    }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        table th {
+            background: #333;
+            color: white;
+        }
+
+    img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+
+    .btn {
+        padding: 6px 12px;
+        text-decoration: none;
+        border-radius: 5px;
+        color: white;
+    }
+
+    .btn-delete {
+        background: red;
+    }
+
+    .btn-plus {
+        background: green;
+    }
+
+    .btn-minus {
+        background: orange;
+    }
+</style>
+
+<div class="container">
+    <a asp-controller="Giohang" asp-action="Index">
+        <i class="fa-solid fa-cart-shopping"></i>
+    </a>
+    <h2>GIỎ HÀNG</h2>
+
+    <table>
+        <tr>
+            <th>Ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+            <th>Thao tác</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    <img src="~/images/@item.Sanpham.Hinhanh" />
+                </td>
+
+                <td>
+                    @item.Sanpham.Tensp
+                </td>
+
+                <td>
+                    @String.Format("{0:N0} đ", item.Sanpham.Gia)
+                </td>
+
+                <td>
+                    <a class="btn btn-minus"
+                       asp-action="GiamSL"
+                       asp-route-id="@item.Magh">-</a>
+
+                    @item.Soluong
+
+                    <a class="btn btn-plus"
+                       asp-action="TangSL"
+                       asp-route-id="@item.Magh">+</a>
+                </td>
+
+                <td>
+                    @String.Format("{0:N0} đ",
+                    item.Soluong* item.Sanpham.Gia)
+            </td>
+
+            <td>
+                <a class="btn btn-delete"
+                   asp-action="Xoa"
+                   asp-route-id="@item.Magh">
+                    Xóa
+                </a>
+            </td>
+
+        </tr>
+                }
+
+    </table>
+
+    <h3 style="margin-top:20px">
+        Tổng tiền:
+        @String.Format("{0:N0} đ",
+        Model.Sum(x => x.Soluong * x.Sanpham.Gia))
+    </h3>
+
+</div>
