@@ -100,6 +100,22 @@
         text-align: center;
     }
 
+    /* Quay về trang chủ */
+    .btn-home {
+        display: inline-block;
+        padding: 15px 30px;
+        background: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: bold;
+        transition: .3s;
+    }
+
+        .btn-home:hover {
+            background: #2E7D32;
+            transform: translateY(-2px);
+        }
 </style>
 
 <h1 class="title">GIỎ HÀNG</h1>
@@ -168,10 +184,11 @@
 
                 <a asp-action="Xoa"
                    asp-route-id="@item.Magh"
+                   onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?');"
                    class="btn-delete">
                     Xóa
                 </a>
-
+                        
             </td>
 
         </tr>
@@ -185,4 +202,9 @@
         Xóa toàn bộ giỏ hàng
     </a>
 
+    <a asp-controller="Trangmua"
+       asp-action="Index"
+       class="btn-home">
+        ← Quay về trang chủ
+    </a>
 </div>

@@ -48,17 +48,33 @@ namespace duan_totnghiep.Controllers
 
             if (tk != null)
             {
+                var kh = _context.Khachhangs
+                                 .FirstOrDefault(x => x.Matk == tk.Matk);
+
+                if (kh == null)
+                {
+                    ViewBag.Error = "Tài khoản chưa có thông tin khách hàng.";
+                    return View();
+                }
+
                 HttpContext.Session.SetString("Username", tk.Tendangnhap);
                 HttpContext.Session.SetString("Role", "User");
 
-                // Lưu mã khách hàng vào Session
-                HttpContext.Session.SetInt32("Makh", tk.Matk);
+                // Lưu đúng MAKH
+                HttpContext.Session.SetInt32("Makh", kh.Makh);
 
                 return RedirectToAction("Index", "Trangmua");
             }
 
-            ViewBag.Error = "Vui lòng nhập đầy đủ thông tin";
-            return View("Index");
+            ViewBag.Error = "Tên đăng nhập hoặc mật khẩu không đúng.";
+            return View(model);
+            
+        }
+        public IActionResult DangXuat()
+        {
+            HttpContext.Session.Clear();
+
+            return RedirectToAction("Index", "Giaodien");
         }
     }
 }

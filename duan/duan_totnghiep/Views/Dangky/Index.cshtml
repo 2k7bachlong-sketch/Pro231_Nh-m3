@@ -131,16 +131,36 @@
             text-align: center;
             margin-bottom: 15px;
         }
+
+        .back-home{
+     margin-top:10px;
+     margin-bottom:20px;
+}
+
+.back-home a{
+    text-decoration:none;
+    color:black;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.back-home a:hover{
+    color:tomato;
+}
+
+.error{
+    background:#ffe5e5;
+    color:#d60000;
+    border:1px solid #ff9a9a;
+    border-radius:8px;
+    padding:10px;
+    margin-bottom:15px;
+    text-align:center;
+}
     </style>
 </head>
 
 <body>
-    @if (ViewBag.Loi != null)
-    {
-        <div style="color:red">
-            @ViewBag.Loi
-        </div>
-    }
     <div class="header">
 
         <img src="~/images/starlogo.png" class="logo" />
@@ -195,6 +215,12 @@
                 <button type="submit" class="btnDangKy">
                     Đăng ký
                 </button>
+
+                <div class="back-home">
+                    <a href="/Giaodien/Index">
+                        ← Quay về trang chủ
+                    </a>
+                </div>
 
             </form>
 

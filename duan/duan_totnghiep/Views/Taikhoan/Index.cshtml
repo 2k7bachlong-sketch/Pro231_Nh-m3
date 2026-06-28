@@ -3,6 +3,7 @@
     Layout = null;
     ViewData["Title"] = "Đăng nhập";
 }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +67,7 @@
 
         .right {
             width: 380px;
-            height: 450px;
+            height: 480px;
             background: #cfcfcf;
             border-radius: 25px;
             padding: 30px;
@@ -108,6 +109,34 @@
             .btn:hover {
                 background: #333;
             }
+
+.back-home{
+    margin-top:10px;
+    margin-bottom:20px;
+}
+
+
+.back-home a{
+    text-decoration:none;
+    color:black;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.back-home a:hover{
+    color:tomato;
+}
+
+.error{
+    margin-top:20px;
+    background:#ffdddd;
+    color:#d8000c;
+    border:1px solid #ff5c5c;
+    padding:12px;
+    border-radius:10px;
+    text-align:center;
+    font-weight:bold;
+}
     </style>
 </head>
 
@@ -133,12 +162,18 @@
             <div class="title">
                 Đăng nhập
             </div>
-
+            @if (ViewBag.Error != null)
+            {
+                <div class="error">
+                    @ViewBag.Error
+                </div>
+            }
             <form asp-action="Index" method="post">
 
                 <input type="text"
                        name="Tendangnhap"
                        class="input-box"
+                       value="@Model?.Tendangnhap"
                        placeholder="Tên đăng nhập" />
 
                 <input type="password"
@@ -150,6 +185,12 @@
                 <button type="submit" class="btn">
                     Đăng nhập
                 </button>
+
+                <div class="back-home">
+                    <a href="/Giaodien/Index">
+                        ← Quay về trang chủ
+                    </a>
+                </div>
 
             </form>
 

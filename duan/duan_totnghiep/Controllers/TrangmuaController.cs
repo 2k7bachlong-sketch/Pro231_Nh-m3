@@ -15,15 +15,17 @@ namespace duan_totnghiep.Controllers
 
         public IActionResult Index(string searchString)
         {
-            var sanphams = _context.Sanphams.AsQueryable();
+            ViewBag.Search = searchString;
+
+            var sanPham = _context.Sanphams.AsQueryable();
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                sanphams = sanphams.Where(x =>
-                    x.Tensp.Contains(searchString));
+                sanPham = sanPham.Where(x => x.Tensp.Contains(searchString));
             }
 
-            return View(sanphams.ToList());
+            return View(sanPham.ToList());
+
         }
     }
 }

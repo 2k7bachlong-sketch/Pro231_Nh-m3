@@ -36,8 +36,8 @@ namespace duan_totnghiep.Controllers
         public IActionResult ThemVaoGio(int id)
         {
             // Lấy mã khách hàng từ Session
-            int? maKhachHang = HttpContext.Session.GetInt32("Makh");
-         
+            int? maKhachHang = HttpContext.Session.GetInt32("Makh");     
+
 
             // Chưa đăng nhập
             if (maKhachHang == null)
@@ -81,7 +81,8 @@ namespace duan_totnghiep.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Index");
+            TempData["Success"] = "Đã thêm sản phẩm vào giỏ hàng!";
+            return RedirectToAction("Index", "Trangmua");
         }
 
         // Xóa sản phẩm khỏi giỏ
@@ -100,7 +101,7 @@ namespace duan_totnghiep.Controllers
         }
 
         // Tăng số lượng
-        public IActionResult TangSL(int id)
+        public IActionResult Tang(int id)
         {
             var item = _context.Giohangs
                 .FirstOrDefault(x => x.Magh == id);
@@ -115,7 +116,7 @@ namespace duan_totnghiep.Controllers
         }
 
         // Giảm số lượng
-        public IActionResult GiamSL(int id)
+        public IActionResult Giam(int id)
         {
             var item = _context.Giohangs
                 .FirstOrDefault(x => x.Magh == id);
@@ -131,7 +132,6 @@ namespace duan_totnghiep.Controllers
 
                 _context.SaveChanges();
             }
-
             return RedirectToAction("Index");
         }
     }
