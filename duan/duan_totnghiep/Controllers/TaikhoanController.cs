@@ -48,20 +48,11 @@ namespace duan_totnghiep.Controllers
 
             if (tk != null)
             {
-                var kh = _context.Khachhangs
-                                 .FirstOrDefault(x => x.Matk == tk.Matk);
-
-                if (kh == null)
-                {
-                    ViewBag.Error = "Tài khoản chưa có thông tin khách hàng.";
-                    return View();
-                }
-
                 HttpContext.Session.SetString("Username", tk.Tendangnhap);
                 HttpContext.Session.SetString("Role", "User");
 
-                // Lưu đúng MAKH
-                HttpContext.Session.SetInt32("Makh", kh.Makh);
+                // Nếu Matk là khóa chính của tài khoản
+                HttpContext.Session.SetInt32("Matk", tk.Matk);
 
                 return RedirectToAction("Index", "Trangmua");
             }

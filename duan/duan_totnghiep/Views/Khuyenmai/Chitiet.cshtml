@@ -1,0 +1,49 @@
+﻿@model duan_totnghiep.Models.Khuyenmai
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="detail-container">
+
+    <div class="detail-card">
+
+        <h2>Chi tiết khuyến mãi</h2>
+
+        <div class="info-row">
+            <span>Mã KM</span>
+            <p>@Model.Makm</p>
+        </div>
+
+        <div class="info-row">
+            <span>Tên</span>
+            <p>@Model.Tenkm</p>
+        </div>
+
+        <div class="info-row">
+            <span>Giảm</span>
+            <p>@Model.Phantramgiam %</p>
+        </div>
+
+        <div class="info-row">
+            <span>Ngày bắt đầu</span>
+            <p>@Model.Ngaybatdau</p>
+        </div>
+
+        <div class="info-row">
+            <span>Ngày kết thúc</span>
+            <p>@Model.Ngayketthuc</p>
+        </div>
+
+        <div class="info-row">
+            <span>Trạng thái</span>
+            <p>@Model.Trangthai</p>
+        </div>
+
+        <a asp-action="Index" class="btn-back">
+            Quay lại
+        </a>
+
+    </div>
+
+</div>

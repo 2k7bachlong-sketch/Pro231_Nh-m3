@@ -71,7 +71,45 @@
             justify-content: space-between;
             box-shadow: 0 2px 5px rgba(0,0,0,.1);
         }
-      
+
+        .content {
+            padding: 30px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,.15);
+            transition: .3s;
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+            }
+
+            .card i {
+                font-size: 35px;
+                color: #1e501b;
+                margin-bottom: 15px;
+            }
+
+            .card h2 {
+                font-size: 30px;
+                margin: 10px 0;
+            }
+
+            .card p {
+                color: #666;
+            }
+             
     </style>
 </head>
 <body>
@@ -87,10 +125,10 @@
             <a href="/Sanpham/Index"><i class="fa fa-box"></i> Quản lý sản phẩm</a>
             <a href="/Thuonghieu/Index"><i class="fa fa-tags"></i> Quản lý thương hiệu</a>
             <a href="/Danhmuc/Index"><i class="fa fa-list"></i> Quản lý danh mục</a>
-            <a href="#"><i class="fa fa-cart-shopping"></i> Quản lý đơn hàng</a>
-            <a href="#"><i class="fa fa-users"></i> Quản lý khách hàng</a>
+            <a href="/Donhang/Index"><i class="fa fa-cart-shopping"></i> Quản lý đơn hàng</a>
+            <a href="/Khachhang/Index"><i class="fa fa-users"></i> Quản lý khách hàng</a>
             <a href="/Nhanvien/Index"><i class="fa fa-user"></i> Quản lý nhân viên</a>
-            <a href="#"><i class="fa fa-chart-line"></i> Thống kê</a>
+            <a href="/Khuyenmai/Index"><i class="fa fa-chart-line"></i> Quản lí khuyến mãi</a>
             <a href="/Giaodien/Index"><i class="fa fa-right-from-bracket"></i> Đăng xuất</a>
         </div>
 
@@ -103,6 +141,48 @@
 
             <div>
                 Xin chào Admin!
+            </div>
+            <!-- Dashboard -->
+            <div class="content">
+
+                <div class="cards">
+
+                    <div class="card">
+                        <i class="fa fa-box"></i>
+                        <h2>@ViewBag.TongSanPham</h2>
+                        <p>Sản phẩm</p>
+                    </div>
+
+                    <div class="card">
+                        <i class="fa fa-users"></i>
+                        <h2>@ViewBag.TongKhachHang</h2>
+                        <p>Khách hàng</p>
+                    </div>
+
+                    <div class="card">
+                        <i class="fa fa-cart-shopping"></i>
+                        <h2>@ViewBag.TongDonHang</h2>
+                        <p>Đơn hàng</p>
+                    </div>
+
+                    <div class="card">
+                        <i class="fa fa-percent"></i>
+                        <h2>@ViewBag.TongKhuyenMai</h2>
+                        <p>Khuyến mãi</p>
+                    </div>
+
+                    <div class="card">
+                        <i class="fa fa-warehouse"></i>
+                        <h2>@ViewBag.TonKho</h2>
+                        <p>Tồn kho</p>
+                    </div>
+
+                    <div class="card">
+                        <i class="fa fa-money-bill-wave"></i>
+                        <h2>@String.Format("{0:N0}", ViewBag.DoanhThu) đ</h2>
+                        <p>Doanh thu</p>
+                    </div>
+                </div>
             </div>
         </div>  
             </div>

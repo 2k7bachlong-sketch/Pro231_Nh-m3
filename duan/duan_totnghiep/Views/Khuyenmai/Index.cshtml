@@ -1,0 +1,82 @@
+﻿@model IEnumerable<duan_totnghiep.Models.Khuyenmai>
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="crud-container">
+
+    <div class="crud-header">
+
+        <h2>Quản lý khuyến mãi</h2>
+
+        <a asp-action="Them" class="btn btn-add">
+            + Thêm khuyến mãi
+        </a>
+
+    </div>
+
+    <table class="crud-table">
+
+        <thead>
+
+            <tr>
+                <th>Mã KM</th>
+                <th>Tên khuyến mãi</th>
+                <th>Giảm (%)</th>
+                <th>Ngày bắt đầu</th>
+                <th>Ngày kết thúc</th>
+                <th>Trạng thái</th>
+                <th width="250">Chức năng</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.Makm</td>
+
+                    <td>@item.Tenkm</td>
+
+                    <td>@item.Phantramgiam %</td>
+
+                    <td>@item.Ngaybatdau</td>
+
+                    <td>@item.Ngayketthuc</td>
+
+                    <td>@item.Trangthai</td>
+
+                    <td>
+
+                        <a asp-action="ChiTiet"
+                           asp-route-id="@item.Makm"
+                           class="btn btn-detail">
+                            Chi tiết
+                        </a>
+
+                        <a asp-action="Sua"
+                           asp-route-id="@item.Makm"
+                           class="btn btn-edit">
+                            Sửa
+                        </a>
+
+                        <a asp-action="Xoa"
+                           asp-route-id="@item.Makm"
+                           class="btn btn-delete">
+                            Xóa
+                        </a>
+
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>

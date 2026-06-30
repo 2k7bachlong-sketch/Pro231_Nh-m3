@@ -1,0 +1,39 @@
+﻿@model duan_totnghiep.Models.Khuyenmai
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="delete-container">
+
+    <h2>Xóa khuyến mãi</h2>
+
+    <hr />
+
+    <p><strong>Mã:</strong> @Model.Makm</p>
+
+    <p><strong>Tên:</strong> @Model.Tenkm</p>
+
+    <p><strong>Giảm:</strong> @Model.Phantramgiam %</p>
+
+    <p><strong>Ngày bắt đầu:</strong> @Model.Ngaybatdau</p>
+
+    <p><strong>Ngày kết thúc:</strong> @Model.Ngayketthuc</p>
+
+    <p><strong>Trạng thái:</strong> @Model.Trangthai</p>
+
+    <form asp-action="Xoa">
+
+        <input type="hidden" asp-for="Makm" />
+
+        <button class="btn btn-delete">
+            Xóa
+        </button>
+
+        <a asp-action="Index" class="btn btn-cancel">
+            Hủy
+        </a>
+
+    </form>
+
+</div>

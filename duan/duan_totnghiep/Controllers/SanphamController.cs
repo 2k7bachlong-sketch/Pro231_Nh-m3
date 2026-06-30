@@ -18,8 +18,9 @@ namespace duan_totnghiep.Controllers
         public async Task<IActionResult> Index()
         {
             var ds = _context.Sanphams
-                .Include(x => x.Danhmuc)
-                .Include(x => x.Thuonghieu);
+    .Include(x => x.Danhmuc)
+    .Include(x => x.Thuonghieu)
+    .Include(x => x.Khuyenmai); ;
 
             return View(await ds.ToListAsync());
         }
@@ -34,7 +35,8 @@ namespace duan_totnghiep.Controllers
 
             ViewBag.Math = new SelectList(_context.Thuonghieus,
                                           "Math", "Tenth");
-
+            ViewBag.Makm = new SelectList(_context.Khuyenmais,
+                              "Makm", "Tenkm");
             return View();
         }
 
@@ -43,8 +45,11 @@ namespace duan_totnghiep.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Them(
             Sanpham sp,
-            IFormFile fileAnh)
+            IFormFile? fileAnh)
         {
+            ModelState.Remove("Danhmuc");
+            ModelState.Remove("Thuonghieu");
+            ModelState.Remove("Khuyenmai");
             if (ModelState.IsValid)
             {
                 // Upload ảnh
@@ -81,6 +86,10 @@ namespace duan_totnghiep.Controllers
                                           "Math",
                                           "Tenth",
                                           sp.Math);
+            ViewBag.Makm = new SelectList(_context.Khuyenmais,
+                              "Makm",
+                              "Tenkm",
+                              sp.Makm);
 
             return View(sp);
         }
@@ -104,8 +113,13 @@ namespace duan_totnghiep.Controllers
                                           "Math",
                                           "Tenth",
                                           sp.Math);
+            ViewBag.Makm = new SelectList(_context.Khuyenmais,
+                              "Makm",
+                              "Tenkm",
+                              sp.Makm);
 
             return View(sp);
+
         }
 
         // POST
@@ -116,6 +130,9 @@ namespace duan_totnghiep.Controllers
             Sanpham sp,
             IFormFile? fileAnh)
         {
+            ModelState.Remove("Danhmuc");
+            ModelState.Remove("Thuonghieu");
+            ModelState.Remove("Khuyenmai");
             if (id != sp.Masp)
                 return NotFound();
 
@@ -145,8 +162,23 @@ namespace duan_totnghiep.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Madm = new SelectList(_context.Danhmucs,
+                              "Madm",
+                              "Tendm",
+                              sp.Madm);
+
+            ViewBag.Math = new SelectList(_context.Thuonghieus,
+                                          "Math",
+                                          "Tenth",
+                                          sp.Math);
+
+            ViewBag.Makm = new SelectList(_context.Khuyenmais,
+                                          "Makm",
+                                          "Tenkm",
+                                          sp.Makm);
 
             return View(sp);
+
         }
 
         // ================= XÓA =================
@@ -157,6 +189,7 @@ namespace duan_totnghiep.Controllers
             var sp = await _context.Sanphams
                 .Include(x => x.Danhmuc)
                 .Include(x => x.Thuonghieu)
+                .Include(x => x.Khuyenmai)
                 .FirstOrDefaultAsync(x => x.Masp == id);
 
             if (sp == null)
@@ -188,6 +221,7 @@ namespace duan_totnghiep.Controllers
             var sp = await _context.Sanphams
                 .Include(x => x.Danhmuc)
                 .Include(x => x.Thuonghieu)
+                .Include(x => x.Khuyenmai)
                 .FirstOrDefaultAsync(x => x.Masp == id);
 
             if (sp == null)

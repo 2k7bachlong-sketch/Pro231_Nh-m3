@@ -1,0 +1,39 @@
+﻿@model duan_totnghiep.Models.Donhang
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="delete-container">
+
+    <h2>Xóa đơn hàng</h2>
+
+    <p>Bạn có chắc chắn muốn xóa đơn hàng này?</p>
+
+    <hr />
+
+    <p><strong>Khách hàng:</strong> @Model.Khachhang?.Hoten</p>
+
+    <p><strong>Nhân viên:</strong> @Model.Nhanvien?.Hoten</p>
+
+    <p><strong>Ngày đặt:</strong> @Model.Ngaydat?.ToString("dd/MM/yyyy")</p>
+
+    <p><strong>Tổng tiền:</strong> @Model.Tongtien.ToString("N0") VNĐ</p>
+
+    <p><strong>Trạng thái:</strong> @Model.Trangthai</p>
+
+    <form asp-action="Delete">
+
+        <input type="hidden" asp-for="Madh" />
+
+        <button type="submit" class="btn btn-delete">
+            Xóa
+        </button>
+
+        <a asp-action="Index" class="btn btn-cancel">
+            Hủy
+        </a>
+
+    </form>
+
+</div>

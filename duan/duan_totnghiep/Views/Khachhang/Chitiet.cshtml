@@ -1,0 +1,44 @@
+﻿@model duan_totnghiep.Models.Khachhang
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="detail-container">
+
+    <div class="detail-card">
+
+        <h2>Chi tiết khách hàng</h2>
+
+        <div class="info-row">
+            <span>Mã KH</span>
+            <p>@Model.Makh</p>
+        </div>
+
+        <div class="info-row">
+            <span>Họ tên</span>
+            <p>@Model.Hoten</p>
+        </div>
+
+        <div class="info-row">
+            <span>SĐT</span>
+            <p>@Model.Sdt</p>
+        </div>
+
+        <div class="info-row">
+            <span>Email</span>
+            <p>@Model.Email</p>
+        </div>
+
+        <div class="info-row">
+            <span>Địa chỉ</span>
+            <p>@Model.Diachi</p>
+        </div>
+
+        <a asp-action="Index" class="btn-back">
+            Quay lại
+        </a>
+
+    </div>
+
+</div>

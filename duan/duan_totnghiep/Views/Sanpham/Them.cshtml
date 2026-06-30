@@ -5,6 +5,7 @@
 <div class="form-container">
 
     <h2>THÊM SẢN PHẨM</h2>
+    <div asp-validation-summary="All" class="text-danger mb-3"></div>
     <form asp-action="Them" method="post" enctype="multipart/form-data">
 
         <div class="form-group">
@@ -45,6 +46,18 @@
             </select>
         </div>
 
+
+        <div class="form-group">
+            <label>Khuyến mãi</label>
+
+            <select asp-for="Makm"
+                    asp-items="ViewBag.Makm"
+                    class="form-control">
+
+                <option value="">-- Không áp dụng --</option>
+
+            </select>
+        </div>
         <button class="btn btn-add">
             Thêm
         </button>

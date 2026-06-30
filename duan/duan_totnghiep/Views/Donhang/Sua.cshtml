@@ -1,0 +1,48 @@
+﻿@model duan_totnghiep.Models.Donhang
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="form-container">
+
+    <h2>Sửa đơn hàng</h2>
+
+    <form asp-action="Edit">
+
+        <input type="hidden" asp-for="Madh" />
+
+        <div class="form-group">
+            <label>Khách hàng</label>
+            <select asp-for="Makh" asp-items="ViewBag.Khachhang" class="form-control"></select>
+        </div>
+
+        <div class="form-group">
+            <label>Nhân viên</label>
+            <select asp-for="Manv" asp-items="ViewBag.Nhanvien" class="form-control"></select>
+        </div>
+
+        <div class="form-group">
+            <label>Ngày đặt</label>
+            <input asp-for="Ngaydat" type="date" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label>Tổng tiền</label>
+            <input asp-for="Tongtien" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label>Trạng thái</label>
+            <input asp-for="Trangthai" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-edit">Lưu</button>
+
+        <a asp-action="Index" class="btn btn-cancel">
+            Quay lại
+        </a>
+
+    </form>
+
+</div>

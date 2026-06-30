@@ -1,0 +1,37 @@
+﻿@model duan_totnghiep.Models.Khachhang
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="delete-container">
+
+    <h2>Xóa khách hàng</h2>
+
+    <hr />
+
+    <p><strong>Mã:</strong> @Model.Makh</p>
+
+    <p><strong>Họ tên:</strong> @Model.Hoten</p>
+
+    <p><strong>SĐT:</strong> @Model.Sdt</p>
+
+    <p><strong>Email:</strong> @Model.Email</p>
+
+    <p><strong>Địa chỉ:</strong> @Model.Diachi</p>
+
+    <form asp-action="Xoa">
+
+        <input type="hidden" asp-for="Makh" />
+
+        <button class="btn btn-delete">
+            Xóa
+        </button>
+
+        <a asp-action="Index" class="btn btn-cancel">
+            Hủy
+        </a>
+
+    </form>
+
+</div>

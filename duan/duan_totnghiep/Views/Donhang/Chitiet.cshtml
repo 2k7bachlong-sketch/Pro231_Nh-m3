@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<div class="detail-container">
+
+    <div class="detail-card">
+
+        <h2>Chi tiết đơn hàng</h2>
+
+        <div class="info-row">
+            <span>Mã đơn hàng:</span>
+            <p>@Model.Madh</p>
+        </div>
+
+        <div class="info-row">
+            <span>Khách hàng:</span>
+            <p>@Model.Khachhang?.Hoten</p>
+        </div>
+
+        <div class="info-row">
+            <span>Nhân viên:</span>
+            <p>@Model.Nhanvien?.Hoten</p>
+        </div>
+
+        <div class="info-row">
+            <span>Ngày đặt:</span>
+            <p>@Model.Ngaydat?.ToString("dd/MM/yyyy")</p>
+        </div>
+
+        <div class="info-row">
+            <span>Tổng tiền:</span>
+            <p>@Model.Tongtien.ToString("N0") VNĐ</p>
+        </div>
+
+        <div class="info-row">
+            <span>Trạng thái:</span>
+            <p>@Model.Trangthai</p>
+        </div>
+
+        <a asp-action="Index" class="btn-back">
+            ← Quay lại
+        </a>
+
+    </div>
+
+</div>

@@ -37,7 +37,17 @@
             <span>Thương hiệu:</span>
             <p>@Model.Thuonghieu?.Tenth</p>
         </div>
+        <div class="info-row">
 
+            <span>Khuyến mãi</span>
+
+            <p>
+                @(Model.Khuyenmai == null
+                                ? "Không áp dụng"
+                                : $"{Model.Khuyenmai.Tenkm} ({Model.Khuyenmai.Phantramgiam}%)")
+            </p>
+
+        </div>
         <a asp-action="Index" class="btn-back">
             ← Quay lại
         </a>
