@@ -148,7 +148,7 @@
               "RelativeDocumentMoniker": "Views\\Shared\\_LayoutAdmin.cshtml",
               "ToolTip": "F:\\Download\\PRO231\\Pro231_Nh-m3\\duan\\duan_totnghiep\\Views\\Shared\\_LayoutAdmin.cshtml",
               "RelativeToolTip": "Views\\Shared\\_LayoutAdmin.cshtml",
-              "ViewState": "AgIAABYAAAAAAAAAAAAAADYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAAAFEAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-07-03T07:07:51.094Z",
               "EditorCaption": ""
@@ -163,8 +163,7 @@
               "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAFoAAAAAAAAAAAAAAGAAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-07-03T07:06:46.342Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-03T07:06:46.342Z"
             },
             {
               "$type": "Document",
@@ -176,8 +175,7 @@
               "RelativeToolTip": "Controllers\\TrangmuaController.cs",
               "ViewState": "AgIAABwAAAAAAAAAAAAQwBAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-28T08:30:13.422Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-28T08:30:13.422Z"
             },
             {
               "$type": "Document",
@@ -225,8 +223,7 @@
               "RelativeToolTip": "Controllers\\DanhmucController.cs",
               "ViewState": "AgIAAEwAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-30T08:22:59.003Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-30T08:22:59.003Z"
             },
             {
               "$type": "Document",
