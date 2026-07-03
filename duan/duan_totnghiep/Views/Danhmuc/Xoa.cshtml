@@ -1,16 +1,82 @@
 ﻿@model duan_totnghiep.Models.Danhmuc
+
 @{
     Layout = "_Layout";
 }
-<h2>Xác nhận xóa</h2>
 
-<p>Bạn có chắc muốn xóa danh mục này không?</p>
+<div class="delete-container">
 
-<p><b>@Model.Tendm</b></p>
+    <div class="delete-card">
 
-<form asp-action="Xoa">
-    <input type="hidden" asp-for="Madm" />
+        <div class="delete-icon">
 
-    <button type="submit" class="btn btn-danger">Xóa</button>
-    <a asp-action="Index" class="btn btn-cancel">Hủy</a>
-</form>
+            <i class="bi bi-trash3-fill"></i>
+
+        </div>
+
+        <h2>Xóa danh mục</h2>
+
+        <p>
+
+            Bạn có chắc chắn muốn xóa danh mục này?
+
+        </p>
+
+        <hr />
+
+        <div class="info-row">
+
+            <span>Mã</span>
+
+            <p>@Model.Madm</p>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Tên</span>
+
+            <p>@Model.Tendm</p>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Mô tả</span>
+
+            <p>@Model.Mota</p>
+
+        </div>
+
+        <form asp-action="Xoa">
+
+            @Html.AntiForgeryToken()
+
+            <input asp-for="Madm" type="hidden" />
+
+            <div class="form-buttons">
+
+                <button class="btn btn-danger">
+
+                    <i class="bi bi-trash-fill"></i>
+
+                    Xóa
+
+                </button>
+
+                <a asp-action="Index"
+                   class="btn btn-cancel">
+
+                    <i class="bi bi-arrow-left-circle"></i>
+
+                    Hủy
+
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

@@ -1,0 +1,137 @@
+﻿@model duan_totnghiep.Models.Donhang
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="form-container">
+
+    <h2>Thêm đơn hàng</h2>
+    <form asp-action="Lap" method="post">
+
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger">
+    </div>
+
+    <div class="form-group">
+
+        <label>
+            <i class="bi bi-person-fill"></i>
+
+            Khách hàng
+        </label>
+
+        <select asp-for="Makh"
+                asp-items="ViewBag.KhachHang"
+                class="form-select">
+
+            <option value="">
+                -- Chọn khách hàng --
+            </option>
+
+        </select>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>
+
+            <i class="bi bi-person-badge-fill"></i>
+
+            Nhân viên
+
+        </label>
+
+        <select asp-for="Manv"
+                asp-items="ViewBag.NhanVien"
+                class="form-select">
+
+            <option value="">
+                -- Chọn nhân viên --
+            </option>
+
+        </select>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>
+
+            <i class="bi bi-calendar-event"></i>
+
+            Ngày đặt
+
+        </label>
+
+        <input asp-for="Ngaydat"
+               type="date"
+               class="form-control"/>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>
+
+            <i class="bi bi-cash-stack"></i>
+
+            Tổng tiền
+
+        </label>
+
+        <input asp-for="Tongtien"
+               class="form-control"/>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>
+
+            <i class="bi bi-truck"></i>
+
+            Trạng thái
+
+        </label>
+
+        <select asp-for="Trangthai"
+                class="form-select">
+
+            <option>Đang xử lý</option>
+
+            <option>Đang giao</option>
+
+            <option>Đã giao</option>
+
+            <option>Đã hủy</option>
+
+        </select>
+
+    </div>
+
+    <div class="mt-4 d-flex gap-2">
+
+        <button class="btn btn-add">
+
+            <i class="bi bi-check-circle-fill"></i>
+
+            Lập đơn
+
+        </button>
+
+        <a asp-action="Index"
+           class="btn btn-secondary">
+
+            <i class="bi bi-arrow-left"></i>
+
+            Quay lại
+
+        </a>
+
+    </div>
+
+</form>
+
+</div>

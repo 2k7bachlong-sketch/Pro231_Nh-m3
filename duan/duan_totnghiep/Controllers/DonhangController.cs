@@ -39,10 +39,20 @@ namespace duan_totnghiep.Controllers
         }
 
         // GET Thêm
-        public IActionResult Them()
+        public IActionResult Lap()
         {
-            ViewBag.KhachHang = _context.Khachhangs.ToList();
-            ViewBag.NhanVien = _context.Nhanviens.ToList();
+ 
+            ViewBag.KhachHang = new SelectList(
+                _context.Khachhangs,
+                "Makh",
+                "Hoten"
+            );
+
+            ViewBag.NhanVien = new SelectList(
+                _context.Nhanviens,
+                "Manv",
+                "Hoten"
+            );
 
             return View();
         }
@@ -50,7 +60,7 @@ namespace duan_totnghiep.Controllers
         // POST Thêm
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Them(Donhang dh)
+        public async Task<IActionResult> Lap(Donhang dh)
         {
             // Bỏ validate Navigation Property
             ModelState.Remove("Khachhang");
@@ -86,19 +96,11 @@ namespace duan_totnghiep.Controllers
             if (dh == null)
                 return NotFound();
 
-               ViewBag.KhachHang = new SelectList(
-                    _context.Khachhangs,
-                    "Makh",
-                    "Hoten",
-                    dh.Makh
-               );
-
             ViewBag.NhanVien = new SelectList(
                 _context.Nhanviens,
                 "Manv",
                 "Hoten",
-                dh.Manv
-            );
+                dh.Manv);
 
             return View(dh);
         }
@@ -111,22 +113,42 @@ namespace duan_totnghiep.Controllers
             if (id != dh.Madh)
                 return NotFound();
 
-            // Bỏ validate Navigation Property
-            ModelState.Remove("Khachhang");
-            ModelState.Remove("Nhanvien");
+            var don = await _context.Donhangs.FindAsync(id);
 
-            if (ModelState.IsValid)
+            if (don == null)
+                return NotFound();
+
+            // Chỉ cập nhật những trường được phép
+            don.Manv = dh.Manv;          
+
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Đã cập nhật đơn hàng.";
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        //Tính doanh thu 
+        [HttpPost]
+        public async Task<IActionResult> CapNhatTrangThai(int id, string trangThai)
+        {
+            var don = await _context.Donhangs.FindAsync(id);
+
+            if (don == null)
+                return NotFound();
+
+            // Không cho sửa nếu đã kết thúc
+            if (don.Trangthai == "Đã hoàn thành" ||
+                don.Trangthai == "Đã hủy")
             {
-                _context.Update(dh);
-                await _context.SaveChangesAsync();
-
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewBag.KhachHang = _context.Khachhangs.ToList();
-            ViewBag.NhanVien = _context.Nhanviens.ToList();
+            don.Trangthai = trangThai;
 
-            return View(dh);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET Xóa
@@ -139,6 +161,12 @@ namespace duan_totnghiep.Controllers
 
             if (dh == null)
                 return NotFound();
+
+            if (dh.Trangthai != "Đang xử lý")
+            {
+                TempData["Error"] = "Chỉ có thể xóa đơn đang xử lý.";
+                return RedirectToAction(nameof(Index));
+            }
 
             return View(dh);
         }

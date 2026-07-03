@@ -13,15 +13,26 @@ namespace duan_totnghiep.Controllers
                 _context = context;
             }
 
-            // DANH SÁCH
-            public async Task<IActionResult> Index()
+        // DANH SÁCH
+        public async Task<IActionResult> Index(string searchString)
+        {
+            var query = _context.Danhmucs
+                                .Include(x => x.Sanphams)
+                                .AsQueryable();
+
+            // Tìm theo tên hoặc mã
+            if (!string.IsNullOrWhiteSpace(searchString))
             {
-                var list = await _context.Danhmucs.ToListAsync();
-                return View(list);
+                query = query.Where(x =>
+                    x.Tendm.Contains(searchString) ||
+                    x.Madm.ToString().Contains(searchString));
             }
 
-            // THÊM - GET
-            public IActionResult Them()
+            return View(await query.ToListAsync());
+        }
+
+        // THÊM - GET
+        public IActionResult Them()
             {
                 return View();
             }
@@ -75,9 +86,9 @@ namespace duan_totnghiep.Controllers
             // XÓA - POST
             [HttpPost, ActionName("Xoa")]
             [ValidateAntiForgeryToken]
-            public async Task<IActionResult> XacNhanXoa(int id)
+            public async Task<IActionResult> XacNhanXoa(int Madm)
             {
-                var dm = await _context.Danhmucs.FindAsync(id);
+                var dm = await _context.Danhmucs.FindAsync(Madm);
                 if (dm != null)
                 {
                     _context.Danhmucs.Remove(dm);

@@ -16,13 +16,18 @@ namespace duan_totnghiep.Controllers
         // Danh sách
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Khachhangs.ToListAsync());
+            var ds = await _context.Khachhangs
+                .Include(x => x.Donhangs)
+                .ToListAsync();
+
+            return View(ds);
         }
 
         // Chi tiết
         public async Task<IActionResult> ChiTiet(int id)
         {
             var kh = await _context.Khachhangs
+                .Include(x => x.Donhangs)
                 .FirstOrDefaultAsync(x => x.Makh == id);
 
             if (kh == null)
@@ -83,13 +88,18 @@ namespace duan_totnghiep.Controllers
         }
 
         // GET Xóa
-        public async Task<IActionResult> Xoa(int id)
+        public async Task<IActionResult> Xoa(int Makh)
         {
             var kh = await _context.Khachhangs
-                .FirstOrDefaultAsync(x => x.Makh == id);
+                .FirstOrDefaultAsync(x => x.Makh == Makh);
 
             if (kh == null)
                 return NotFound();
+            if (kh.Hoten == "Khách vãng lai")
+            {
+                TempData["Error"] = "Không thể xóa khách vãng lai.";
+                return RedirectToAction(nameof(Index));
+            }
 
             return View(kh);
         }
@@ -97,15 +107,30 @@ namespace duan_totnghiep.Controllers
         // POST Xóa
         [HttpPost, ActionName("Xoa")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> XoaXacNhan(int id)
+        public async Task<IActionResult> XoaXacNhan(int Makh)
         {
-            var kh = await _context.Khachhangs.FindAsync(id);
 
-            if (kh != null)
+            var kh = await _context.Khachhangs
+                .Include(x => x.Donhangs)
+                .FirstOrDefaultAsync(x => x.Makh == Makh);
+
+            if (kh == null)
+                return NotFound();
+
+            // Không cho xóa nếu đã có đơn
+            if (kh.Donhangs.Any())
             {
-                _context.Khachhangs.Remove(kh);
-                await _context.SaveChangesAsync();
+                TempData["Error"] =
+                    "Khách hàng đã có đơn hàng nên không thể xóa.";
+
+                return RedirectToAction(nameof(Index));
             }
+
+            _context.Khachhangs.Remove(kh);
+
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Đã xóa khách hàng.";
 
             return RedirectToAction(nameof(Index));
         }

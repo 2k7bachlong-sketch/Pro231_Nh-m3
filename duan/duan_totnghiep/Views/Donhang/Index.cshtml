@@ -1,56 +1,201 @@
 ﻿@model IEnumerable<duan_totnghiep.Models.Donhang>
 
 @{
-    ViewData["Title"] = "Quản lý đơn hàng";
     Layout = "_Layout";
+    ViewData["Title"] = "Quản lý đơn hàng";
 }
 
 <div class="crud-container">
 
     <div class="crud-header">
-        <h2>Quản lý đơn hàng</h2>
 
-        <a asp-action="Them" class="btn btn-add">
-            + Thêm đơn hàng
+        <div>
+
+            <span class="page-tag">
+                🧾 Đơn hàng
+            </span>
+
+            <h2>Quản lý đơn hàng</h2>
+
+            <p>
+                Theo dõi và cập nhật trạng thái các đơn hàng.
+            </p>
+
+        </div>
+
+        <a asp-action="Lap"
+           class="btn btn-add">
+
+            <i class="bi bi-plus-circle-fill"></i>
+
+            Lập đơn
+
         </a>
+
     </div>
 
-    <table class="crud-table">
+    <div class="table-card">
 
-        <thead>
-            <tr>
-                <th>Mã</th>
-                <th>Khách hàng</th>
-                <th>Nhân viên</th>
-                <th>Ngày đặt</th>
-                <th>Tổng tiền</th>
-                <th>Trạng thái</th>
-                <th>Chức năng</th>
-            </tr>
-        </thead>
+        <table class="crud-table">
 
-        <tbody>
-            @foreach (var item in Model)
-            {
+            <thead>
+
                 <tr>
-                    <td>@item.Madh</td>
-                    <td>@item.Khachhang?.Hoten</td>
-                    <td>@item.Nhanvien?.Hoten</td>
-                    <td>@item.Ngaydat?.ToString("dd/MM/yyyy")</td>
-                    <td>@item.Tongtien.ToString("N0") VNĐ</td>
-                    <td>@item.Trangthai</td>
 
-                    <td>
-                        <a asp-action="Sua" asp-route-id="@item.Madh" class="btn btn-edit">Sửa</a>
+                    <th>Mã</th>
 
-                        <a asp-action="Chitiet" asp-route-id="@item.Madh" class="btn btn-detail">Chi tiết</a>
+                    <th>Khách hàng</th>
 
-                        <a asp-action="Xoa" asp-route-id="@item.Madh" class="btn btn-delete">Xóa</a>
-                    </td>
+                    <th>Nhân viên</th>
+
+                    <th>Ngày đặt</th>
+
+                    <th>Tổng tiền</th>
+
+                    <th>Trạng thái</th>
+
+                    <th style="width:170px">
+                        Thao tác
+                    </th>
+
                 </tr>
-            }
-        </tbody>
 
-    </table>
+            </thead>
+
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+
+                        <td>
+                            #@item.Madh
+                        </td>
+
+                        <td>
+
+                            <strong>
+                                @item.Khachhang?.Hoten
+                            </strong>
+
+                        </td>
+
+                        <td>
+                            @item.Nhanvien?.Hoten
+                        </td>
+
+                        <td>
+                            @item.Ngaydat?.ToString("dd/MM/yyyy")
+                        </td>
+
+                        <td>
+
+                            <strong>
+                                @item.Tongtien.ToString("N0") VNĐ
+                            </strong>
+
+                        </td>
+
+                        <td>
+
+                            <form asp-action="CapNhatTrangThai"
+                                  method="post"
+                                  class="d-flex">
+
+                                <input type="hidden"
+                                       name="id"
+                                       value="@item.Madh" />
+
+
+                                <select name="trangThai"
+                                        class="form-select form-select-sm status-select"
+                                        onchange="this.form.submit()"
+                                    @(item.Trangthai == "Đã hoàn thành" || item.Trangthai == "Đã hủy" ? "disabled" : "")>
+
+                                    @if (item.Trangthai == "Đang xử lý")
+                                    {
+                                        <option selected>Đang xử lý</option>
+                                    }
+                                    else
+                                    {
+                                        <option>Đang xử lý</option>
+                                    }
+
+                                    @if (item.Trangthai == "Đang giao")
+                                    {
+                                        <option selected>Đang giao</option>
+                                    }
+                                    else
+                                    {
+                                        <option>Đang giao</option>
+                                    }
+
+                                    @if (item.Trangthai == "Đã hoàn thành")
+                                    {
+                                        <option selected>Đã hoàn thành</option>
+                                    }
+                                    else
+                                    {
+                                        <option>Đã hoàn thành</option>
+                                    }
+
+                                    @if (item.Trangthai == "Đã hủy")
+                                    {
+                                        <option selected>Đã hủy</option>
+                                    }
+                                    else
+                                    {
+                                        <option>Đã hủy</option>
+                                    }
+
+                                </select>
+
+                            </form>
+
+                        </td>
+
+                        <td>
+
+                            <div class="d-flex gap-2">
+
+                                <a asp-action="ChiTiet"
+                                   asp-route-id="@item.Madh"
+                                   class="btn btn-primary btn-sm">
+
+                                    <i class="bi bi-eye-fill"></i>
+
+                                </a>
+
+                                <a asp-action="Sua"
+                                   asp-route-id="@item.Madh"
+                                   class="btn btn-warning btn-sm">
+
+                                    <i class="bi bi-pencil-fill"></i>
+
+                                </a>
+
+                                <a asp-action="Xoa"
+                                   asp-route-id="@item.Madh"
+                                   class="btn btn-danger btn-sm">
+
+                                    <i class="bi bi-trash-fill"></i>
+
+                                </a>
+
+                            </div>
+
+                        </td>
+
+
+                    </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
 
 </div>

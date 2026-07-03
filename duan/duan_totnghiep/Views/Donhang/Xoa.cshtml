@@ -12,27 +12,45 @@
 
     <hr />
 
-    <p><strong>Khách hàng:</strong> @Model.Khachhang?.Hoten</p>
+    <p>
+        <strong>Mã đơn:</strong>
+        @Model.Madh
+    </p>
 
-    <p><strong>Nhân viên:</strong> @Model.Nhanvien?.Hoten</p>
+    <p>
+        <strong>Khách hàng:</strong>
+        @Model.Khachhang?.Hoten
+    </p>
 
-    <p><strong>Ngày đặt:</strong> @Model.Ngaydat?.ToString("dd/MM/yyyy")</p>
+    <p>
+        <strong>Nhân viên:</strong>
+        @Model.Nhanvien?.Hoten
+    </p>
 
-    <p><strong>Tổng tiền:</strong> @Model.Tongtien.ToString("N0") VNĐ</p>
+    <p>
+        <strong>Ngày đặt:</strong>
+        @Model.Ngaydat?.ToString("dd/MM/yyyy")
+    </p>
 
-    <p><strong>Trạng thái:</strong> @Model.Trangthai</p>
+    <p>
+        <strong>Tổng tiền:</strong>
+        @Model.Tongtien.ToString("N0") VNĐ
+    </p>
+
+    <p>
+        <strong>Trạng thái:</strong>
+        @Model.Trangthai
+    </p>
 
     <form asp-action="Xoa" method="post">
 
-        @Html.AntiForgeryToken()
-
         <input type="hidden" asp-for="Madh" />
 
-        <button type="submit" class="btn btn-delete">
+        <button type="submit" class="btn-delete">
             Xóa
         </button>
 
-        <a asp-action="Index" class="btn btn-cancel">
+        <a asp-action="Index" class="btn-back">
             Hủy
         </a>
 

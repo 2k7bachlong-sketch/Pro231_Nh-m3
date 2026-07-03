@@ -3,55 +3,216 @@
     Layout = "_Layout";
 }
 
-<div class="crud-container">
+<div class="dashboard-header">
 
-    <div class="crud-header">
-        <h2>Danh mục sản phẩm</h2>
+    <div>
 
-        <a asp-action="Them" class="btn btn-add">
-            + Thêm danh mục
-        </a>
+        <span class="page-tag">
+            QUẢN LÝ
+        </span>
+
+        <h2>
+            <i class="bi bi-grid-fill"></i>
+            Danh mục
+        </h2>
+
+        <p>
+            Quản lý danh mục sản phẩm của cửa hàng.
+        </p>
+
     </div>
 
-    <table class="crud-table">
-        <thead>
+    <a asp-action="Them" class="btn-add">
+
+        <i class="bi bi-plus-circle-fill"></i>
+
+        Thêm danh mục
+
+    </a>
+
+</div>
+
+<div class="row mb-4">
+
+    <div class="col-md-4">
+
+        <div class="stat-card">
+
+            <div>
+
+                <small>Tổng danh mục</small>
+
+                <h3>@Model.Count()</h3>
+
+            </div>
+
+            <i class="bi bi-grid-3x3-gap-fill"></i>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="stat-card success">
+
+            <div>
+
+                <small>Có sản phẩm</small>
+
+                <h3>@Model.Count(x => x.Sanphams.Any())</h3>
+
+            </div>
+
+            <i class="bi bi-check-circle-fill"></i>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="stat-card danger">
+
+            <div>
+
+                <small>Danh mục trống</small>
+
+                <h3>@Model.Count(x => !x.Sanphams.Any())</h3>
+
+            </div>
+
+            <i class="bi bi-x-circle-fill"></i>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="toolbar-card">
+
+    <form method="get" asp-action="Index">
+
+        <div class="row g-3">
+
+            <div class="col-lg-9">
+
+                <div class="search-group">
+
+                    <i class="bi bi-search"></i>
+
+                    <input type="text"
+                           name="searchString"
+                           class="form-control"
+                           value="@Context.Request.Query["searchString"]"
+                           placeholder="Tìm kiếm tên hoặc mã danh mục..." />
+                   
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3">
+
+                <div class="d-flex gap-2">
+
+                    <button class="btn btn-filter flex-grow-1">
+
+                        <i class="bi bi-search"></i>
+
+                        Tìm
+
+                    </button>
+
+                    <a asp-action="Index"
+                       class="btn btn-reset">
+
+                        <i class="bi bi-arrow-clockwise"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+    </form>
+
+</div>
+
+<div class="table-card">
+
+    <table class="table table-hover align-middle">
+
+        <thead class="table-dark">
+
             <tr>
+
                 <th>Mã</th>
+
                 <th>Tên danh mục</th>
+
                 <th>Mô tả</th>
-                <th>Thao tác</th>
+
+                <th class="text-center">Thao tác</th>
+
             </tr>
+
         </thead>
 
         <tbody>
+
             @foreach (var item in Model)
             {
                 <tr>
+
                     <td>@item.Madm</td>
-                    <td>@item.Tendm</td>
-                    <td>@item.Mota</td>
+
                     <td>
-                        <a asp-action="Sua"
-                           asp-route-id="@item.Madm"
-                           class="btn btn-category-edit">
-                            Sửa
-                        </a>
 
-                        <a asp-action="Chitiet"
-                           asp-route-id="@item.Madm"
-                           class="btn btn-category-detail">
-                            Chi tiết
-                        </a>
+                        <strong>@item.Tendm</strong>
 
-                        <a asp-action="Xoa"
-                           asp-route-id="@item.Madm"
-                           class="btn btn-category-delete">
-                            Xóa
-                        </a>
                     </td>
+
+                    <td>@item.Mota</td>
+
+                    <td>
+
+                        <div class="d-flex justify-content-center gap-2">
+
+                            <a asp-action="Chitiet"
+                               asp-route-id="@item.Madm"
+                               class="btn btn-primary btn-sm">
+
+                                <i class="bi bi-eye-fill"></i>
+
+                            </a>
+
+                            <a asp-action="Sua"
+                               asp-route-id="@item.Madm"
+                               class="btn btn-warning btn-sm">
+
+                                <i class="bi bi-pencil-fill"></i>
+
+                            </a>
+
+                            <a asp-action="Xoa"
+                               asp-route-id="@item.Madm"
+                               class="btn btn-danger btn-sm">
+
+                                <i class="bi bi-trash-fill"></i>
+
+                            </a>
+
+                        </div>
+
+                    </td>
+
                 </tr>
             }
+
         </tbody>
+
     </table>
 
 </div>

@@ -4,15 +4,23 @@
     Layout = "_Layout";
 }
 
-<div class="crud-container">
+<div class="crud-header">
 
-    <div class="crud-header">
+    <div>
+
+        <span class="page-tag">
+            👤 Khách hàng
+        </span>
+
         <h2>Quản lý khách hàng</h2>
 
-        <a asp-action="Them" class="btn btn-add">
-            + Thêm khách hàng
-        </a>
+        <p>
+            Danh sách khách hàng đã đăng ký và khách mua trực tiếp.
+        </p>
+
     </div>
+
+</div>
 
     <table class="crud-table">
 
@@ -23,6 +31,8 @@
                 <th>SĐT</th>
                 <th>Email</th>
                 <th>Địa chỉ</th>
+                <th>Loại</th>
+                <th>Đơn hàng</th>
                 <th width="250">Chức năng</th>
             </tr>
         </thead>
@@ -42,6 +52,27 @@
                     <td>@item.Email</td>
 
                     <td>@item.Diachi</td>
+                <td>
+
+                    @if (item.Matk == null)
+                    {
+                        <span class="badge bg-secondary">
+                            Khách vãng lai
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-success">
+                            Thành viên
+                        </span>
+                    }
+                    <td>
+
+                        @(item.Donhangs?.Count ?? 0)
+
+                    </td>
+
+                </td>
 
                     <td>
 
@@ -57,8 +88,8 @@
                             Sửa
                         </a>
 
-                        <a asp-action="Xoa"
-                           asp-route-id="@item.Makh"
+                       <a asp-action="Xoa"
+                           asp-route-Makh="@item.Makh"
                            class="btn btn-delete">
                             Xóa
                         </a>
@@ -71,5 +102,3 @@
         </tbody>
 
     </table>
-
-</div>

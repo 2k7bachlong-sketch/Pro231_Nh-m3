@@ -1,41 +1,57 @@
 ﻿@model duan_totnghiep.Models.Nhanvien
+
 @{
     Layout = "_Layout";
 }
 
-<div class="detail-container">
+<div class="delete-container">
 
-    <div class="detail-card">
+    <h2>Xóa nhân viên</h2>
 
-        <h2>XÓA NHÂN VIÊN</h2>
+    <hr />
 
-        <p>Bạn có chắc muốn xóa nhân viên này không?</p>
+    <p><strong>Mã:</strong> @Model.Manv</p>
 
-        <div class="info-row">
-            <span>Tên:</span>
-            <p>@Model.Hoten</p>
+    <p><strong>Họ tên:</strong> @Model.Hoten</p>
+
+    <p><strong>SĐT:</strong> @Model.Sdt</p>
+
+    <p><strong>Email:</strong> @Model.Email</p>
+
+    <p><strong>Tài khoản:</strong> @Model.Taikhoan?.Tendangnhap</p>
+
+    @if (Model.Donhangs.Any())
+    {
+        <div class="alert alert-warning">
+
+            Nhân viên này đã xử lý đơn hàng nên không thể xóa.
+
         </div>
+    }
 
-        <div class="info-row">
-            <span>SĐT:</span>
-            <p>@Model.Sdt</p>
-        </div>
+    <form asp-action="Xoa"
+          method="post">
 
-        <form asp-action="Xoa">
+        @Html.AntiForgeryToken()
 
-            <input asp-for="Manv" hidden />
+        <input type="hidden"
+               name="id"
+               value="@Model.Manv" />
 
-            <button class="btn btn-danger">
-                Xóa
-            </button>
+        <button class="btn btn-delete"
+            @(Model.Donhangs.Any() ? "disabled" : "")>
 
-            <a asp-action="Index"
-               class="btn btn-cancel">
-                Hủy
-            </a>
+            Xóa
 
-        </form>
+        </button>
 
-    </div>
+        <a asp-action="Index"
+           class="btn btn-cancel">
+
+            Hủy
+
+        </a>
+
+    </form>
 
 </div>

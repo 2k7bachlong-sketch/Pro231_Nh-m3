@@ -22,7 +22,7 @@
 
     <form asp-action="Xoa">
 
-        <input type="hidden" asp-for="Makh" />
+        <input type="hidden" name="Makh" value="@Model.Makh" />
 
         <button class="btn btn-delete">
             Xóa

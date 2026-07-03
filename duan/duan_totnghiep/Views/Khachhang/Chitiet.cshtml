@@ -6,37 +6,123 @@
 
 <div class="detail-container">
 
-    <div class="detail-card">
+    <div class="detail-header">
+
+        <span class="page-tag">
+            👤 Khách hàng
+        </span>
 
         <h2>Chi tiết khách hàng</h2>
 
-        <div class="info-row">
-            <span>Mã KH</span>
-            <p>@Model.Makh</p>
+        <p>
+            Thông tin và lịch sử mua hàng của khách.
+        </p>
+
+    </div>
+
+    <div class="detail-card">
+
+        <div class="detail-item">
+
+            <label>Mã khách</label>
+
+            <p>#@Model.Makh</p>
+
         </div>
 
-        <div class="info-row">
-            <span>Họ tên</span>
+        <div class="detail-item">
+
+            <label>Họ tên</label>
+
             <p>@Model.Hoten</p>
+
         </div>
 
-        <div class="info-row">
-            <span>SĐT</span>
+        <div class="detail-item">
+
+            <label>Số điện thoại</label>
+
             <p>@Model.Sdt</p>
+
         </div>
 
-        <div class="info-row">
-            <span>Email</span>
+        <div class="detail-item">
+
+            <label>Email</label>
+
             <p>@Model.Email</p>
+
         </div>
 
-        <div class="info-row">
-            <span>Địa chỉ</span>
+        <div class="detail-item">
+
+            <label>Địa chỉ</label>
+
             <p>@Model.Diachi</p>
+
         </div>
 
-        <a asp-action="Index" class="btn-back">
-            Quay lại
+        <div class="detail-item">
+
+            <label>Loại khách</label>
+
+            @if (Model.Matk == null)
+            {
+                <span class="badge bg-secondary">
+                    Khách vãng lai
+                </span>
+            }
+            else
+            {
+                <span class="badge bg-success">
+                    Thành viên
+                </span>
+            }
+
+        </div>
+
+        <div class="detail-item">
+
+            <label>Số đơn hàng</label>
+
+            <p>@Model.Donhangs.Count</p>
+
+        </div>
+
+        <div class="detail-item">
+
+            <label>Tổng chi tiêu</label>
+
+            <p>
+
+                @(Model.Donhangs
+                    .Where(x => x.Trangthai == "Đã hoàn thành")
+                    .Sum(x => x.Tongtien)
+                    .ToString("N0"))
+
+                VNĐ
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="mt-4">
+
+        <a asp-action="Sua"
+           asp-route-id="@Model.Makh"
+           class="btn btn-warning">
+
+            ✏️ Chỉnh sửa
+
+        </a>
+
+        <a asp-action="Index"
+           class="btn btn-secondary">
+
+            ← Quay lại
+
         </a>
 
     </div>

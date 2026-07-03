@@ -1,38 +1,62 @@
 ﻿@model duan_totnghiep.Models.Nhanvien
+
 @{
     Layout = "_Layout";
+
+    var doanhThu = Model.Donhangs
+        .Where(d => d.Trangthai == "Đã giao")
+        .Sum(d => d.Tongtien);
 }
 
-<div class="detail-container">
 
-    <div class="detail-card">
+<div class="detail-card">
 
-        <h2>CHI TIẾT NHÂN VIÊN</h2>
-
-        <div class="info-row">
-            <span>Mã nhân viên:</span>
-            <p>@Model.Manv</p>
-        </div>
-
-        <div class="info-row">
-            <span>Tên nhân viên:</span>
-            <p>@Model.Hoten</p>
-        </div>
-
-        <div class="info-row">
-            <span>SĐT:</span>
-            <p>@Model.Sdt</p>
-        </div>
-
-        <div class="info-row">
-            <span>Tài khoản:</span>
-            <p>@Model.Taikhoan?.Tendangnhap</p>
-        </div>
-
-        <a asp-action="Index" class="btn-back">
-            ← Quay lại
-        </a>
-
+    <div class="detail-row">
+        <span>Mã nhân viên</span>
+        <strong>@Model.Manv</strong>
     </div>
 
+    <div class="detail-row">
+        <span>Họ tên</span>
+        <strong>@Model.Hoten</strong>
+    </div>
+
+    <div class="detail-row">
+        <span>Số điện thoại</span>
+        <strong>@Model.Sdt</strong>
+    </div>
+
+    <div class="detail-row">
+        <span>Email</span>
+        <strong>@Model.Email</strong>
+    </div>
+
+    <div class="detail-row">
+        <span>Địa chỉ</span>
+        <strong>@Model.Diachi</strong>
+    </div>
+
+    <div class="detail-row">
+        <span>Tài khoản</span>
+        <strong>@Model.Taikhoan?.Tendangnhap</strong>
+    </div>
+
+    <div class="detail-row">
+        <span>Đơn đã xử lý</span>
+        <strong>@Model.Donhangs.Count</strong>
+    </div>
+
+    <div class="detail-row">
+        <span>Doanh thu</span>
+        <strong>
+            @doanhThu.ToString("N0") VNĐ
+        </strong>
+    </div>
+
+</div>
+
+<div class="mt-4">
+    <a asp-action="Index" class="btn btn-back">
+        Quay lại
+    </a>
 </div>

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Download\\PRO231\\Pro231_Nh-m3\\duan\\duan_totnghiep\\duan_totnghiep.csproj": {}
+    "F:\\Download\\Pro231_Nh-m3\\duan\\duan_totnghiep\\duan_totnghiep.csproj": {}
   },
   "projects": {
-    "F:\\Download\\PRO231\\Pro231_Nh-m3\\duan\\duan_totnghiep\\duan_totnghiep.csproj": {
+    "F:\\Download\\Pro231_Nh-m3\\duan\\duan_totnghiep\\duan_totnghiep.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Download\\PRO231\\Pro231_Nh-m3\\duan\\duan_totnghiep\\duan_totnghiep.csproj",
+        "projectUniqueName": "F:\\Download\\Pro231_Nh-m3\\duan\\duan_totnghiep\\duan_totnghiep.csproj",
         "projectName": "duan_totnghiep",
-        "projectPath": "F:\\Download\\PRO231\\Pro231_Nh-m3\\duan\\duan_totnghiep\\duan_totnghiep.csproj",
+        "projectPath": "F:\\Download\\Pro231_Nh-m3\\duan\\duan_totnghiep\\duan_totnghiep.csproj",
         "packagesPath": "C:\\Users\\Prime\\.nuget\\packages\\",
-        "outputPath": "F:\\Download\\PRO231\\Pro231_Nh-m3\\duan\\duan_totnghiep\\obj\\",
+        "outputPath": "F:\\Download\\Pro231_Nh-m3\\duan\\duan_totnghiep\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "F:\\win 10 fake\\Shared\\NuGetPackages"

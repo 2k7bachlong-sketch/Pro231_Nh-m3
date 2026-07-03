@@ -1,19 +1,67 @@
 ﻿@model duan_totnghiep.Models.Danhmuc
+
 @{
     Layout = "_Layout";
 }
-<h2>Thêm danh mục</h2>
 
-<form asp-action="Them" method="post">
-    <div class="form-group">
-        <label>Tên danh mục</label>
-        <input asp-for="Tendm" class="form-control" />
+<div class="form-container">
+
+    <div class="form-header">
+
+        <span class="page-tag">THÊM MỚI</span>
+
+        <h2>
+            <i class="bi bi-folder-plus"></i>
+            Thêm danh mục
+        </h2>
+
+        <p>Tạo danh mục mới để phân loại các sản phẩm.</p>
+
     </div>
 
-    <div class="form-group">
-        <label>Mô tả</label>
-        <input asp-for="Mota" class="form-control" />
-    </div>
+    <form asp-action="Them">
 
-    <button type="submit" class="btn btn-success mt-2" style="color:black">Lưu</button>
-</form>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+
+            <label>Tên danh mục</label>
+
+            <input asp-for="Tendm" class="form-control" />
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Mô tả</label>
+
+            <textarea asp-for="Mota"
+                      rows="4"
+                      class="form-control"></textarea>
+
+        </div>
+
+        <div class="form-buttons">
+
+            <button class="btn btn-add">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+                Thêm danh mục
+
+            </button>
+
+            <a asp-action="Index"
+               class="btn btn-cancel">
+
+                <i class="bi bi-arrow-left-circle"></i>
+
+                Quay lại
+
+            </a>
+
+        </div>
+
+    </form>
+
+</div>

@@ -1,39 +1,62 @@
 ﻿@model duan_totnghiep.Models.Nhanvien
+
 @{
     Layout = "_Layout";
 }
 
 <div class="form-container">
 
-    <h2>THÊM NHÂN VIÊN</h2>
+    <h2>Thêm nhân viên</h2>
 
-    <form asp-action="Them">
+    <form asp-action="Them" method="post">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="form-group">
-            <label>Tên nhân viên</label>
+            <label>Họ tên</label>
             <input asp-for="Hoten" class="form-control" />
+            <span asp-validation-for="Hoten" class="text-danger"></span>
         </div>
 
         <div class="form-group">
             <label>Số điện thoại</label>
             <input asp-for="Sdt" class="form-control" />
+            <span asp-validation-for="Sdt" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Địa chỉ</label>
+            <input asp-for="Diachi" class="form-control" />
         </div>
 
         <div class="form-group">
             <label>Tài khoản</label>
+
             <select asp-for="Matk"
                     asp-items="ViewBag.Matk"
-                    class="form-control">
+                    class="form-select">
             </select>
+            <span asp-validation-for="Matk" class="text-danger"></span>
         </div>
 
-        <button type="submit" class="btn btn-add">
-            Thêm
-        </button>
+        <div class="mt-4 d-flex gap-2">
 
-        <a asp-action="Index" class="btn btn-cancel">
-            Hủy
-        </a>
+            <button class="btn btn-add">
+                Lưu
+            </button>
+
+            <a asp-action="Index"
+               class="btn btn-cancel">
+                Quay lại
+            </a>
+
+        </div>
 
     </form>
 

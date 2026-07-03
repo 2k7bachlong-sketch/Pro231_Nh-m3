@@ -1,22 +1,70 @@
-﻿
-@model duan_totnghiep.Models.Danhmuc
+﻿@model duan_totnghiep.Models.Danhmuc
+
 @{
     Layout = "_Layout";
 }
-<h2>Chỉnh sửa danh mục</h2>
 
-<form asp-action="Sua" method="post">
-    <input type="hidden" asp-for="Madm" />
+<div class="form-container">
 
-    <div class="form-group">
-        <label>Tên danh mục</label>
-        <input asp-for="Tendm" class="form-control" />
+    <div class="form-header">
+
+        <span class="page-tag">CHỈNH SỬA</span>
+
+        <h2>
+
+            <i class="bi bi-pencil-square"></i>
+
+            Sửa danh mục
+
+        </h2>
+
+        <p>Cập nhật thông tin danh mục.</p>
+
     </div>
 
-    <div class="form-group">
-        <label>Mô tả</label>
-        <input asp-for="Mota" class="form-control" />
-    </div>
+    <form asp-action="Sua">
 
-    <button type="submit" class="btn btn-primary mt-2">Cập nhật</button>
-</form>
+        <input asp-for="Madm" type="hidden" />
+
+        <div class="form-group">
+
+            <label>Tên danh mục</label>
+
+            <input asp-for="Tendm" class="form-control" />
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Mô tả</label>
+
+            <textarea asp-for="Mota"
+                      rows="4"
+                      class="form-control"></textarea>
+
+        </div>
+
+        <div class="form-buttons">
+
+            <button class="btn btn-warning">
+
+                <i class="bi bi-save-fill"></i>
+
+                Cập nhật
+
+            </button>
+
+            <a asp-action="Index"
+               class="btn btn-cancel">
+
+                <i class="bi bi-arrow-left-circle"></i>
+
+                Quay lại
+
+            </a>
+
+        </div>
+
+    </form>
+
+</div>

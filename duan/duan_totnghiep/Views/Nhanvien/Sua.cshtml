@@ -1,41 +1,85 @@
 ﻿@model duan_totnghiep.Models.Nhanvien
+
 @{
     Layout = "_Layout";
 }
 
 <div class="form-container">
 
-    <h2>SỬA NHÂN VIÊN</h2>
+    <h2>Cập nhật nhân viên</h2>
 
     <form asp-action="Sua">
 
-        <input asp-for="Manv" hidden />
+        <input asp-for="Manv" type="hidden" />
+
+        <input asp-for="Matk" type="hidden" />
+
+        <div asp-validation-summary="ModelOnly"
+             class="text-danger"></div>
 
         <div class="form-group">
-            <label>Tên nhân viên</label>
-            <input asp-for="Hoten" class="form-control" />
+
+            <label>Họ tên</label>
+
+            <input asp-for="Hoten"
+                   class="form-control" />
+            <span asp-validation-for="Hoten" class="text-danger"></span>
+
         </div>
 
         <div class="form-group">
+
             <label>Số điện thoại</label>
+
             <input asp-for="Sdt" class="form-control" />
+            <span asp-validation-for="Sdt" class="text-danger"></span>
+
         </div>
 
         <div class="form-group">
-            <label>Tài khoản</label>
-            <select asp-for="Matk"
-                    asp-items="ViewBag.Matk"
-                    class="form-control">
-            </select>
+
+            <label>Email</label>
+
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+
         </div>
 
-        <button type="submit" class="btn btn-edit">
-            Cập nhật
-        </button>
+        <div class="form-group">
 
-        <a asp-action="Index" class="btn btn-cancel">
-            Hủy
-        </a>
+            <label>Địa chỉ</label>
+
+            <input asp-for="Diachi"
+                   class="form-control" />
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Tài khoản</label>
+
+            <input value="@Model.Taikhoan?.Tendangnhap"
+                   class="form-control"
+                   readonly />
+
+        </div>
+
+        <div class="mt-4 d-flex gap-2">
+
+            <button class="btn btn-edit">
+
+                Cập nhật
+
+            </button>
+
+            <a asp-action="Index"
+               class="btn btn-cancel">
+
+                Quay lại
+
+            </a>
+
+        </div>
 
     </form>
 

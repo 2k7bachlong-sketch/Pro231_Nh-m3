@@ -31,9 +31,9 @@ namespace duan_totnghiep.Controllers
 
             ViewBag.TonKho = _context.Sanphams.Sum(x => x.Soluongton ?? 0);
 
-            ViewBag.DoanhThu = _context.Donhangs.Any()
-                ? _context.Donhangs.Sum(x => x.Tongtien)
-                : 0;
+            ViewBag.DoanhThu = _context.Donhangs
+                .Where(x => x.Trangthai == "Đã hoàn thành")
+                .Sum(x => x.Tongtien);
 
             return View();
         }
@@ -54,9 +54,9 @@ namespace duan_totnghiep.Controllers
 
             ViewBag.TonKho = _context.Sanphams.Sum(x => x.Soluongton ?? 0);
 
-            ViewBag.DoanhThu = _context.Donhangs.Any()
-                ? _context.Donhangs.Sum(x => x.Tongtien)
-                : 0;
+            ViewBag.DoanhThu = _context.Donhangs
+                .Where(x => x.Trangthai == "Đã hoàn thành")
+                .Sum(x => x.Tongtien);
 
             return View();
         }
