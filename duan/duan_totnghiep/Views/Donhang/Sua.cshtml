@@ -8,7 +8,10 @@
 
     <h2>Sửa đơn hàng</h2>
 
-    <form asp-action="Edit">
+    <<form asp-action="Sua" method="post">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" asp-for="Madh" />
 
         <input type="hidden" asp-for="Madh" />
 

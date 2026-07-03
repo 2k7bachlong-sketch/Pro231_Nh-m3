@@ -14,7 +14,7 @@ namespace duan_totnghiep.Controllers
         }
 
         public IActionResult Index(string searchString)
-        {
+        {      
             ViewBag.Search = searchString;
 
             var sanPham = _context.Sanphams.AsQueryable();
@@ -23,7 +23,7 @@ namespace duan_totnghiep.Controllers
             {
                 sanPham = sanPham.Where(x => x.Tensp.Contains(searchString));
             }
-
+            
             return View(sanPham.ToList());
 
         }

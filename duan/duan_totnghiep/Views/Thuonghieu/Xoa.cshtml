@@ -1,24 +1,92 @@
 ﻿@model duan_totnghiep.Models.Thuonghieu
+
 @{
     Layout = "_Layout";
 }
-<h2>Xóa thương hiệu</h2>
 
-<h4>Bạn có chắc muốn xóa?</h4>
+<div class="delete-card">
 
-<p>@Model.Tenth</p>
+    <div class="text-center">
 
-<form asp-action="Xoa">
+        <i class="bi bi-exclamation-triangle-fill
+        text-danger display-1"></i>
 
-    <input asp-for="Math" type="hidden" />
+        <h2 class="mt-3">
 
-    <button class="btn btn-delete">
-        Xóa
-    </button>
+            Xóa thương hiệu
 
-    <a asp-action="Index"
-       class="btn btn-cancel">
-        Hủy
-    </a>
+        </h2>
 
-</form>
+        <p class="text-muted">
+
+            Bạn có chắc chắn muốn xóa thương hiệu này?
+
+        </p>
+
+    </div>
+
+    <hr />
+
+    <div class="info-row">
+
+        <span>Mã</span>
+
+        <p>@Model.Math</p>
+
+    </div>
+
+    <div class="info-row">
+
+        <span>Tên thương hiệu</span>
+
+        <p>@Model.Tenth</p>
+
+    </div>
+
+    <div class="info-row">
+
+        <span>Mô tả</span>
+
+        <p>
+
+            @(string.IsNullOrWhiteSpace(Model.Mota)
+                ? "Không có mô tả"
+                : Model.Mota)
+
+        </p>
+
+    </div>
+
+    <form asp-action="Xoa"
+          method="post"
+          class="mt-4">
+
+        @Html.AntiForgeryToken()
+
+        <input type="hidden"
+               asp-for="Math" />
+
+        <div class="d-flex gap-2">
+
+            <button class="btn btn-danger">
+
+                <i class="bi bi-trash-fill"></i>
+
+                Xóa
+
+            </button>
+
+            <a asp-action="Index"
+               class="btn btn-secondary">
+
+                <i class="bi bi-x-circle"></i>
+
+                Hủy
+
+            </a>
+
+        </div>
+
+    </form>
+
+</div>

@@ -1,23 +1,69 @@
 ﻿@model duan_totnghiep.Models.Thuonghieu
+
 @{
     Layout = "_Layout";
 }
-<h2>Thêm thương hiệu</h2>
 
-<form asp-action="Them">
+<div class="form-card">
 
-    <div class="form-group">
-        <label>Tên thương hiệu</label>
-        <input asp-for="Tenth" class="form-control" />
+    <div class="form-header">
+
+        <h2>
+            <i class="bi bi-plus-circle-fill"></i>
+            Thêm thương hiệu
+        </h2>
+
+        <p>Thêm thương hiệu giày mới vào hệ thống.</p>
+
     </div>
 
-    <div class="form-group">
-        <label>Mô tả</label>
-        <input asp-for="Mota" class="form-control" />
-    </div>
+    <div asp-validation-summary="All" class="text-danger mb-3"></div>
 
-    <button class="btn btn-add">
-        Lưu
-    </button>
+    <form asp-action="Them" method="post">
 
-</form>
+        <div class="mb-3">
+
+            <label class="form-label">
+                Tên thương hiệu
+            </label>
+
+            <input asp-for="Tenth" class="form-control" />
+
+        </div>
+
+        <div class="mb-4">
+
+            <label class="form-label">
+                Mô tả
+            </label>
+
+            <textarea asp-for="Mota"
+                      rows="4"
+                      class="form-control"></textarea>
+
+        </div>
+
+        <div class="d-flex gap-2">
+
+            <button class="btn btn-success">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+                Thêm
+
+            </button>
+
+            <a asp-action="Index"
+               class="btn btn-secondary">
+
+                <i class="bi bi-arrow-left"></i>
+
+                Quay lại
+
+            </a>
+
+        </div>
+
+    </form>
+
+</div>

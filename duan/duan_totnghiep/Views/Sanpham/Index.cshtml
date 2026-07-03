@@ -2,72 +2,449 @@
 @{
     Layout = "_Layout";
 }
-<div class="crud-container">
+<style>
+    .action-btn {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .25s;
+    }
 
-    <div class="crud-header">
-        <h2>Quản lý sản phẩm</h2>
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
 
-        <a asp-action="Them" class="btn btn-add">
-            + Thêm sản phẩm
-        </a>
+    .btn-view {
+        background: #EFF6FF;
+        color: #2563EB;
+    }
+
+        .btn-view:hover {
+            background: #2563EB;
+            color: white;
+        }
+
+    .btn-edit {
+        background: #FEF9C3;
+        color: #CA8A04;
+    }
+
+        .btn-edit:hover {
+            background: #EAB308;
+            color: white;
+        }
+
+    .btn-delete {
+        background: #FEE2E2;
+        color: #DC2626;
+    }
+
+        .btn-delete:hover {
+            background: #DC2626;
+            color: white;
+        }
+</style>
+<div class="dashboard-header">
+
+    <div>
+
+        <span class="page-tag">
+            QUẢN LÝ
+        </span>
+
+        <h2>
+            <i class="bi bi-bag-fill"></i>
+            Sản phẩm
+        </h2>
+
+        <p>
+            Quản lý toàn bộ sản phẩm giày của cửa hàng.
+        </p>
+
     </div>
 
-    <table class="crud-table">
+    <a asp-action="Them" class="btn-add">
+
+        <i class="bi bi-plus-circle-fill"></i>
+
+        Thêm sản phẩm
+
+    </a>
+
+</div>
+
+<!-- Dashboard -->
+
+<div class="row mb-4">
+
+    <div class="col-lg-3 col-md-6 mb-3">
+
+        <div class="stat-card">
+
+            <div>
+
+                <small>Tổng sản phẩm</small>
+
+                <h3>@Model.Count()</h3>
+
+            </div>
+
+            <i class="bi bi-box-seam-fill"></i>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-3">
+
+        <div class="stat-card success">
+
+            <div>
+
+                <small>Còn hàng</small>
+
+                <h3>@Model.Count(x => x.Soluongton > 10)</h3>
+
+            </div>
+
+            <i class="bi bi-check-circle-fill"></i>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-3">
+
+        <div class="stat-card warning">
+
+            <div>
+
+                <small>Sắp hết</small>
+
+                <h3>@Model.Count(x => x.Soluongton > 0 && x.Soluongton <= 10)</h3>
+
+            </div>
+
+            <i class="bi bi-exclamation-triangle-fill"></i>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-6 mb-3">
+
+        <div class="stat-card danger">
+
+            <div>
+
+                <small>Hết hàng</small>
+
+                <h3>@Model.Count(x => x.Soluongton == 0)</h3>
+
+            </div>
+
+            <i class="bi bi-x-circle-fill"></i>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Toolbar -->
+
+<div class="toolbar-card">
+
+    <form method="get">
+
+        <div class="row g-3 align-items-center">
+
+            <div class="col-lg-6">
+
+                <div class="search-group">
+
+                    <i class="bi bi-search"></i>
+
+                    <input type="text"
+                           name="searchString"
+                           class="form-control"
+                           value="@Context.Request.Query["searchString"]"
+                           placeholder="Nhập tên hoặc mã sản phẩm..." />
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3">
+
+                <select name="madm"
+                        class="form-select"
+                        asp-items="ViewBag.DanhMuc">
+
+                    <option value="">
+                        Tất cả danh mục
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="col-lg-3">
+
+                <div class="d-flex gap-2">
+
+                    <button class="btn btn-filter flex-grow-1">
+
+                        <i class="bi bi-funnel-fill"></i>
+
+                        Lọc
+
+                    </button>
+
+                    <a asp-action="Index"
+                       class="btn btn-reset">
+
+                        <i class="bi bi-arrow-clockwise"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+<!-- Table -->
+
+<div class="table-card">
+
+    <table class="table align-middle table-hover">
+
         <thead>
+
             <tr>
-                <th>Mã</th>
-                <th>Tên sản phẩm</th>
-                <th>Giá</th>
-                <th>Hình ảnh</th>
-                <th>Số lượng</th>
-                <th>Danh mục</th>
-                <th>Thương hiệu</th>
-                <th>Chức năng</th>
+
+                <th>
+                    <i class="bi bi-bag-fill"></i>
+                    Sản phẩm
+                </th>
+
+                <th>
+                    <i class="bi bi-cash-stack"></i>
+                    Giá
+                </th>
+
+                <th>
+                    <i class="bi bi-box-seam-fill"></i>
+                    Tồn kho
+                </th>
+
+                <th>
+                    <i class="bi bi-grid-fill"></i>
+                    Danh mục
+                </th>
+
+                <th>
+                    <i class="bi bi-award-fill"></i>
+                    Thương hiệu
+                </th>
+
+                <th>
+                    <i class="bi bi-gift-fill"></i>
+                    Khuyến mãi
+                </th>
+
+                <th width="160">
+                    <i class="bi bi-gear-fill"></i>
+                    Chức năng
+                </th>
+
             </tr>
+
         </thead>
 
         <tbody>
+
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.Masp</td>
 
-                    <td>@item.Tensp</td>
-
-                    <td>@item.Gia.ToString("N0") VNĐ</td>
+                    <!-- Sản phẩm -->
 
                     <td>
-                        <img src="~/images/@item.Hinhanh" />
+
+                        <div class="d-flex align-items-center">
+
+                            @if (!string.IsNullOrEmpty(item.Hinhanh))
+                            {
+                                <img src="~/images/@item.Hinhanh"
+                                     class="product-image me-3" />
+                            }
+                            else
+                            {
+                                <div class="product-placeholder me-3">
+
+                                    <i class="bi bi-image"></i>
+
+                                </div>
+                            }
+
+                            <div>
+
+                                <div class="fw-bold">
+
+                                    @item.Tensp
+
+                                </div>
+
+                                <small class="text-muted">
+
+                                    #SP@(item.Masp)
+
+                                </small>
+
+                            </div>
+
+                        </div>
+
                     </td>
 
-                    <td>@item.Soluongton</td>
-
-                    <td>@item.Danhmuc?.Tendm</td>
-
-                    <td>@item.Thuonghieu?.Tenth</td>
+                    <!-- Giá -->
 
                     <td>
-                        <a asp-action="Sua"
-                           asp-route-id="@item.Masp"
-                           class="btn btn-edit">
-                            Sửa
-                        </a>
 
-                        <a asp-action="Chitiet"
-                           asp-route-id="@item.Masp"
-                           class="btn btn-detail">
-                            Chi tiết
-                        </a>
+                        <span class="badge bg-success">
 
-                        <a asp-action="Xoa"
-                           asp-route-id="@item.Masp"
-                           class="btn btn-delete">
-                            Xóa
-                        </a>
+                            @item.Gia.ToString("N0") đ
+
+                        </span>
+
                     </td>
+
+                    <!-- Kho -->
+
+                    <td>
+
+                        @if (item.Soluongton == 0)
+                        {
+                            <span class="badge bg-danger">
+
+                                Hết hàng
+
+                            </span>
+                        }
+                        else if (item.Soluongton <= 10)
+                        {
+                            <span class="badge bg-warning text-dark">
+
+                                @item.Soluongton đôi
+
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">
+
+                                @item.Soluongton đôi
+
+                            </span>
+                        }
+
+                    </td>
+
+                    <!-- Danh mục -->
+
+                    <td>
+
+                        <span class="badge bg-secondary">
+
+                            @item.Danhmuc?.Tendm
+
+                        </span>
+
+                    </td>
+
+                    <!-- Thương hiệu -->
+
+                    <td>
+
+                        <span class="badge bg-info text-dark">
+
+                            @item.Thuonghieu?.Tenth
+
+                        </span>
+
+                    </td>
+
+                    <!-- Khuyến mãi -->
+
+                    <td>
+
+                        @if (item.Khuyenmai != null)
+                        {
+                            <span class="badge bg-primary">
+
+                                @item.Khuyenmai.Tenkm
+
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="text-muted">
+
+                                Không có
+
+                            </span>
+                        }
+
+                    </td>
+
+                    <!-- Action -->
+
+                    <td>
+
+                        <div class="d-flex gap-2">
+
+                            <a asp-action="Chitiet"
+                               asp-route-id="@item.Masp"
+                               class="action-btn btn-view">
+
+                                <i class="bi bi-eye-fill"></i>
+
+                            </a>
+
+                            <a asp-action="Sua"
+                               asp-route-id="@item.Masp"
+                               class="action-btn btn-edit">
+
+                                <i class="bi bi-pencil-fill"></i>
+
+                            </a>
+
+                            <a asp-action="Xoa"
+                               asp-route-id="@item.Masp"
+                               class="action-btn btn-delete">
+
+                                <i class="bi bi-trash-fill"></i>
+
+                            </a>
+
+                        </div>
+
+                    </td>
+
                 </tr>
             }
+
         </tbody>
+
     </table>
 
 </div>

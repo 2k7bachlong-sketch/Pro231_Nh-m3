@@ -1,30 +1,161 @@
 ﻿@model duan_totnghiep.Models.Sanpham
+
 @{
     Layout = "_Layout";
 }
 
-<div class="detail-container">
+<div class="dashboard-header">
 
-    <h2>XÓA SẢN PHẨM</h2>
+    <div>
 
-    <h3>@Model.Tensp</h3>
+        <span class="page-tag bg-danger-subtle text-danger">
+            CẢNH BÁO
+        </span>
 
-    <img src="~/images/@Model.Hinhanh" width="150" />
+        <h2>
+            <i class="bi bi-trash3-fill text-danger"></i>
+            Xóa sản phẩm
+        </h2>
 
-    <h4>Bạn có chắc muốn xóa không?</h4>
+        <p>
+            Hành động này không thể hoàn tác.
+        </p>
 
-    <form asp-action="Xoa" method="post">
-        @Html.AntiForgeryToken()
+    </div>
 
-        <input type="hidden" asp-for="Masp" />
+</div>
 
-        <button type="submit" class="btn btn-delete">
-            Xóa
-        </button>
+<div class="form-card">
 
-        <a asp-action="Index" class="btn btn-cancel">
-            Hủy
-        </a>
-    </form>
+    <div class="row align-items-center">
+
+        <div class="col-md-4 text-center">
+
+            <img src="~/images/@Model.Hinhanh"
+                 class="img-fluid rounded shadow-sm product-delete-img"
+                 alt="@Model.Tensp" />
+
+        </div>
+
+        <div class="col-md-8">
+
+            <h3 class="fw-bold mb-3">
+                @Model.Tensp
+            </h3>
+
+            <table class="table table-borderless">
+
+                <tr>
+
+                    <th width="170">
+                        Mã sản phẩm
+                    </th>
+
+                    <td>
+                        #@Model.Masp
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+                        Giá
+                    </th>
+
+                    <td class="text-primary fw-bold">
+
+                        @Model.Gia.ToString("N0") VNĐ
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+                        Số lượng
+                    </th>
+
+                    <td>
+
+                        @Model.Soluongton
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+                        Danh mục
+                    </th>
+
+                    <td>
+
+                        @Model.Danhmuc?.Tendm
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+                        Thương hiệu
+                    </th>
+
+                    <td>
+
+                        @Model.Thuonghieu?.Tenth
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+            <div class="alert alert-danger mt-4">
+
+                <i class="bi bi-exclamation-triangle-fill"></i>
+
+                Bạn có chắc chắn muốn xóa sản phẩm này?
+
+            </div>
+
+            <form asp-action="Xoa"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <input type="hidden"
+                       asp-for="Masp" />
+
+                <div class="form-footer">
+
+                    <a asp-action="Index"
+                       class="btn btn-secondary">
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Hủy
+
+                    </a>
+
+                    <button class="btn btn-danger">
+
+                        <i class="bi bi-trash-fill"></i>
+
+                        Xóa sản phẩm
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </div>

@@ -13,9 +13,19 @@ namespace duan_totnghiep.Controllers
         }
 
         //Danh sách
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
-            return View(_context.Thuonghieus.ToList());
+            var ds = _context.Thuonghieus
+                             .Include(x => x.Sanphams)
+                             .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(searchString))
+            {
+                ds = ds.Where(x =>
+                    x.Tenth.Contains(searchString));
+            }
+
+            return View(ds.ToList());
         }
 
         //Chi tiết
@@ -92,7 +102,7 @@ namespace duan_totnghiep.Controllers
         }
 
         //POST
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Xoa")]
         [ValidateAntiForgeryToken]
         public IActionResult Xacnhanxoa(int id)
         {

@@ -51,8 +51,15 @@ namespace duan_totnghiep.Controllers
                 HttpContext.Session.SetString("Username", tk.Tendangnhap);
                 HttpContext.Session.SetString("Role", "User");
 
-                // Nếu Matk là khóa chính của tài khoản
                 HttpContext.Session.SetInt32("Matk", tk.Matk);
+
+                var kh = _context.Khachhangs
+                                 .FirstOrDefault(x => x.Matk == tk.Matk);
+
+                if (kh != null)
+                {
+                    HttpContext.Session.SetInt32("Makh", kh.Makh);
+                }
 
                 return RedirectToAction("Index", "Trangmua");
             }

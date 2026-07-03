@@ -3,67 +3,188 @@
     Layout = "_Layout";
 }
 
-<div class="crud-container">
+<div class="dashboard-header">
 
-    <div class="crud-header">
-        <h2>Quản lý thương hiệu</h2>
+    <div>
 
-        <a asp-action="Them" class="btn btn-add">
-            + Thêm thương hiệu
-        </a>
+        <span class="page-tag">
+            QUẢN LÝ
+        </span>
+
+        <h2>
+            <i class="bi bi-award-fill"></i>
+            Thương hiệu
+        </h2>
+
+        <p>
+            Quản lý các thương hiệu giày đang kinh doanh.
+        </p>
+
     </div>
 
-    <table class="crud-table">
+    <a asp-action="Them" class="btn-add">
 
-        <thead>
+        <i class="bi bi-plus-circle-fill"></i>
+
+        Thêm thương hiệu
+
+    </a>
+
+</div>
+
+<div class="row mb-4">
+
+    <div class="col-md-4">
+
+        <div class="stat-card">
+
+            <div>
+
+                <small>Tổng thương hiệu</small>
+
+                <h3>@Model.Count()</h3>
+
+            </div>
+
+            <i class="bi bi-award-fill"></i>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="toolbar-card">
+
+    <form method="get">
+
+        <div class="row">
+
+            <div class="col-lg-10">
+
+                <div class="search-group">
+
+                    <i class="bi bi-search"></i>
+
+                    <input type="text"
+                           class="form-control"
+                           name="searchString"
+                           value="@Context.Request.Query["searchString"]"
+                           placeholder="Tìm thương hiệu..." />
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-2">
+
+                <button class="btn btn-filter w-100">
+
+                    <i class="bi bi-funnel-fill"></i>
+
+                    Tìm kiếm
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<table class="table table-hover align-middle">
+
+    <thead class="table-dark">
+
+        <tr>
+
+            <th width="80">Mã</th>
+
+            <th>Tên thương hiệu</th>
+
+            <th>Mô tả</th>
+
+            <th class="text-center">
+                Sản phẩm
+            </th>
+
+            <th width="170" class="text-center">
+                Chức năng
+            </th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
             <tr>
-                <th>Mã</th>
-                <th>Tên thương hiệu</th>
-                <th>Mô tả</th>
-                <th>Thao tác</th>
-            </tr>
-        </thead>
 
-        <tbody>
+                <td>@item.Math</td>
 
-            @foreach (var item in Model)
-            {
-                <tr>
+                <td>
 
-                    <td>@item.Math</td>
+                    <strong>@item.Tenth</strong>
 
-                    <td>@item.Tenth</td>
+                </td>
 
-                    <td>@item.Mota</td>
+                <td>
 
-                    <td>
+                    @(string.IsNullOrWhiteSpace(item.Mota)
+                        ? "-"
+                        : item.Mota)
 
-                        <a asp-action="Sua"
-                           asp-route-id="@item.Math"
-                           class="btn btn-brand-edit">
-                            Sửa
-                        </a>
+                </td>
+
+                <td class="text-center">
+
+                    <span class="badge bg-primary">
+
+                        @item.Sanphams.Count
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <div class="d-flex justify-content-center gap-2">
 
                         <a asp-action="Chitiet"
                            asp-route-id="@item.Math"
-                           class="btn btn-brand-detail">
-                            Chi tiết
+                           class="btn btn-primary btn-sm">
+
+                            <i class="bi bi-eye-fill"></i>
+
+                        </a>
+
+                        <a asp-action="Sua"
+                           asp-route-id="@item.Math"
+                           class="btn btn-warning btn-sm">
+
+                            <i class="bi bi-pencil-fill"></i>
+
                         </a>
 
                         <a asp-action="Xoa"
                            asp-route-id="@item.Math"
-                           class="btn btn-brand-delete">
-                            Xóa
+                           class="btn btn-danger btn-sm">
+
+                            <i class="bi bi-trash-fill"></i>
+
                         </a>
 
-                    </td>
+                    </div>
 
-                </tr>
-            }
+                </td>
 
-        </tbody>
+            </tr>
+        }
 
-    </table>
+    </tbody>
 
-</div>
-}
+</table>

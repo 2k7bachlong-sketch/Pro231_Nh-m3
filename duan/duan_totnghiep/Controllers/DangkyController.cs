@@ -61,6 +61,17 @@ namespace duan_totnghiep.Controllers
             _context.Taikhoans.Add(tk);
             _context.SaveChanges();
 
+            // Tạo hồ sơ khách hàng
+            Khachhang kh = new Khachhang()
+            {
+                Hoten = TenDangNhap,      // Tạm dùng tên đăng nhập
+                Sdt = SoDienThoai,
+                Matk = tk.Matk
+            };
+
+            _context.Khachhangs.Add(kh);
+            _context.SaveChanges();
+
             TempData["ThanhCong"] = "Đăng ký thành công";
             return RedirectToAction("Index", "Taikhoan");
         }

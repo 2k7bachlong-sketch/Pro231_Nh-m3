@@ -15,14 +15,33 @@ namespace duan_totnghiep.Controllers
         }
 
         // ================= DANH SÁCH =================
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? searchString, int? madm)
         {
-            var ds = _context.Sanphams
-    .Include(x => x.Danhmuc)
-    .Include(x => x.Thuonghieu)
-    .Include(x => x.Khuyenmai); ;
+            var data = _context.Sanphams
+                .Include(x => x.Danhmuc)
+                .Include(x => x.Thuonghieu)
+                .Include(x => x.Khuyenmai)
+                .AsQueryable();
 
-            return View(await ds.ToListAsync());
+            if (!string.IsNullOrWhiteSpace(searchString))
+            {
+                data = data.Where(x =>
+                    x.Tensp.Contains(searchString) ||
+                    x.Masp.ToString().Contains(searchString));
+            }
+
+            if (madm.HasValue)
+            {
+                data = data.Where(x => x.Madm == madm);
+            }
+
+            ViewBag.DanhMuc = new SelectList(
+                _context.Danhmucs,
+                "Madm",
+                "Tendm",
+                madm);
+
+            return View(await data.ToListAsync());
         }
 
         // ================= THÊM =================
@@ -53,6 +72,7 @@ namespace duan_totnghiep.Controllers
             if (ModelState.IsValid)
             {
                 // Upload ảnh
+
                 if (fileAnh != null && fileAnh.Length > 0)
                 {
                     string tenAnh = Guid.NewGuid().ToString()
@@ -139,6 +159,14 @@ namespace duan_totnghiep.Controllers
             if (ModelState.IsValid)
             {
                 // Nếu có chọn ảnh mới
+                var oldSanPham = await _context.Sanphams
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Masp == id);
+
+                if (oldSanPham == null)
+                    return NotFound();
+
+                sp.Hinhanh = oldSanPham.Hinhanh;
                 if (fileAnh != null && fileAnh.Length > 0)
                 {
                     string tenAnh = Guid.NewGuid().ToString()

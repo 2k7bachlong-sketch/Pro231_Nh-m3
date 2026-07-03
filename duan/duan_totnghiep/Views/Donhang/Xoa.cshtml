@@ -22,7 +22,9 @@
 
     <p><strong>Trạng thái:</strong> @Model.Trangthai</p>
 
-    <form asp-action="Delete">
+    <form asp-action="Xoa" method="post">
+
+        @Html.AntiForgeryToken()
 
         <input type="hidden" asp-for="Madh" />
 

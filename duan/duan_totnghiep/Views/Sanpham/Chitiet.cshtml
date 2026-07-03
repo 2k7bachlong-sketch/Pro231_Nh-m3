@@ -1,56 +1,199 @@
 ﻿@model duan_totnghiep.Models.Sanpham
+
 @{
     Layout = "_Layout";
 }
 
-<div class="detail-container">
+<div class="dashboard-header">
 
-    <div class="detail-card">
+    <div>
 
-        <h2>CHI TIẾT SẢN PHẨM</h2>
+        <span class="page-tag">
+            THÔNG TIN
+        </span>
 
-        <div class="image-box">
-            <img src="~/images/@Model.Hinhanh" alt="@Model.Tensp">
-        </div>
+        <h2>
 
-        <div class="info-row">
-            <span>Tên sản phẩm:</span>
-            <p>@Model.Tensp</p>
-        </div>
+            <i class="bi bi-box-seam-fill"></i>
 
-        <div class="info-row">
-            <span>Giá:</span>
-            <p>@String.Format("{0:N0} VNĐ", Model.Gia)</p>
-        </div>
+            Chi tiết sản phẩm
 
-        <div class="info-row">
-            <span>Số lượng:</span>
-            <p>@Model.Soluongton</p>
-        </div>
+        </h2>
 
-        <div class="info-row">
-            <span>Danh mục:</span>
-            <p>@Model.Danhmuc?.Tendm</p>
-        </div>
+        <p>
+            Xem đầy đủ thông tin sản phẩm.
+        </p>
 
-        <div class="info-row">
-            <span>Thương hiệu:</span>
-            <p>@Model.Thuonghieu?.Tenth</p>
-        </div>
-        <div class="info-row">
+    </div>
 
-            <span>Khuyến mãi</span>
+</div>
 
-            <p>
-                @(Model.Khuyenmai == null
-                                ? "Không áp dụng"
-                                : $"{Model.Khuyenmai.Tenkm} ({Model.Khuyenmai.Phantramgiam}%)")
-            </p>
+<div class="form-card">
+
+    <div class="row">
+
+        <!-- Ảnh -->
+
+        <div class="col-lg-4 text-center">
+
+            <img src="~/images/@Model.Hinhanh"
+                 class="product-detail-img"
+                 alt="@Model.Tensp" />
 
         </div>
-        <a asp-action="Index" class="btn-back">
-            ← Quay lại
-        </a>
+
+        <!-- Thông tin -->
+
+        <div class="col-lg-8">
+
+            <table class="table table-borderless align-middle">
+
+                <tr>
+
+                    <th width="220">
+                        Mã sản phẩm
+                    </th>
+
+                    <td>
+                        #@Model.Masp
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+                        Tên sản phẩm
+                    </th>
+
+                    <td class="fw-semibold">
+
+                        @Model.Tensp
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+                        Giá bán
+                    </th>
+
+                    <td class="text-primary fw-bold fs-5">
+
+                        @String.Format("{0:N0} VNĐ", Model.Gia)
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+                        Số lượng tồn
+                    </th>
+
+                    <td>
+
+                        @Model.Soluongton
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+                        Danh mục
+                    </th>
+
+                    <td>
+
+                        <span class="badge bg-primary">
+
+                            @Model.Danhmuc?.Tendm
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+                        Thương hiệu
+                    </th>
+
+                    <td>
+
+                        <span class="badge bg-dark">
+
+                            @Model.Thuonghieu?.Tenth
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>
+                        Khuyến mãi
+                    </th>
+
+                    <td>
+
+                        @if (Model.Khuyenmai == null)
+                        {
+                            <span class="badge bg-secondary">
+
+                                Không áp dụng
+
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">
+
+                                @Model.Khuyenmai.Tenkm
+                                (-@Model.Khuyenmai.Phantramgiam%)
+
+                            </span>
+                        }
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+            <div class="form-footer">
+
+                <a asp-action="Index"
+                   class="btn btn-secondary">
+
+                    <i class="bi bi-arrow-left"></i>
+
+                    Quay lại
+
+                </a>
+
+                <a asp-action="Sua"
+                   asp-route-id="@Model.Masp"
+                   class="btn btn-warning">
+
+                    <i class="bi bi-pencil-fill"></i>
+
+                    Chỉnh sửa
+
+                </a>
+
+            </div>
+
+        </div>
 
     </div>
 

@@ -3,46 +3,143 @@
 @{
     Layout = "_Layout";
 }
+<style>
+    .form-card {
+        background: white;
+        border-radius: 20px;
+        padding: 35px;
+        box-shadow: 0 15px 35px rgba(15,23,42,.06);
+    }
 
-<div class="form-container">
+    .form-header {
+        margin-bottom: 30px;
+    }
 
-    <h2>Thêm khuyến mãi</h2>
+        .form-header h2 {
+            font-weight: 700;
+        }
 
-    <form asp-action="Them">
+        .form-header p {
+            color: #64748B;
+            margin-top: 5px;
+        }
 
-        <div class="form-group">
-            <label>Tên khuyến mãi</label>
-            <input asp-for="Tenkm" class="form-control" />
+    .custom-input {
+        height: 52px;
+        border-radius: 14px;
+        border: 1px solid #E5E7EB;
+        transition: .3s;
+    }
+
+        .custom-input:focus {
+            border-color: #6366F1;
+            box-shadow: 0 0 0 4px rgba(99,102,241,.15);
+        }
+
+    .btn-save {
+        background: #6366F1;
+        color: white;
+        border: none;
+        padding: 12px 22px;
+        border-radius: 12px;
+        font-weight: 600;
+    }
+
+        .btn-save:hover {
+            background: #4F46E5;
+            color: white;
+            transform: translateY(-2px);
+        }
+</style>
+
+<div class="container py-4">
+
+    <div class="form-card">
+
+        <div class="form-header">
+
+            <div>
+                <h2>🎁 Thêm khuyến mãi</h2>
+                <p>Tạo chương trình giảm giá mới cho cửa hàng.</p>
+            </div>
+
         </div>
 
-        <div class="form-group">
-            <label>Phần trăm giảm</label>
-            <input asp-for="Phantramgiam" class="form-control" />
-        </div>
+        <form asp-action="Them">
 
-        <div class="form-group">
-            <label>Ngày bắt đầu</label>
-            <input asp-for="Ngaybatdau" type="date" class="form-control" />
-        </div>
+            <div class="row">
 
-        <div class="form-group">
-            <label>Ngày kết thúc</label>
-            <input asp-for="Ngayketthuc" type="date" class="form-control" />
-        </div>
+                <div class="col-md-12 mb-4">
 
-        <div class="form-group">
-            <label>Trạng thái</label>
-            <input asp-for="Trangthai" class="form-control" />
-        </div>
+                    <label class="form-label">
+                        Tên khuyến mãi
+                    </label>
 
-        <button class="btn btn-add">
-            Thêm
-        </button>
+                    <input asp-for="Tenkm"
+                           class="form-control custom-input"
+                           placeholder="Ví dụ: Black Friday 2026" />
 
-        <a asp-action="Index" class="btn btn-cancel">
-            Quay lại
-        </a>
+                </div>
 
-    </form>
+                <div class="col-md-6 mb-4">
+
+                    <label class="form-label">
+                        Phần trăm giảm (%)
+                    </label>
+
+                    <input asp-for="Phantramgiam"
+                           class="form-control custom-input" />
+
+                </div>
+              
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="form-label">
+                        Ngày bắt đầu
+                    </label>
+
+                    <input asp-for="Ngaybatdau"
+                           type="date"
+                           class="form-control custom-input"/>
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <label class="form-label">
+                        Ngày kết thúc
+                    </label>
+
+                    <input asp-for="Ngayketthuc"
+                           type="date"
+                           class="form-control custom-input"/>
+
+                </div>
+
+            </div>
+
+            <hr />
+
+            <div class="d-flex justify-content-end gap-2">
+
+                <a asp-action="Index"
+                   class="btn btn-light">
+
+                    ← Quay lại
+
+                </a>
+
+                <button class="btn btn-save">
+
+                    💾 Lưu khuyến mãi
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
 
 </div>

@@ -4,36 +4,187 @@
     Layout = "_Layout";
 }
 
-<div class="delete-container">
+<div class="container py-4">
 
-    <h2>Xóa khuyến mãi</h2>
+    <div class="card border-0 shadow-lg rounded-4">
 
-    <hr />
+        <div class="card-header bg-danger text-white py-3">
 
-    <p><strong>Mã:</strong> @Model.Makm</p>
+            <h3 class="mb-0">
+                <i class="bi bi-trash3-fill"></i>
+                Xóa khuyến mãi
+            </h3>
 
-    <p><strong>Tên:</strong> @Model.Tenkm</p>
+        </div>
 
-    <p><strong>Giảm:</strong> @Model.Phantramgiam %</p>
+        <div class="card-body p-4">
 
-    <p><strong>Ngày bắt đầu:</strong> @Model.Ngaybatdau</p>
+            <div class="alert alert-warning d-flex align-items-center">
 
-    <p><strong>Ngày kết thúc:</strong> @Model.Ngayketthuc</p>
+                <i class="bi bi-exclamation-triangle-fill fs-4 me-3"></i>
 
-    <p><strong>Trạng thái:</strong> @Model.Trangthai</p>
+                <div>
 
-    <form asp-action="Xoa">
+                    <strong>Cảnh báo!</strong><br />
 
-        <input type="hidden" asp-for="Makm" />
+                    Bạn sắp xóa chương trình khuyến mãi này.
+                    Hành động này không thể hoàn tác.
 
-        <button class="btn btn-delete">
-            Xóa
-        </button>
+                </div>
 
-        <a asp-action="Index" class="btn btn-cancel">
-            Hủy
-        </a>
+            </div>
 
-    </form>
+            <div class="row g-4 mt-2">
+
+                <div class="col-md-6">
+
+                    <div class="border rounded-3 p-3">
+
+                        <small class="text-muted">
+                            Mã khuyến mãi
+                        </small>
+
+                        <h5 class="mt-2 mb-0">
+                            #@Model.Makm
+                        </h5>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="border rounded-3 p-3">
+
+                        <small class="text-muted">
+                            Tên khuyến mãi
+                        </small>
+
+                        <h5 class="mt-2 mb-0">
+                            @Model.Tenkm
+                        </h5>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="border rounded-3 p-3">
+
+                        <small class="text-muted">
+                            Giảm giá
+                        </small>
+
+                        <h5 class="mt-2 mb-0 text-success">
+                            @Model.Phantramgiam %
+                        </h5>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="border rounded-3 p-3">
+
+                        <small class="text-muted">
+                            Trạng thái
+                        </small>
+
+                        <h5 class="mt-2">
+
+                            @if (Model.TrangThaiHienThi == "Hoạt động")
+                            {
+                                <span class="badge bg-success">
+                                    🟢 Hoạt động
+                                </span>
+                            }
+                            else if (Model.TrangThaiHienThi == "Sắp diễn ra")
+                            {
+                                <span class="badge bg-warning text-dark">
+                                    🟡 Sắp diễn ra
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">
+                                    🔴 Đã kết thúc
+                                </span>
+                            }
+
+                        </h5>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="border rounded-3 p-3">
+
+                        <small class="text-muted">
+                            Ngày bắt đầu
+                        </small>
+
+                        <h5 class="mt-2 mb-0">
+                            @Model.Ngaybatdau?.ToString("dd/MM/yyyy")
+                        </h5>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="border rounded-3 p-3">
+
+                        <small class="text-muted">
+                            Ngày kết thúc
+                        </small>
+
+                        <h5 class="mt-2 mb-0">
+                            @Model.Ngayketthuc?.ToString("dd/MM/yyyy")
+                        </h5>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr class="my-4" />
+
+            <form asp-action="Xoa">
+
+                <input type="hidden" asp-for="Makm" />
+
+                <div class="d-flex justify-content-end gap-2">
+
+                    <a asp-action="Index"
+                       class="btn btn-outline-secondary">
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Hủy
+
+                    </a>
+
+                    <button type="submit"
+                            class="btn btn-danger">
+
+                        <i class="bi bi-trash3-fill"></i>
+
+                        Xác nhận xóa
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </div>

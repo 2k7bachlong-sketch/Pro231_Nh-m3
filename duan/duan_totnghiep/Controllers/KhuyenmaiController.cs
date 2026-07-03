@@ -14,10 +14,26 @@ namespace duan_totnghiep.Controllers
         }
 
         // Danh sách
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, string status)
         {
-            return View(await _context.Khuyenmais.ToListAsync());
+            var data = _context.Khuyenmais.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                data = data.Where(x =>
+                    x.Tenkm.Contains(searchString) ||
+                    x.Makm.ToString().Contains(searchString)
+                );
+            }
+
+            if (!string.IsNullOrEmpty(status))
+            {
+                data = data.Where(x => x.Trangthai == status);
+            }
+
+            return View(await data.ToListAsync());
         }
+
 
         // Chi tiết
         public async Task<IActionResult> ChiTiet(int id)
@@ -46,9 +62,16 @@ namespace duan_totnghiep.Controllers
 
             if (ModelState.IsValid)
             {
-                _context.Khuyenmais.Add(km);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                DateOnly today = DateOnly.FromDateTime(DateTime.Today);
+
+                if (km.Ngaybatdau.HasValue && km.Ngayketthuc.HasValue)
+                {              
+                    _context.Khuyenmais.Add(km);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                
+
             }
 
             return View(km);
@@ -113,5 +136,7 @@ namespace duan_totnghiep.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        
     }
+
 }

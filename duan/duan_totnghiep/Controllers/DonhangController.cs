@@ -1,6 +1,7 @@
 ﻿using duan_totnghiep.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace duan_totnghiep.Controllers
 {
@@ -62,8 +63,17 @@ namespace duan_totnghiep.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewBag.KhachHang = _context.Khachhangs.ToList();
-            ViewBag.NhanVien = _context.Nhanviens.ToList();
+                ViewBag.KhachHang = new SelectList(
+                _context.Khachhangs,
+                "Makh",
+                "Hoten"
+                );
+
+                ViewBag.NhanVien = new SelectList(
+                    _context.Nhanviens,
+                    "Manv",
+                    "Hoten"
+                );
 
             return View(dh);
         }
@@ -76,8 +86,19 @@ namespace duan_totnghiep.Controllers
             if (dh == null)
                 return NotFound();
 
-            ViewBag.KhachHang = _context.Khachhangs.ToList();
-            ViewBag.NhanVien = _context.Nhanviens.ToList();
+               ViewBag.KhachHang = new SelectList(
+                    _context.Khachhangs,
+                    "Makh",
+                    "Hoten",
+                    dh.Makh
+               );
+
+            ViewBag.NhanVien = new SelectList(
+                _context.Nhanviens,
+                "Manv",
+                "Hoten",
+                dh.Manv
+            );
 
             return View(dh);
         }
