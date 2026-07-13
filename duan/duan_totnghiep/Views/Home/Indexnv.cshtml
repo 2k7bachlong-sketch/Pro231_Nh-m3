@@ -16,60 +16,217 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI',sans-serif;
         }
 
         body {
             display: flex;
-            background: #f5f6fa;
+            background: #eef2f7;
         }
-
-        /* Sidebar */
 
         .sidebar {
             width: 250px;
             min-height: 100vh;
-            background: #1e501b;
-            color: white;
+            background: linear-gradient(180deg,#1F2937,#111827);
+            color: #fff;
+            position: fixed;
         }
 
         .logo {
-            text-align: center;
             padding: 25px;
-            font-size: 28px;
+            text-align: center;
+            font-size: 30px;
             font-weight: bold;
-            border-bottom: 1px solid #334155;
+            border-bottom: 1px solid rgba(255,255,255,.15);
         }
 
-        .menu a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            padding: 18px 25px;
-            border-bottom: 1px solid #334155;
-            transition: .3s;
+        .menu {
+            margin-top: 15px;
         }
 
-            .menu a:hover {
-                background: green;
+            .menu a {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                color: #fff;
+                text-decoration: none;
+                padding: 18px 25px;
+                border-bottom: 1px solid rgba(255,255,255,.08);
+                transition: .3s;
             }
 
-        .menu i {
-            margin-right: 10px;
-        }
-
-        /* Main */
+                .menu a:hover {
+                    background: #374151;
+                    padding-left: 35px;
+                }
 
         .main {
-            flex: 1;
+            margin-left: 250px;
+            width: 100%;
         }
 
         .header {
+            height: 80px;
             background: white;
-            padding: 20px 30px;
             display: flex;
             justify-content: space-between;
-            box-shadow: 0 2px 5px rgba(0,0,0,.1);
+            align-items: center;
+            padding: 0 35px;
+            box-shadow: 0 3px 12px rgba(0,0,0,.08);
+        }
+
+            .header h2 {
+                font-size: 28px;
+            }
+
+        .content {
+            padding: 30px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,.08);
+            transition: .3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .card,
+            .card:hover,
+            .card:visited,
+            .card:active {
+                text-decoration: none;
+                color: #222;
+            }
+
+                .card:hover {
+                    transform: translateY(-8px);
+                }
+
+                .card::before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 6px;
+                    height: 100%;
+                    background: #3B82F6;
+                }
+
+                .card i {
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 15px;
+                    background: #EFF6FF;
+                    color: #2563EB;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 28px;
+                    margin-bottom: 18px;
+                }
+
+                .card h2 {
+                    font-size: 34px;
+                    margin-bottom: 8px;
+                }
+
+                .card p {
+                    color: #666;
+                    font-size: 17px;
+                }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .box {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,.08);
+        }
+
+            .box h3 {
+                color: #2563EB;
+                margin-bottom: 20px;
+            }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            .table th {
+                background: #1F2937;
+                color: white;
+                padding: 12px;
+            }
+
+            .table td {
+                padding: 12px;
+                border-bottom: 1px solid #eee;
+            }
+
+        .account {
+            margin: 20px;
+            padding: 15px;
+            border-radius: 15px;
+            background: #374151;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: white;
+            transition: .3s;
+        }
+
+            .account:hover {
+                background: #4B5563;
+                transform: translateX(5px);
+            }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #3B82F6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 22px;
+        }
+
+        .info {
+            flex: 1;
+        }
+
+            .info h4 {
+                margin: 0;
+                font-size: 17px;
+                color: white;
+            }
+
+            .info p {
+                margin-top: 4px;
+                color: #D1D5DB;
+                font-size: 13px;
+            }
+
+        .arrow {
+            color: #D1D5DB;
         }
     </style>
 </head>
@@ -82,15 +239,29 @@
         </div>
 
         <div class="menu">
-            <a href="#"><i class="fa fa-house"></i> Trang chính</a>
-            <a href="/Sanpham/Index"><i class="fa fa-box"></i> Quản lý sản phẩm</a>
-            <a href="/Thuonghieu/Index"><i class="fa fa-tags"></i> Quản lý thương hiệu</a>
-            <a href="/Danhmuc/Index"><i class="fa fa-list"></i> Quản lý danh mục</a>
-            <a href="/Donhang/Index"><i class="fa fa-cart-shopping"></i> Quản lý đơn hàng</a>
-            <a href="/Khachhang/Index"><i class="fa fa-users"></i> Quản lý khách hàng</a>
-            <a href="/Khuyenmai/Index"><i class="fa fa-chart-line"></i> Quản lí khuyến mãi</a>
-            <a href="/Taikhoan/Index"><i class="fa fa-right-from-bracket"></i> Đăng xuất</a>
-            <a href="/Tonkho/Index"><i class="fa fa-warehouse"></i> Quản lý tồn kho</a>
+            <a href="/Home/Index"><i class="fa fa-house"></i>Trang chính</a>
+            <a href="/Sanpham/Index"><i class="fa fa-box"></i>Quản lý sản phẩm</a>
+            <a href="/Thuonghieu/Index"><i class="fa fa-tags"></i>Quản lý thương hiệu</a>
+            <a href="/Danhmuc/Index"><i class="fa fa-list"></i>Quản lý danh mục</a>
+            <a href="/Donhang/Index"><i class="fa fa-cart-shopping"></i>Quản lý đơn hàng</a>
+            <a href="/Khachhang/Index"><i class="fa fa-users"></i>Quản lý khách hàng</a>
+            <a href="/Khuyenmai/Index"><i class="fa fa-percent"></i>Khuyến mãi</a>
+            <a href="/Giaodien/Index"><i class="fa fa-right-from-bracket"></i>Đăng xuất</a>
+            <a href="/Thongtin/Index" class="account">
+
+                <div class="avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div class="info">
+                    <h4>Nhân viên</h4>
+                    <p>Xem tài khoản</p>
+                </div>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </a>
+
         </div>
 
     </div>
@@ -98,12 +269,113 @@
     <div class="main">
 
         <div class="header">
+
             <h2>Trang chính</h2>
 
-            <div>
-                Xin chào Nhân viên!
-            </div>
+            <h4>Xin chào Nhân viên 👋</h4>
+
         </div>
+
+        <div class="content">
+
+            <div class="cards">
+
+                <a href="/Sanpham/Index" class="card">
+                    <i class="fa fa-box"></i>
+                    <h2>@ViewBag.TongSanPham</h2>
+                    <p>Sản phẩm</p>
+                </a>
+
+                <a href="/Khachhang/Index" class="card">
+                    <i class="fa fa-users"></i>
+                    <h2>@ViewBag.TongKhachHang</h2>
+                    <p>Khách hàng</p>
+                </a>
+
+                <a href="/Donhang/Index" class="card">
+                    <i class="fa fa-cart-shopping"></i>
+                    <h2>@ViewBag.TongDonHang</h2>
+                    <p>Đơn hàng</p>
+                </a>
+
+                <a href="/Khuyenmai/Index" class="card">
+                    <i class="fa fa-percent"></i>
+                    <h2>@ViewBag.TongKhuyenMai</h2>
+                    <p>Khuyến mãi</p>
+                </a>
+
+                <a href="/Sanpham/Index" class="card">
+                    <i class="fa fa-warehouse"></i>
+                    <h2>@ViewBag.TonKho</h2>
+                    <p>Tồn kho</p>
+                </a>
+
+                <a href="/Donhang/Index" class="card">
+                    <i class="fa fa-money-bill-wave"></i>
+                    <h2>@String.Format("{0:N0}", ViewBag.DoanhThu) đ</h2>
+                    <p>Doanh thu</p>
+                </a>
+
+            </div>
+
+            <div class="dashboard">
+
+                <div class="box">
+
+                    <h3>📈 Thống kê</h3>
+
+                    <p>Tổng danh mục: <b>@ViewBag.TongDanhMuc</b></p>
+                    <br />
+                    <p>Tổng thương hiệu: <b>@ViewBag.TongThuongHieu</b></p>
+                    <br />
+                    <p>Doanh thu hiện tại:</p>
+
+                    <h2 style="margin-top:15px;color:#1e501b;">
+                        @String.Format("{0:N0}", ViewBag.DoanhThu) đ
+                    </h2>
+
+                </div>
+
+                <div class="box">
+
+                    <h3>Thông tin</h3>
+
+                    <table class="table">
+
+                        <tr>
+                            <th>Thống kê</th>
+                            <th>Số lượng</th>
+                        </tr>
+
+                        <tr>
+                            <td>Sản phẩm</td>
+                            <td>@ViewBag.TongSanPham</td>
+                        </tr>
+
+                        <tr>
+                            <td>Đơn hàng</td>
+                            <td>@ViewBag.TongDonHang</td>
+                        </tr>
+
+                        <tr>
+                            <td>Khách hàng</td>
+                            <td>@ViewBag.TongKhachHang</td>
+                        </tr>
+
+                        <tr>
+                            <td>Khuyến mãi</td>
+                            <td>@ViewBag.TongKhuyenMai</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
+
 </body>
 </html>

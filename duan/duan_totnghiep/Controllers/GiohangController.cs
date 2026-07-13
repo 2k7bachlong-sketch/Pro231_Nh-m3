@@ -36,8 +36,7 @@ namespace duan_totnghiep.Controllers
         public IActionResult ThemVaoGio(int id)
         {
             // Lấy mã khách hàng từ Session
-            int? maKhachHang = HttpContext.Session.GetInt32("Makh");     
-
+            int? maKhachHang = HttpContext.Session.GetInt32("Makh");
 
             // Chưa đăng nhập
             if (maKhachHang == null)
@@ -132,6 +131,23 @@ namespace duan_totnghiep.Controllers
 
                 _context.SaveChanges();
             }
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult XoaHet()
+        {
+            int? maKhachHang = HttpContext.Session.GetInt32("Makh");
+
+            if (maKhachHang == null)
+                return RedirectToAction("Index");
+
+            var gioHang = _context.Giohangs
+                                  .Where(x => x.Makh == maKhachHang.Value)
+                                  .ToList();
+
+            _context.Giohangs.RemoveRange(gioHang);
+            _context.SaveChanges();
+
             return RedirectToAction("Index");
         }
     }

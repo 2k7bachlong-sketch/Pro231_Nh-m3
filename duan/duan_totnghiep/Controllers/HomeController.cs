@@ -34,7 +34,15 @@ namespace duan_totnghiep.Controllers
             ViewBag.DoanhThu = _context.Donhangs
                 .Where(x => x.Trangthai == "Đã hoàn thành")
                 .Sum(x => x.Tongtien);
+            ViewBag.DonHangMoi = _context.Donhangs
+                .OrderByDescending(x => x.Ngaydat)
+                .Take(5)
+                .ToList();
 
+            ViewBag.SanPhamMoi = _context.Sanphams
+                .OrderByDescending(x => x.Ngaytao)
+                .Take(5)
+                .ToList();
             return View();
         }
 
@@ -60,6 +68,7 @@ namespace duan_totnghiep.Controllers
 
             return View();
         }
+   
 
         public IActionResult Privacy()
         {
@@ -69,7 +78,8 @@ namespace duan_totnghiep.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel
+            return View(
+                new ErrorViewModel
             {
                 RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
             });

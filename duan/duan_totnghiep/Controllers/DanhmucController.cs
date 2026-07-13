@@ -12,6 +12,60 @@ namespace duan_totnghiep.Controllers
             {
                 _context = context;
             }
+        // Trang sản phẩm khuyến mãi
+        public async Task<IActionResult> SanPhamKhuyenMai()
+        {
+            DateOnly today = DateOnly.FromDateTime(DateTime.Today);
+
+            var ds = await _context.Sanphams
+                .Include(x => x.Khuyenmai)
+                .Include(x => x.Thuonghieu)
+                .Include(x => x.Danhmuc)
+                .Where(x => x.Khuyenmai != null
+                    && x.Khuyenmai.Ngaybatdau <= today
+                    && x.Khuyenmai.Ngayketthuc >= today)
+                .ToListAsync();
+
+            return View(ds);
+        }
+        public IActionResult List(int id, string sortOrder = "", string searchString = "", string returnController = "")
+        {
+            ViewBag.ReturnController = returnController;
+            var sp = _context.Sanphams
+                             .Where(x => x.Madm == id);
+
+            // Tìm kiếm theo tên sản phẩm
+            if (!string.IsNullOrWhiteSpace(searchString))
+            {
+                sp = sp.Where(x => x.Tensp.Contains(searchString));
+            }
+
+            // Sắp xếp
+            switch (sortOrder)
+            {
+                case "price_asc":
+                    sp = sp.OrderBy(x => x.Gia);
+                    break;
+
+                case "price_desc":
+                    sp = sp.OrderByDescending(x => x.Gia);
+                    break;
+
+                default:
+                    sp = sp.OrderByDescending(x => x.Ngaytao);
+                    break;
+            }
+
+            ViewBag.Sort = sortOrder;
+            ViewBag.Search = searchString;
+
+            var dm = _context.Danhmucs.FirstOrDefault(x => x.Madm == id);
+
+            ViewBag.TenDanhMuc = dm?.Tendm;
+
+            return View(sp.ToList());
+        }
+
 
         // DANH SÁCH
         public async Task<IActionResult> Index(string searchString)

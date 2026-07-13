@@ -11,8 +11,10 @@
     <meta charset="utf-8" />
     <title>StarPard Shop</title>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap"
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    
 
     <style>
 
@@ -20,57 +22,106 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+
         }
 
         body {
-                background: #f5f5f5;
-            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            font-family: "Be Vietnam Pro", sans-serif;
         }
 
         /* HEADER */
 
         .header {
-            height: 90px;
-            background: gray;
+            width: 92%;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 40px;
+            padding: 20px 35px;
+            box-shadow: 0 8px 20px rgba(0,0,0,.08);
         }
 
-        
-
-            .logo img {
-                width: 100px;
-                height: 100px;
-            }
-
-     
+        .logo img {
+            width: 90px;
+        }
 
         .search-box {
-            width: 770px;
-            height: 35px;
-            background: white;
-            border: 2px solid black;
-            border-radius: 30px;
+            width: 45%;
+            height: 55px;
+            border: 1px solid #ddd;
+            border-radius: 40px;
             display: flex;
-            overflow: hidden;
+            align-items: center;
+            padding: 0 20px;
         }
+
+            .search-box i {
+                color: #888;
+                margin-right: 10px;
+            }
 
             .search-box input {
                 flex: 1;
                 border: none;
                 outline: none;
-                padding-left: 20px;
                 font-size: 16px;
             }
 
-            .search-box button {
-                width: 60px;
-                border: none;
-                background: white;
-                font-size: 18px;
-                cursor: pointer;
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .icon-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            border-radius: 35px;
+            text-decoration: none;
+            color: #333;
+            border: 1px solid #ddd;
+            transition: .3s;
+        }
+
+            .icon-btn i {
+                font-size: 20px;
+            }
+
+            .icon-btn:hover {
+                background: #E63946;
+                color: white;
+                border-color: #E63946;
+            }
+
+        .main-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 24px;
+            border-radius: 40px;
+            text-decoration: none;
+            color: white;
+            background: #111;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+            .main-btn:hover {
+                background: #E63946;
+                transform: translateY(-2px);
+            }
+
+        .register {
+            background: #E63946;
+        }
+
+            .register:hover {
+                background: #c62839;
             }
 
         .right-menu {
@@ -113,78 +164,152 @@
         /* DANH MỤC */
 
         .category {
-            height: 70px;
-            background: #e5e5e5;
+            width: 92%;
+            margin: auto;
+            height: 65px;
+            background: #111;
+            border-radius: 18px;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 70px;
-            font-size: 18px;
-            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(0,0,0,.15);
         }
 
             .category a {
+                color: white;
                 text-decoration: none;
-                color: black;
+                font-size: 17px;
+                font-weight: 600;
+                padding: 12px 22px;
+                border-radius: 30px;
+                transition: .3s;
             }
 
-                    .category a:hover {
-                        color: tomato;
-                        transform: translateY(-3px);
-                    }
+                .category a:hover {
+                    background: #E63946;
+                }
 
 
             /* BANNER */
 
-         .banner {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin: 30px 0;
-}
+            .banner {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin: 30px 0;
+            }
 
-.banner img{
-    width:65%;
-    max-width:1000px;
-    height:320px;
-
-    object-fit:cover;
-    border-radius:25px;
-}
-
+            .banner img {
+                width: 92%;
+                max-width: 1400px;
+                height: 430px;
+                object-fit: cover;
+                border-radius: 25px;
+                transition: .4s;
+            }
 .banner img:hover{
     transform: scale(1.02);
 }
         /* SẢN PHẨM */
+        .section-title {
+            width: 92%;
+            margin: 60px auto 40px;
+            background: #fff;
+            border-radius: 22px;
+            padding: 35px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,.08);
+            border: 1px solid #eee;
+            position: relative;
+            overflow: hidden;
+        }
+
+            /* Dải màu phía trên */
+
+            .section-title::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 6px;
+                background: linear-gradient(90deg,#ff3131,#111,#ff3131);
+            }
+
+            /* Hai vòng tròn trang trí */
+
+            .section-title::after {
+                content: "";
+                position: absolute;
+                width: 220px;
+                height: 220px;
+                background: rgba(255,49,49,.05);
+                border-radius: 50%;
+                top: -120px;
+                right: -80px;
+            }
+
+        .title-top {
+            color: #ff3131;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+            .title-top i {
+                margin-right: 8px;
+                font-size: 20px;
+            }
+
+        .section-title h2 {
+            font-size: 46px;
+            font-weight: 800;
+            color: #111;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #777;
+            font-size: 18px;
+        }
+
+        .section-title b {
+            color: #ff3131;
+        }
 
         .products {
             margin-top: 50px;
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             gap: 60px;
         }
 
-            .card {
-                width: 220px;
-                height: 240px;
-                background: white;
-                border: 5px solid black;
-                border-radius: 20px;
-                text-align: center;
-                padding: 15px;
-                transition: all 0.3s ease;
-                cursor: pointer;
+        .card {
+            position: relative;
+            width: 220px;
+            min-height: 330px; /* tăng chiều cao */
+            background: #fff;
+            border: 5px solid #111;
+            border-radius: 22px;
+            padding: 20px;
+            text-align: center;
+            overflow: hidden;
+            transition: .3s;
+        }
+
+            .card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 15px 30px rgba(0,0,0,.2);
             }
 
-                .card:hover {
-                    transform: translateY(-12px);
-                    box-shadow: 0 15px 25px rgba(0,0,0,0.3);
-                }
-
             .card img {
-                width: 120px;
-                height: 120px;
-                object-fit: cover;
+                width: 130px;
+                height: 130px;
+                object-fit: contain;
+                margin-top: 10px;
             }
 
             .card h3 {
@@ -192,65 +317,239 @@
                 font-size: 15px;
             }
 
+        .card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sale-badge {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            background: #ff3b30;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 5px 12px rgba(0,0,0,.2);
+        }
+
+        .old-price {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #999;
+            text-decoration: line-through;
+        }
+
         .price {
-            margin-top: 25px;
-            font-size: 22px;
+            margin-top: 8px;
+            font-size: 25px;
+            font-weight: 800;
+            color: #E63946;
         }
 
         .logo-text {
             font-size: 36px;
             font-weight: 800;
-            color: white;
+            color: black;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
+
+        .title-product {
+            width: 92%;
+            margin: 50px auto 30px;
+            text-align: center;
+        }
+
+            .title-product h2 {
+                font-size: 34px;
+                color: #111;
+                margin-bottom: 10px;
+            }
+
+                .title-product h2 i {
+                    color: #E63946;
+                }
+
+            .title-product p {
+                color: #777;
+            }
+
+        .rating {
+            margin: 15px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+        }
+
+            .rating i {
+                color: #ffc107;
+                font-size: 18px;
+            }
+        /*========== STATS =========*/
+
+        .section-heading {
+            width: 100%;
+            margin: 80px auto 50px;
+            text-align: center;
+            position: relative;
+        }
+
+            .section-heading::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 18px;
+                height: 2px;
+                background: #ddd;
+                z-index: 1;
+            }
+
+            .section-heading small {
+                display: inline-block;
+                position: relative;
+                z-index: 2;
+                background: #f5f5f5;
+                padding: 0 15px;
+                color: #e63946;
+                font-size: 14px;
+                font-weight: 700;
+                letter-spacing: 5px;
+            }
+
+            .section-heading h2 {
+                margin-top: 15px;
+                font-size: 48px;
+                font-weight: 800;
+                color: #111;
+            }
+
+            .section-heading p {
+                margin-top: 10px;
+                font-size: 18px;
+                color: #666;
+            }
+
+            .section-heading span {
+                color: #e63946;
+                font-weight: 700;
+            }
+        .stats {
+            width: 92%;
+            margin: 50px auto 80px;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 30px;
+        }
+
+        .stat-box {
+            background: #fff;
+            padding: 40px 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,.08);
+            transition: .3s;
+        }
+
+            .stat-box:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 35px rgba(0,0,0,.15);
+            }
+
+            .stat-box i {
+                font-size: 48px;
+                color: #E63946;
+                margin-bottom: 20px;
+            }
+
+            .stat-box h2 {
+                font-size: 42px;
+                font-weight: 800;
+                color: #111;
+                margin-bottom: 10px;
+            }
+
+            .stat-box p {
+                font-size: 18px;
+                color: #666;
+                font-weight: 500;
+            }
     </style>
 </head>
 <body>
 
     <!-- HEADER -->
 
-    <div class="header">
+    <header class="header">
 
         <div class="logo">
-            <img src="~/images/starlogo.png" />
-     
+            <a href="/Giaodien/Index">
+                <img src="~/images/starlogo.png" alt="StarPard">
+            </a>
         </div>
 
         <div class="search-box">
-            <input type="text" placeholder="Tìm kiếm..." />
-            <button>
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Tìm kiếm sản phẩm...">
         </div>
 
-        <div class="right-menu">
+        <div class="header-right">
 
-            <a href="/Giohang/Index">
-                <i class="fa-solid fa-cart-shopping"></i>
+            <a href="#" class="icon-btn">
+                <i class="fa-solid fa-phone"></i>
+                <span>Liên hệ</span>
             </a>
 
-            <a href="/Taikhoan/Index " class="btn-dangki">
+            <a href="/Taikhoan/Index" class="main-btn login">
+                <i class="fa-regular fa-user"></i>
                 Đăng nhập
             </a>
 
-            <a href="/DangKy/Index" class="btn-dangki">
-                Đăng kí
+            <a href="/DangKy/Index" class="main-btn register">
+                <i class="fa-solid fa-user-plus"></i>
+                Đăng ký
             </a>
 
         </div>
 
-    </div>
+    </header>
 
     <!-- DANH MỤC -->
 
     <div class="category">
 
-        <a href="#">Giày thể thao</a>
+        <a asp-controller="Danhmuc"
+           asp-action="List"
+           asp-route-id="1"
+           asp-route-returnController="Giaodien">
+            <i class="fa-solid fa-person-running"></i>
+            Giày thể thao
+        </a>
 
-        <a href="#">Giày da</a>
+        <a asp-controller="Danhmuc"
+           asp-action="List"
+           asp-route-id="2"
+           asp-route-returnController="Giaodien">
+            <i class="fa-solid fa-shop"></i>
+            Giày da
+        </a>
 
-        <a href="#">Giày cao gót</a>
+        <a asp-controller="Danhmuc"
+           asp-action="List"
+           asp-route-id="3"
+           asp-route-returnController="Giaodien">
+            <i class="fa-solid fa-person-dress"></i>
+            Giày cao gót
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-fire"></i>
+            Khuyến mãi
+        </a>
 
     </div>
 
@@ -263,39 +562,306 @@
     </div>
 
     <!-- SẢN PHẨM -->
+    <div class="section-title">
 
+        <div class="title-top">
+            <i class="fa-solid fa-fire"></i>
+
+            <span>BEST SELLER</span>
+        </div>
+
+        <h2>Sản phẩm nổi bật</h2>
+
+        <p>Những mẫu giày bán chạy nhất tại <b>StarPard</b></p>
+
+    </div>
     <div class="products">
+
+        <div class="card">
+            <img src="~/images/pt3.jpg" />
+            <h3>Giày Grand sport</h3>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <div class="price">720.000đ</div>
+
+        </div>
 
         <div class="card">
             <img src="~/images/shoes1.jpg" />
             <h3>Giày Grand sport</h3>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
             <div class="price">720.000đ</div>
+
+        </div>
+
+         <div class="card">
+            <img src="~/images/pt1.jpg" />
+            <h3>Giày Grand sport</h3>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <div class="price">720.000đ</div>
+
+        </div>
+
+        <div class="card">
+            <img src="~/images/pt2.jpg" />
+            <h3>Giày Grand sport</h3>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <div class="price">720.000đ</div>
+
+        </div>
+
+        <div class="card">
+            <img src="~/images/3d4906e8-a414-4f3c-8e83-0f448fb4dd8d.jpg" />
+            <h3>Giày da</h3>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <div class="price">230.000đ</div>
+
         </div>
 
         <div class="card">
             <img src="~/images/shoes2.jpg" />
             <h3>Giày da nữ</h3>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
             <div class="price">250.000đ</div>
         </div>
 
         <div class="card">
             <img src="~/images/shoes3.webp" />
             <h3>Giày Convert chuck</h3>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
             <div class="price">320.000đ</div>
         </div>
-        <div class="card">
-            <img src="~/images/shoes4.webp" />
-            <h3>Giày Format</h3>
-            <div class="price">820.000đ</div>
-        </div>
+
         <div class="card">
             <img src="~/images/shoes5.webp" />
+            <h3>Giày Format</h3>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+
+            </div>
+            <div class="price">820.000đ</div>
+        </div>
+
+        <div class="card">
+            <img src="~/images/pt4.jpg" />
             <h3>Giày Second Sunday</h3>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
             <div class="price">460.000đ</div>
         </div>
 
     </div>
 
+    <!-- SẢN PHẨM KHUYẾN MÃI-->
+    <div class="section-title">
+
+        <div class="title-top">
+            <i class="fa-solid fa-fire"></i>
+
+            <span>BEST SELLER</span>
+        </div>
+
+        <h2>Sản phẩm khuyến mãi</h2>
+
+        <p>Những mẫu giày bán chạy nhất tại <b>StarPard</b></p>
+
+    </div>
+    <div class="products">
+        <div class="card">
+            <div class="sale-badge">-30%</div>
+            <img src="~/images/pt3.jpg" />
+            <h3>Giày Grand sport</h3>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <div class="old-price">1.300.000đ</div>
+            <div class="price">670.000đ</div>
+
+        </div>
+
+        <div class="card">
+            <div class="sale-badge">-20%</div>
+            <img src="~/images/shoes1.jpg" />
+            <h3>Giày Grand sport</h3>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <div class="old-price">960.000đ</div>
+            <div class="price">420.000đ</div>
+
+        </div>
+
+        <div class="card">
+            <div class="sale-badge">-25%</div>
+            <img src="~/images/3d4906e8-a414-4f3c-8e83-0f448fb4dd8d.jpg" />
+            <h3>Giày da</h3>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <div class="old-price">1.600.000đ</div>
+            <div class="price">930.000đ</div>
+
+        </div>
+
+        <div class="card">
+            <div class="sale-badge">-10%</div>
+            <img src="~/images/shoes2.jpg" />
+            <h3>Giày da nữ</h3>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <div class="old-price">320.000đ</div>
+            <div class="price">250.000đ</div>
+        </div>
+
+        <div class="card">
+            <div class="sale-badge">-40%</div>
+            <img src="~/images/shoes3.webp" />
+            <h3>Giày Convert chuck</h3>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <div class="old-price">1.300.000đ</div>
+            <div class="price">460.000đ</div>
+        </div>
+
+        <div class="card">
+            <div class="sale-badge">-35%</div>
+            <img src="~/images/shoes5.webp" />
+            <h3>Giày Format</h3>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+
+            </div>
+            <div class="old-price">1.100.000đ</div>
+            <div class="price">820.000đ</div>
+        </div>
+
+        <div class="card">
+            <div class="sale-badge">-10%</div>
+            <img src="~/images/pt4.jpg" />
+            <h3>Giày Second Sunday</h3>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <div class="old-price">600.000đ</div>
+            <div class="price">460.000đ</div>
+        </div>
+
+    </div>
+
+    <div class="section-heading">
+
+        <small>
+            <i class="fa-solid fa-chart-line"></i>
+            STARPARD
+        </small>
+
+        <h2>StarPard trong những con số</h2>
+
+        <p>
+            Những con số thể hiện sự phát triển và cam kết của
+            <span>StarPard</span>
+        </p>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="stat-box">
+            <i class="fa-solid fa-shoe-prints"></i>
+            <h2>500+</h2>
+            <p>Sản phẩm</p>
+        </div>
+
+        <div class="stat-box">
+            <i class="fa-solid fa-users"></i>
+            <h2>2.000+</h2>
+            <p>Khách hàng</p>
+        </div>
+
+        <div class="stat-box">
+            <i class="fa-solid fa-award"></i>
+            <h2>100%</h2>
+            <p>Chính hãng</p>
+        </div>
+
+        <div class="stat-box">
+            <i class="fa-solid fa-headset"></i>
+            <h2>24/7</h2>
+            <p>Hỗ trợ khách hàng</p>
+        </div>
+
+    </div>
+   
     <script>
 
             let banners = [

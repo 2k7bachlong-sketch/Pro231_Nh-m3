@@ -20,59 +20,46 @@ namespace duan_totnghiep.Controllers
         [HttpPost]
         public IActionResult Index(Taikhoan model)
         {
-            // Tài khoản Admin cố định
-            if (model.Tendangnhap == "Admin" &&
-                model.Matkhau == "123456")
-            {
-                HttpContext.Session.SetString("Username", "Admin");
-                HttpContext.Session.SetString("Role", "Admin");
+            var tk = _context.Taikhoans
+                .FirstOrDefault(x =>
+                    x.Tendangnhap == model.Tendangnhap &&
+                    x.Matkhau == model.Matkhau);
 
+            if (tk == null)
+            {
+                ViewBag.Error = "Tên đăng nhập hoặc mật khẩu không đúng.";
+                return View(model);
+            }
+
+            if (tk.Trangthai != "Đã đăng kí")
+            {
+                ViewBag.Error = "Tài khoản đã bị khóa.";
+                return View(model);
+            }
+
+            HttpContext.Session.SetString("Username", tk.Tendangnhap);
+            HttpContext.Session.SetString("Role", tk.Vaitro);
+            HttpContext.Session.SetInt32("Matk", tk.Matk);
+
+            if (tk.Vaitro == "Admin")
+            {
                 return RedirectToAction("Index", "Home");
             }
-            // Nhân viên
-            if (model.Tendangnhap == "Nhanvien" &&
-                model.Matkhau == "12345")
-            {
-                HttpContext.Session.SetString("Username", "Nhanvien");
-                HttpContext.Session.SetString("Role", "Nhanvien");
 
+            if (tk.Vaitro == "Nhân viên")
+            {
                 return RedirectToAction("Indexnv", "Home");
             }
 
-            // Mọi tài khoản khác đều vào giao diện người dùng
-            // Tìm tài khoản trong database
-            var tk = _context.Taikhoans
-                             .FirstOrDefault(x =>
-                                 x.Tendangnhap == model.Tendangnhap &&
-                                 x.Matkhau == model.Matkhau);
+            var kh = _context.Khachhangs
+                             .FirstOrDefault(x => x.Matk == tk.Matk);
 
-            if (tk != null)
+            if (kh != null)
             {
-                HttpContext.Session.SetString("Username", tk.Tendangnhap);
-                HttpContext.Session.SetString("Role", "User");
-
-                HttpContext.Session.SetInt32("Matk", tk.Matk);
-
-                var kh = _context.Khachhangs
-                                 .FirstOrDefault(x => x.Matk == tk.Matk);
-
-                if (kh != null)
-                {
-                    HttpContext.Session.SetInt32("Makh", kh.Makh);
-                }
-
-                return RedirectToAction("Index", "Trangmua");
+                HttpContext.Session.SetInt32("Makh", kh.Makh);
             }
 
-            ViewBag.Error = "Tên đăng nhập hoặc mật khẩu không đúng.";
-            return View(model);
-            
-        }
-        public IActionResult DangXuat()
-        {
-            HttpContext.Session.Clear();
-
-            return RedirectToAction("Index", "Giaodien");
+            return RedirectToAction("Index", "Trangmua");
         }
     }
 }
