@@ -1,4 +1,5 @@
-﻿using duan_totnghiep.Models;
+﻿
+using duan_totnghiep.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace duan_totnghiep.Controllers
@@ -38,8 +39,14 @@ namespace duan_totnghiep.Controllers
             }
 
             HttpContext.Session.SetString("Username", tk.Tendangnhap);
-            HttpContext.Session.SetString("Role", tk.Vaitro);
+            HttpContext.Session.SetString("VaiTro", tk.Vaitro);
             HttpContext.Session.SetInt32("Matk", tk.Matk);
+
+            var kh = _context.Khachhangs.FirstOrDefault(x => x.Matk == tk.Matk);
+            if (kh != null)
+            {
+                HttpContext.Session.SetInt32("Makh", kh.Makh);
+            }
 
             if (tk.Vaitro == "Admin")
             {
@@ -51,15 +58,12 @@ namespace duan_totnghiep.Controllers
                 return RedirectToAction("Indexnv", "Home");
             }
 
-            var kh = _context.Khachhangs
-                             .FirstOrDefault(x => x.Matk == tk.Matk);
-
-            if (kh != null)
-            {
-                HttpContext.Session.SetInt32("Makh", kh.Makh);
-            }
-
             return RedirectToAction("Index", "Trangmua");
+
+            
+
+
+                   
         }
     }
 }

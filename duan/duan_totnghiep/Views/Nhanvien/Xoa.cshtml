@@ -8,45 +8,80 @@
 
     <h2>Xóa nhân viên</h2>
 
+    <p>
+
+        Bạn có chắc chắn muốn xóa nhân viên này?
+
+    </p>
+
     <hr />
 
-    <p><strong>Mã:</strong> @Model.Manv</p>
+    <p>
 
-    <p><strong>Họ tên:</strong> @Model.Hoten</p>
+        <strong>Mã:</strong>
 
-    <p><strong>SĐT:</strong> @Model.Sdt</p>
+        #@Model.Manv
 
-    <p><strong>Email:</strong> @Model.Email</p>
+    </p>
 
-    <p><strong>Tài khoản:</strong> @Model.Taikhoan?.Tendangnhap</p>
+    <p>
 
-    @if (Model.Donhangs.Any())
-    {
-        <div class="alert alert-warning">
+        <strong>Họ tên:</strong>
 
-            Nhân viên này đã xử lý đơn hàng nên không thể xóa.
+        @Model.Hoten
 
-        </div>
-    }
+    </p>
+
+    <p>
+
+        <strong>SĐT:</strong>
+
+        @Model.Sdt
+
+    </p>
+
+    <p>
+
+        <strong>Email:</strong>
+
+        @Model.Email
+
+    </p>
+
+    <p>
+
+        <strong>Địa chỉ:</strong>
+
+        @Model.Diachi
+
+    </p>
+
+    <p>
+
+        <strong>Chức vụ:</strong>
+
+        @Model.Chucvu
+
+    </p>
 
     <form asp-action="Xoa"
           method="post">
 
-        @Html.AntiForgeryToken()
+        <input asp-for="Manv"
+               type="hidden" />
 
-        <input type="hidden"
-               name="id"
-               value="@Model.Manv" />
+        <button class="btn btn-delete">
 
-        <button class="btn btn-delete"
-            @(Model.Donhangs.Any() ? "disabled" : "")>
+            <i class="bi bi-trash-fill"></i>
 
             Xóa
 
         </button>
 
         <a asp-action="Index"
-           class="btn btn-cancel">
+           class="btn btn-secondary">
+
+            <i class="bi bi-arrow-left"></i>
 
             Hủy
 

@@ -6,13 +6,23 @@
 
 <div class="form-container">
 
-    <h2>Cập nhật nhân viên</h2>
+    <div class="form-header">
 
-    <form asp-action="Sua">
+        <span class="page-tag">
+            👨‍💼 Nhân viên
+        </span>
+
+        <h2>Chỉnh sửa nhân viên</h2>
+
+        <p>
+            Cập nhật thông tin nhân viên.
+        </p>
+
+    </div>
+
+    <form asp-action="Sua" method="post">
 
         <input asp-for="Manv" type="hidden" />
-
-        <input asp-for="Matk" type="hidden" />
 
         <div asp-validation-summary="ModelOnly"
              class="text-danger"></div>
@@ -23,7 +33,6 @@
 
             <input asp-for="Hoten"
                    class="form-control" />
-            <span asp-validation-for="Hoten" class="text-danger"></span>
 
         </div>
 
@@ -31,8 +40,8 @@
 
             <label>Số điện thoại</label>
 
-            <input asp-for="Sdt" class="form-control" />
-            <span asp-validation-for="Sdt" class="text-danger"></span>
+            <input asp-for="Sdt"
+                   class="form-control" />
 
         </div>
 
@@ -40,8 +49,8 @@
 
             <label>Email</label>
 
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
+            <input asp-for="Email"
+                   class="form-control" />
 
         </div>
 
@@ -56,24 +65,50 @@
 
         <div class="form-group">
 
+            <label>Chức vụ</label>
+
+            <select asp-for="Chucvu"
+                    class="form-select">
+
+                <option value="">-- Chọn chức vụ --</option>
+
+                <option value="Nhân viên">
+                    Nhân viên
+                </option>
+
+                <option value="Quản lý">
+                    Quản lý
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
             <label>Tài khoản</label>
 
-            <input value="@Model.Taikhoan?.Tendangnhap"
-                   class="form-control"
-                   readonly />
+            <select asp-for="Matk"
+                    asp-items="ViewBag.Matk"
+                    class="form-select">
+            </select>
 
         </div>
 
         <div class="mt-4 d-flex gap-2">
 
-            <button class="btn btn-edit">
+            <button class="btn btn-add">
 
-                Cập nhật
+                <i class="bi bi-check-circle-fill"></i>
+
+                Lưu
 
             </button>
 
             <a asp-action="Index"
-               class="btn btn-cancel">
+               class="btn btn-secondary">
+
+                <i class="bi bi-arrow-left"></i>
 
                 Quay lại
 

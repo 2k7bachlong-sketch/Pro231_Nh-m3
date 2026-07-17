@@ -5,97 +5,261 @@
     ViewData["Title"] = "Quản lý đơn hàng";
 }
 
-<div class="crud-container">
+<style>
+    .action-btn {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .25s;
+    }
 
-    <div class="crud-header">
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
 
-        <div>
+    .btn-view {
+        background: #EFF6FF;
+        color: #2563EB;
+    }
 
-            <span class="page-tag">
-                🧾 Đơn hàng
-            </span>
+        .btn-view:hover {
+            background: #2563EB;
+            color: white;
+        }
 
-            <h2>Quản lý đơn hàng</h2>
+    .btn-edit {
+        background: #FEF9C3;
+        color: #CA8A04;
+    }
 
-            <p>
-                Theo dõi và cập nhật trạng thái các đơn hàng.
-            </p>
+        .btn-edit:hover {
+            background: #EAB308;
+            color: white;
+        }
 
-        </div>
+    .btn-delete {
+        background: #FEE2E2;
+        color: #DC2626;
+    }
 
-        <a asp-action="Lap"
-           class="btn btn-add">
+        .btn-delete:hover {
+            background: #DC2626;
+            color: white;
+        }
 
-            <i class="bi bi-plus-circle-fill"></i>
+    .status-select {
+        min-width: 145px;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+</style>
 
-            Lập đơn
+<!-- Header -->
 
-        </a>
+<div class="dashboard-header">
+
+    <div>
+
+        <span class="page-tag">
+            QUẢN LÝ
+        </span>
+
+        <h2>
+
+            <i class="bi bi-receipt-cutoff"></i>
+
+            Đơn hàng
+
+        </h2>
+
+        <p>
+
+            Theo dõi và cập nhật trạng thái các đơn hàng.
+
+        </p>
 
     </div>
 
-    <div class="table-card">
+    <a asp-action="Lap"
+       class="btn-add">
 
-        <table class="crud-table">
+        <i class="bi bi-plus-circle-fill"></i>
 
-            <thead>
+        Lập đơn
 
+    </a>
+
+</div>
+
+<!-- Toolbar -->
+
+<div class="toolbar-card">
+
+    <form method="get">
+
+        <div class="row g-3 align-items-center">
+
+            <div class="col-lg-9">
+
+                <div class="search-group">
+
+                    <i class="bi bi-search"></i>
+
+                    <input type="text"
+                           name="searchString"
+                           class="form-control"
+                           value="@Context.Request.Query["searchString"]"
+                           placeholder="Nhập mã đơn, khách hàng hoặc nhân viên..." />
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3">
+
+                <div class="d-flex gap-2">
+
+                    <button class="btn btn-filter flex-grow-1">
+
+                        <i class="bi bi-search"></i>
+
+                        Tìm kiếm
+
+                    </button>
+
+                    <a asp-action="Index"
+                       class="btn btn-reset">
+
+                        <i class="bi bi-arrow-clockwise"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+<!-- Table -->
+
+<div class="table-card">
+
+    <table class="table table-hover align-middle">
+
+        <thead>
+
+            <tr>
+
+                <th>
+
+                    <i class="bi bi-hash"></i>
+
+                    Mã đơn
+
+                </th>
+
+                <th>
+
+                    <i class="bi bi-person-fill"></i>
+
+                    Khách hàng
+
+                </th>
+
+                <th>
+
+                    <i class="bi bi-person-badge-fill"></i>
+
+                    Nhân viên
+
+                </th>
+
+                <th>
+
+                    <i class="bi bi-calendar-event-fill"></i>
+
+                    Ngày đặt
+
+                </th>
+
+                <th>
+
+                    <i class="bi bi-cash-stack"></i>
+
+                    Tổng tiền
+
+                </th>
+
+                <th>
+
+                    <i class="bi bi-arrow-repeat"></i>
+
+                    Trạng thái
+
+                </th>
+
+                <th width="160">
+
+                    <i class="bi bi-gear-fill"></i>
+
+                    Chức năng
+
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
                 <tr>
 
-                    <th>Mã</th>
+                    <td>
 
-                    <th>Khách hàng</th>
+                        <strong>
 
-                    <th>Nhân viên</th>
+                            #DH@(item.Madh.ToString("D3"))
 
-                    <th>Ngày đặt</th>
+                        </strong>
 
-                    <th>Tổng tiền</th>
+                    </td>
 
-                    <th>Trạng thái</th>
+                    <td>
 
-                    <th style="width:170px">
-                        Thao tác
-                    </th>
+                        @item.Khachhang?.Hoten
 
-                </tr>
+                    </td>
 
-            </thead>
+                    <td>
 
-            <tbody>
+                        @item.Nhanvien?.Hoten
 
-                @foreach (var item in Model)
-                {
+                    </td>
 
-                    <tr>
+                    <td>
 
-                        <td>
-                            #@item.Madh
-                        </td>
+                        @item.Ngaydat?.ToString("dd/MM/yyyy")
 
-                        <td>
+                    </td>
 
-                            <strong>
-                                @item.Khachhang?.Hoten
-                            </strong>
+                    <td>
 
-                        </td>
+                        <span class="badge bg-success">
 
-                        <td>
-                            @item.Nhanvien?.Hoten
-                        </td>
+                            @item.Tongtien.ToString("N0") VNĐ
 
-                        <td>
-                            @item.Ngaydat?.ToString("dd/MM/yyyy")
-                        </td>
+                        </span>
 
-                        <td>
-
-                            <strong>
-                                @item.Tongtien.ToString("N0") VNĐ
-                            </strong>
-
-                        </td>
+                    </td>
 
                         <td>
 
@@ -155,47 +319,43 @@
 
                         </td>
 
-                        <td>
+                    <td>
 
-                            <div class="d-flex gap-2">
+                        <div class="d-flex gap-2">
 
-                                <a asp-action="ChiTiet"
-                                   asp-route-id="@item.Madh"
-                                   class="btn btn-primary btn-sm">
+                            <a asp-action="ChiTiet"
+                               asp-route-id="@item.Madh"
+                               class="action-btn btn-view">
 
-                                    <i class="bi bi-eye-fill"></i>
+                                <i class="bi bi-eye-fill"></i>
 
-                                </a>
+                            </a>
 
-                                <a asp-action="Sua"
-                                   asp-route-id="@item.Madh"
-                                   class="btn btn-warning btn-sm">
+                            <a asp-action="Sua"
+                               asp-route-id="@item.Madh"
+                               class="action-btn btn-edit">
 
-                                    <i class="bi bi-pencil-fill"></i>
+                                <i class="bi bi-pencil-fill"></i>
 
-                                </a>
+                            </a>
 
-                                <a asp-action="Xoa"
-                                   asp-route-id="@item.Madh"
-                                   class="btn btn-danger btn-sm">
+                            <a asp-action="Xoa"
+                               asp-route-id="@item.Madh"
+                               class="action-btn btn-delete">
 
-                                    <i class="bi bi-trash-fill"></i>
+                                <i class="bi bi-trash-fill"></i>
 
-                                </a>
+                            </a>
 
-                            </div>
+                        </div>
 
-                        </td>
+                    </td>
 
+                </tr>
+            }
 
-                    </tr>
+        </tbody>
 
-                }
-
-            </tbody>
-
-        </table>
-
-    </div>
+    </table>
 
 </div>

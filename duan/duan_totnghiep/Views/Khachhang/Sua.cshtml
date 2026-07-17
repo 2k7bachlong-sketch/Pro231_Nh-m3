@@ -1,43 +1,89 @@
 ﻿@model duan_totnghiep.Models.Khachhang
+
 @{
     Layout = "_Layout";
 }
 
 <div class="form-container">
 
-    <h2>Sửa khách hàng</h2>
+    <div class="form-header">
 
-    <form asp-action="Sua">
+        <span class="page-tag">
+            👤 Khách hàng
+        </span>
 
-        <input type="hidden" asp-for="Makh" />
+        <h2>Chỉnh sửa khách hàng</h2>
+
+        <p>
+            Cập nhật thông tin khách hàng.
+        </p>
+
+    </div>
+
+    <form asp-action="Sua" method="post">
+
+        <input asp-for="Makh" type="hidden" />
+
+        <div asp-validation-summary="ModelOnly"
+             class="text-danger">
+        </div>
 
         <div class="form-group">
+
             <label>Họ tên</label>
-            <input asp-for="Hoten" class="form-control" />
+
+            <input asp-for="Hoten"
+                   class="form-control" />
+
         </div>
 
         <div class="form-group">
-            <label>SĐT</label>
-            <input asp-for="Sdt" class="form-control" />
+
+            <label>Số điện thoại</label>
+
+            <input asp-for="Sdt"
+                   class="form-control" />
+
         </div>
 
         <div class="form-group">
+
             <label>Email</label>
-            <input asp-for="Email" class="form-control" />
+
+            <input asp-for="Email"
+                   class="form-control" />
+
         </div>
 
         <div class="form-group">
+
             <label>Địa chỉ</label>
-            <input asp-for="Diachi" class="form-control" />
+
+            <input asp-for="Diachi"
+                   class="form-control" />
+
         </div>
 
-        <button class="btn btn-edit">
-            Lưu
-        </button>
+        <div class="mt-4 d-flex gap-2">
 
-        <a asp-action="Index" class="btn btn-cancel">
-            Quay lại
-        </a>
+            <button class="btn btn-add">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+                Lưu thay đổi
+
+            </button>
+
+            <a asp-action="Index"
+               class="btn btn-secondary">
+
+                <i class="bi bi-arrow-left"></i>
+
+                Quay lại
+
+            </a>
+
+        </div>
 
     </form>
 

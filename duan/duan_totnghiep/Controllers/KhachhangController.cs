@@ -14,13 +14,20 @@ namespace duan_totnghiep.Controllers
         }
 
         // Danh sách
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search)
         {
-            var ds = await _context.Khachhangs
+            var ds = _context.Khachhangs
                 .Include(x => x.Donhangs)
-                .ToListAsync();
+                .AsQueryable();
 
-            return View(ds);
+            if (!string.IsNullOrEmpty(search))
+            {
+                ds = ds.Where(x =>
+                    x.Hoten.Contains(search) ||
+                    x.Sdt.Contains(search));
+            }
+
+            return View(await ds.ToListAsync());
         }
 
         // Chi tiết
@@ -64,7 +71,13 @@ namespace duan_totnghiep.Controllers
 
             if (kh == null)
                 return NotFound();
+            if (kh.Hoten == "Khách vãng lai")
+            {
+                TempData["Error"] =
+                    "Không thể chỉnh sửa khách vãng lai.";
 
+                return RedirectToAction(nameof(Index));
+            }
             return View(kh);
         }
 
@@ -80,6 +93,18 @@ namespace duan_totnghiep.Controllers
             {
                 _context.Update(kh);
                 await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
+            }
+            var khDb = await _context.Khachhangs.FindAsync(id);
+
+            if (khDb == null)
+                return NotFound();
+
+            if (khDb.Hoten == "Khách vãng lai")
+            {
+                TempData["Error"] =
+                    "Không thể chỉnh sửa khách vãng lai.";
 
                 return RedirectToAction(nameof(Index));
             }

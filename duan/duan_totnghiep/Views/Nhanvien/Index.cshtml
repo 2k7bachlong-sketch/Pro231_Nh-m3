@@ -1,30 +1,212 @@
-﻿@model List<duan_totnghiep.Models.Nhanvien>
+﻿@model IEnumerable<duan_totnghiep.Models.Nhanvien>
+
 @{
     Layout = "_Layout";
 }
 
-<div class="crud-container">
+<style>
+    .action-btn {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .25s;
+    }
 
-    <div class="crud-header">
-        <h2>QUẢN LÝ NHÂN VIÊN</h2>
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
 
-        <a asp-action="Them" class="btn btn-add">
-            + Thêm nhân viên
-        </a>
+    .btn-view {
+        background: #EFF6FF;
+        color: #2563EB;
+    }
+
+        .btn-view:hover {
+            background: #2563EB;
+            color: white;
+        }
+
+    .btn-edit {
+        background: #FEF9C3;
+        color: #CA8A04;
+    }
+
+        .btn-edit:hover {
+            background: #EAB308;
+            color: white;
+        }
+
+    .btn-delete {
+        background: #FEE2E2;
+        color: #DC2626;
+    }
+
+        .btn-delete:hover {
+            background: #DC2626;
+            color: white;
+        }
+</style>
+
+<!-- Header -->
+
+<div class="dashboard-header">
+
+    <div>
+
+        <span class="page-tag">
+            QUẢN LÝ
+        </span>
+
+        <h2>
+
+            <i class="bi bi-person-badge-fill"></i>
+
+            Nhân viên
+
+        </h2>
+
+        <p>
+
+            Quản lý toàn bộ nhân viên của cửa hàng.
+
+        </p>
+
     </div>
 
-    <table class="crud-table">
+    <a asp-action="Them" class="btn-add">
+
+        <i class="bi bi-plus-circle-fill"></i>
+
+        Thêm nhân viên
+
+    </a>
+
+</div>
+
+<!-- Toolbar -->
+
+<div class="toolbar-card">
+
+    <form method="get">
+
+        <div class="row g-3 align-items-center">
+
+            <div class="col-lg-9">
+
+                <div class="search-group">
+
+                    <i class="bi bi-search"></i>
+
+                    <input type="text"
+                           name="searchString"
+                           class="form-control"
+                           value="@Context.Request.Query["searchString"]"
+                           placeholder="Nhập tên, số điện thoại hoặc tài khoản..." />
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3">
+
+                <div class="d-flex gap-2">
+
+                    <button class="btn btn-filter flex-grow-1">
+
+                        <i class="bi bi-search"></i>
+
+                        Tìm kiếm
+
+                    </button>
+
+                    <a asp-action="Index"
+                       class="btn btn-reset">
+
+                        <i class="bi bi-arrow-clockwise"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+<!-- Table -->
+
+<div class="table-card">
+
+    <table class="table align-middle table-hover">
 
         <thead>
+
             <tr>
-                <th>Mã NV</th>
-                <th>Tên NV</th>
-                <th>Tài khoản</th>
-                <th>SĐT</th>             
-                <th>Đơn đã xử lý</th>
-                <th>Doanh thu</th>
-                <th>Chức năng</th>
+
+                <th>
+
+                    <i class="bi bi-person-fill"></i>
+
+                    Nhân viên
+
+                </th>
+
+                <th>
+
+                    <i class="bi bi-person-workspace"></i>
+
+                    Chức vụ
+
+                </th>
+
+                <th>
+
+                    <i class="bi bi-person-circle"></i>
+
+                    Tài khoản
+
+                </th>
+
+                <th>
+
+                    <i class="bi bi-telephone-fill"></i>
+
+                    SĐT
+
+                </th>
+
+                <th>
+
+                    <i class="bi bi-bag-check-fill"></i>
+
+                    Đơn xử lý
+
+                </th>
+
+                <th>
+
+                    <i class="bi bi-cash-stack"></i>
+
+                    Doanh thu
+
+                </th>
+
+                <th width="160">
+
+                    <i class="bi bi-gear-fill"></i>
+
+                    Chức năng
+
+                </th>
+
             </tr>
+
         </thead>
 
         <tbody>
@@ -33,53 +215,125 @@
             {
                 <tr>
 
-                    <td>@item.Manv</td>
+                    <!-- Nhân viên -->
 
-                    <td>@item.Hoten</td>
+                    <td>
+
+                        <div>
+
+                            <div class="fw-bold">
+
+                                @item.Hoten
+
+                            </div>
+
+                            <small class="text-muted">
+
+                                #NV@(item.Manv)
+
+                            </small>
+
+                        </div>
+
+                    </td>
+
+                    <!-- Chức vụ -->
+
+                    <td>
+
+                        @if (item.Chucvu == "Quản lý")
+                        {
+                            <span class="badge bg-danger">
+
+                                @item.Chucvu
+
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">
+
+                                @item.Chucvu
+
+                            </span>
+                        }
+
+                    </td>
 
                     <!-- Tài khoản -->
+
                     <td>
+
                         @item.Taikhoan?.Tendangnhap
+
                     </td>
 
                     <!-- SĐT -->
+
                     <td>
+
                         @item.Sdt
+
                     </td>
 
-                    <!-- Đơn đã xử lý -->
+                    <!-- Đơn -->
+
                     <td>
-                        @item.Donhangs.Count
+
+                        <span class="badge bg-primary">
+
+                            @item.Donhangs.Count
+
+                        </span>
+
                     </td>
 
                     <!-- Doanh thu -->
+
                     <td>
-                        @(item.Donhangs
-                            .Where(x => x.Trangthai == "Đã hoàn thành")
-                            .Sum(x => x.Tongtien)
-                            .ToString("N0")) VNĐ
+
+                        <span class="badge bg-success">
+
+                            @(item.Donhangs
+                                .Where(x => x.Trangthai == "Đã hoàn thành")
+                                .Sum(x => x.Tongtien)
+                                .ToString("N0")) VNĐ
+
+                        </span>
+
                     </td>
 
-                    <!-- Chức năng -->
+                    <!-- Action -->
+
                     <td>
 
-                        <a asp-action="Chitiet"
-                           asp-route-id="@item.Manv"
-                           class="btn btn-detail">
-                            Chi tiết
-                        </a>
+                        <div class="d-flex gap-2">
 
-                        <a asp-action="Sua"
-                           asp-route-id="@item.Manv"
-                           class="btn btn-edit">
-                            Sửa
-                        </a>
+                            <a asp-action="Chitiet"
+                               asp-route-id="@item.Manv"
+                               class="action-btn btn-view">
 
-                        <a asp-action="Xoa"
-                           asp-route-id="@item.Manv"
-                           class="btn btn-delete">
-                            Xóa
-                        </a>
+                                <i class="bi bi-eye-fill"></i>
+
+                            </a>
+
+                            <a asp-action="Sua"
+                               asp-route-id="@item.Manv"
+                               class="action-btn btn-edit">
+
+                                <i class="bi bi-pencil-fill"></i>
+
+                            </a>
+
+                            <a asp-action="Xoa"
+                               asp-route-id="@item.Manv"
+                               class="action-btn btn-delete">
+
+                                <i class="bi bi-trash-fill"></i>
+
+                            </a>
+
+                        </div>
 
                     </td>
 

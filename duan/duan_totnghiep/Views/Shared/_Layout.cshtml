@@ -78,10 +78,13 @@
 
     <!-- Banner đầu trang -->
     
-    <div class="back-home">
-        <a asp-controller="Home" asp-action="Index" class="btn-home">
-            ← Quay về trang chủ
-        </a>
+    <a asp-controller="Home"
+       asp-action="TrangChu"
+       class="btn-home">
+
+        ← Quay về trang chủ
+
+    </a>
     </div>
     <div class="main-content">
         @RenderBody()

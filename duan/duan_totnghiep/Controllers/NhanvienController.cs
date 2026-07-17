@@ -1,10 +1,12 @@
-﻿using duan_totnghiep.Models;
+﻿using duan_totnghiep.Filters;
+using duan_totnghiep.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace duan_totnghiep.Controllers
 {
+
     public class NhanvienController : Controller
     {
         private readonly AppDbContext _context;
@@ -16,21 +18,37 @@ namespace duan_totnghiep.Controllers
 
         //================ DANH SÁCH =================
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search)
         {
-            var ds = await _context.Nhanviens
+            var ds = _context.Nhanviens
                 .Include(x => x.Taikhoan)
                 .Include(x => x.Donhangs)
-                .ToListAsync();
+                .AsQueryable();
 
-            return View(ds);
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                ds = ds.Where(x =>
+                    x.Hoten.Contains(search) ||
+                    x.Sdt.Contains(search));
+            }
+
+            return View(await ds.ToListAsync());
         }
 
         //================ THÊM =================
 
         public IActionResult Them()
         {
-            ViewBag.Matk = new SelectList(_context.Taikhoans, "Matk", "Tendangnhap");
+            var dsTaiKhoan = _context.Taikhoans
+    .Where(t =>
+        !_context.Nhanviens
+            .Any(n => n.Matk == t.Matk))
+    .ToList();
+
+            ViewBag.Matk = new SelectList(
+                dsTaiKhoan,
+                "Matk",
+                "Tendangnhap");
             return View();
         }
 
@@ -67,6 +85,18 @@ namespace duan_totnghiep.Controllers
             if (ModelState.IsValid)
             {
                 _context.Nhanviens.Add(nv);
+                var tk = await _context.Taikhoans
+                     .FindAsync(nv.Matk);
+
+                if (tk != null)
+                {
+                    tk.Vaitro = nv.Chucvu;
+                }
+
+                if (tk != null)
+                {
+                    tk.Vaitro = "Nhân viên";
+                }
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
@@ -86,7 +116,19 @@ namespace duan_totnghiep.Controllers
             if (nv == null)
                 return NotFound();
 
-            ViewBag.Matk = new SelectList(_context.Taikhoans, "Matk", "Tendangnhap", nv.Matk);
+            var dsTaiKhoan = _context.Taikhoans
+    .Where(t =>
+        !_context.Nhanviens.Any(n =>
+            n.Matk == t.Matk &&
+            n.Manv != nv.Manv))
+    .ToList();
+
+            ViewBag.Matk =
+                new SelectList(
+                    dsTaiKhoan,
+                    "Matk",
+                    "Tendangnhap",
+                    nv.Matk);
 
             return View(nv);
         }

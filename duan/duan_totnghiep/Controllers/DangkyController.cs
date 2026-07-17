@@ -97,6 +97,13 @@ namespace duan_totnghiep.Controllers
             _context.SaveChanges();
 
             TempData["ThanhCong"] = "Đăng ký thành công";
+
+            //403
+            HttpContext.Session.SetString("VaiTro", tk.Vaitro);
+
+            HttpContext.Session.SetString("TenDangNhap", tk.Tendangnhap);
+
+            HttpContext.Session.SetInt32("Matk", tk.Matk);
             return RedirectToAction("Index", "Taikhoan");
         }
     }
