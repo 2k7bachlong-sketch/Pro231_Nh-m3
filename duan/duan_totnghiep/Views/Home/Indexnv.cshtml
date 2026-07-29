@@ -228,6 +228,49 @@
         .arrow {
             color: #D1D5DB;
         }
+
+        .admin-top {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .notify {
+            position: relative;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #EFF6FF;
+            color: #2563EB;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 22px;
+            transition: .3s;
+        }
+
+            .notify:hover {
+                background: #2563EB;
+                color: white;
+            }
+
+        .notify-count {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            min-width: 22px;
+            height: 22px;
+            padding: 0 6px;
+            border-radius: 50px;
+            background: #ef4444;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -243,9 +286,7 @@
             <a href="/Sanpham/Index"><i class="fa fa-box"></i>Quản lý sản phẩm</a>
             <a href="/Thuonghieu/Index"><i class="fa fa-tags"></i>Quản lý thương hiệu</a>
             <a href="/Danhmuc/Index"><i class="fa fa-list"></i>Quản lý danh mục</a>
-            <a href="/Donhang/Index"><i class="fa fa-cart-shopping"></i>Quản lý đơn hàng</a>
-            <a href="/Khachhang/Index"><i class="fa fa-users"></i>Quản lý khách hàng</a>
-            <a href="/Khuyenmai/Index"><i class="fa fa-percent"></i>Khuyến mãi</a>
+            <a href="/Donhang/Index"><i class="fa fa-cart-shopping"></i>Quản lý đơn hàng</a>    
             <a href="/Giaodien/Index"><i class="fa fa-right-from-bracket"></i>Đăng xuất</a>
             <a href="/Thongtin/Index" class="account">
 
@@ -272,7 +313,24 @@
 
             <h2>Trang chính</h2>
 
-            <h4>Xin chào Nhân viên 👋</h4>
+            <div class="admin-top">
+
+                <a href="/Donhang/Index" class="notify">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                    @if (ViewBag.SoDonMoi > 0)
+                    {
+                        <span class="notify-count">
+                            @ViewBag.SoDonMoi
+                        </span>
+                    }
+
+                </a>
+
+                <h4>Xin chào Nhân viên 👋</h4>
+
+            </div>
 
         </div>
 
@@ -286,23 +344,12 @@
                     <p>Sản phẩm</p>
                 </a>
 
-                <a href="/Khachhang/Index" class="card">
-                    <i class="fa fa-users"></i>
-                    <h2>@ViewBag.TongKhachHang</h2>
-                    <p>Khách hàng</p>
-                </a>
-
                 <a href="/Donhang/Index" class="card">
                     <i class="fa fa-cart-shopping"></i>
                     <h2>@ViewBag.TongDonHang</h2>
                     <p>Đơn hàng</p>
                 </a>
 
-                <a href="/Khuyenmai/Index" class="card">
-                    <i class="fa fa-percent"></i>
-                    <h2>@ViewBag.TongKhuyenMai</h2>
-                    <p>Khuyến mãi</p>
-                </a>
 
                 <a href="/Sanpham/Index" class="card">
                     <i class="fa fa-warehouse"></i>

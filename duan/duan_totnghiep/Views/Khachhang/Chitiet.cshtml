@@ -4,21 +4,24 @@
     Layout = "_Layout";
 }
 
-<div class="detail-container">
+<div class="detail-header">
 
-    <div class="detail-header">
-
+    <div>
         <span class="page-tag">
             👤 Khách hàng
         </span>
 
         <h2>Chi tiết khách hàng</h2>
 
-        <p>
-            Thông tin và lịch sử mua hàng của khách.
-        </p>
-
+        <p>Thông tin và lịch sử mua hàng của khách.</p>
     </div>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i>
+        Quay lại
+    </a>
+
+</div>
 
     <div class="detail-card">
 
@@ -87,19 +90,6 @@
             </strong>
 
         </div>
-
-    </div>
-
-    <div class="mt-4">
-
-        <a asp-action="Index"
-           class="btn btn-secondary">
-
-            <i class="bi bi-arrow-left"></i>
-
-            Quay lại
-
-        </a>
 
     </div>
 

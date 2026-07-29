@@ -26,74 +26,56 @@
              class="text-danger"></div>
 
         <div class="form-group">
-
             <label>Họ tên</label>
-
-            <input asp-for="Hoten"
-                   class="form-control" />
-
+            <input asp-for="Hoten" class="form-control" />
         </div>
 
         <div class="form-group">
-
             <label>Số điện thoại</label>
-
-            <input asp-for="Sdt"
-                   class="form-control" />
-
+            <input asp-for="Sdt" class="form-control" />
         </div>
 
         <div class="form-group">
-
             <label>Email</label>
-
-            <input asp-for="Email"
-                   class="form-control" />
-
+            <input asp-for="Email" class="form-control" />
         </div>
 
         <div class="form-group">
-
             <label>Địa chỉ</label>
-
-            <input asp-for="Diachi"
-                   class="form-control" />
-
+            <input asp-for="Diachi" class="form-control" />
         </div>
 
         <div class="form-group">
-
             <label>Chức vụ</label>
 
-            <select asp-for="Chucvu"
-                    class="form-select">
+            <select asp-for="Chucvu" class="form-select">
 
                 <option value="">-- Chọn chức vụ --</option>
 
-                <option value="Nhân viên">
-                    Nhân viên
-                </option>
+                <option value="Nhân viên">Nhân viên</option>
 
-                <option value="Quản lý">
-                    Quản lý
-                </option>
+                <option value="Admin">Admin</option>
+
+                <option value="Vận chuyển">Vận chuyển</option>
 
             </select>
+        </div>
 
+        <!-- THÊM MỚI -->
+        <div class="form-group">
+            <label>Tên đăng nhập</label>
+            <input type="text"
+                   name="TenDangNhap"
+                   class="form-control"
+                   required />
         </div>
 
         <div class="form-group">
-
-            <label>Tài khoản</label>
-
-            <select asp-for="Matk"
-                    asp-items="ViewBag.Matk"
-                    class="form-select">
-
-                <option value="">-- Chọn tài khoản --</option>
-
-            </select>
-
+            <label>Mật khẩu</label>
+            <input type="password"
+                   name="MatKhau"
+                   class="form-control"
+                   required />
         </div>
 
         <div class="mt-4 d-flex gap-2">

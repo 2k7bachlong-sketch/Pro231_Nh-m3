@@ -228,6 +228,91 @@
         .arrow {
             color: #D1D5DB;
         }
+
+        .admin-top {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .notify {
+            position: relative;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #EFF6FF;
+            color: #2563EB;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 22px;
+            transition: .3s;
+        }
+
+            .notify:hover {
+                background: #2563EB;
+                color: white;
+            }
+
+        .notify-count {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            min-width: 22px;
+            height: 22px;
+            padding: 0 6px;
+            border-radius: 50px;
+            background: #ef4444;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .wheel-admin-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 22px;
+            border-radius: 999px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 700;
+            background: linear-gradient(135deg,#2563eb,#1e40af);
+            box-shadow: 0 10px 25px rgba(37,99,235,.25);
+            transition: .3s;
+        }
+
+            .wheel-admin-btn i {
+                font-size: 18px;
+                color: #facc15;
+            }
+
+            .wheel-admin-btn:hover {
+                color: #fff;
+                transform: translateY(-3px);
+                box-shadow: 0 16px 35px rgba(37,99,235,.35);
+                background: linear-gradient(135deg,#3b82f6,#1d4ed8);
+            }
+
+        .admin-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #111827;
+        }
     </style>
 </head>
 <body>
@@ -273,7 +358,35 @@
 
             <h2>Trang chính</h2>
 
-            <h4>Xin chào Admin 👋</h4>
+            <div class="admin-top">
+
+
+                <a asp-controller="Trangmua"
+                   asp-action="Vongquay"
+                   class="wheel-admin-btn">
+
+                    <i class="fa-solid fa-dice"></i>
+
+                    Quản lý Event
+
+                </a>
+
+                <a href="/Donhang/Index" class="notify">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                    @if (ViewBag.SoDonMoi > 0)
+                    {
+                        <span class="notify-count">
+                            @ViewBag.SoDonMoi
+                        </span>
+                    }
+
+                </a>
+
+                <h4>Xin chào Admin 👋</h4>
+
+            </div>
 
         </div>
 

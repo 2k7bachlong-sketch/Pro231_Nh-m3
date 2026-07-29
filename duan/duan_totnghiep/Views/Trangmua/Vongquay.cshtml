@@ -1,0 +1,330 @@
+﻿@model List<duan_totnghiep.Models.Khuyenmai>
+
+@{
+    ViewData["Title"] = "Vòng quay may mắn";
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet"
+      href="~/css/vongquay.css"
+      asp-append-version="true" />
+
+<div class="spin-page">
+
+    <!-- =========================
+            EVENT HEADER
+    ========================== -->
+
+    <section class="hero">
+
+        <div class="hero-left">
+
+            <span class="hero-tag">
+
+                🔥 STARPARD EVENT
+
+            </span>
+
+            <h1>
+
+                Vòng quay may mắn
+
+            </h1>
+
+            <p>
+
+                Thử vận may mỗi ngày và nhận những voucher độc quyền từ StarPard.
+
+            </p>
+
+            <div class="hero-feature">
+
+                <div>
+
+                    <i class="fa-solid fa-gift"></i>
+
+                    Voucher hấp dẫn
+
+                </div>
+
+                <div>
+
+                    <i class="fa-solid fa-star"></i>
+
+                    1 tài khoản / 1 lượt
+
+                </div>
+
+                <div>
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                    Nhận thưởng ngay
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="hero-right">
+
+            <div class="hero-gift">
+
+                <i class="fa-solid fa-gift"></i>
+
+            </div>
+
+            <div class="hero-ticket">
+
+                -50%
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =========================
+            CONTENT
+    ========================== -->
+
+    <section class="spin-content">
+
+        <!-- LEFT -->
+
+        <div class="wheel-card">
+
+            <div class="wheel-header">
+
+                <h2>
+
+                    🎡 Lucky Wheel
+
+                </h2>
+
+                <span>
+
+                    Nhấn nút bên dưới để bắt đầu
+
+                </span>
+
+            </div>
+
+            <div class="wheel-wrapper">
+
+                <div class="pointer"></div>
+
+                <svg id="wheelSvg"
+                     viewBox="0 0 700 700">
+                </svg>
+
+                <button id="btnSpin">
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                    <span>QUAY</span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <aside class="right-panel">
+
+            <!-- Voucher -->
+
+            <div class="panel-card">
+
+                <div class="panel-title">
+
+                    <i class="fa-solid fa-ticket"></i>
+
+                    Voucher
+
+                </div>
+
+                <div class="voucher-list">
+
+                    @foreach (var km in Model)
+                    {
+                        <div class="voucher-card">
+
+                            <div>
+
+                                <h4>
+
+                                    @km.Tenkm
+
+                                </h4>
+
+                                <small>
+
+                                    Voucher StarPard
+
+                                </small>
+
+                            </div>
+
+                            <div class="voucher-percent">
+
+                                -@km.Phantramgiam%
+
+                            </div>
+
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+
+            <!-- Rules -->
+
+            <div class="panel-card">
+
+                <div class="panel-title">
+
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    Thể lệ
+
+                </div>
+
+                <ul class="rule-list">
+
+                    <li>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Mỗi tài khoản chỉ được quay một lần.
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Voucher lưu trực tiếp vào tài khoản.
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Danh sách voucher cập nhật theo Database.
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Chúc bạn gặp nhiều may mắn!
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <!-- ADMIN -->
+            @if (Context.Session.GetString("VaiTro") == "Admin")
+            {
+                <div class="panel-card admin-panel">
+
+                    <div class="panel-title">
+
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                        Quản trị
+
+                    </div>
+
+                    <button class="admin-btn">
+
+                        🟢 Mở / Đóng vòng quay
+
+                    </button>
+
+                    <button class="admin-btn">
+
+                        🎁 Chọn Voucher
+
+                    </button>
+
+                    <button class="admin-btn">
+
+                        👥 Khách đã quay
+
+                    </button>
+
+                </div>
+            }
+
+        </aside>
+
+    </section>
+
+</div>
+
+<!-- =========================
+        POPUP
+========================== -->
+
+<div id="popup" class="popup">
+
+    <div class="popup-box">
+
+        <div class="popup-icon">
+
+            🎉
+
+        </div>
+
+        <h2>
+
+            Chúc mừng!
+
+        </h2>
+
+        <h3 id="giftName"></h3>
+
+        <button id="closePopup">
+
+            Đóng
+
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+    const vouchers = [
+
+    @foreach (var km in Model)
+    {
+        <text>
+        {
+        id:@km.Makm,
+        ten:"@Html.Raw(km.Tenkm.Replace("\"", "\\\""))",
+        giam:@km.Phantramgiam
+        },
+        </text>
+    }
+
+    ];
+
+</script>
+
+<script src="~/js/vongquay.js"
+        asp-append-version="true"></script>

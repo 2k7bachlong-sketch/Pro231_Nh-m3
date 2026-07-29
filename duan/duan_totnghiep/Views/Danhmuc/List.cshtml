@@ -1,0 +1,475 @@
+﻿@model List<duan_totnghiep.Models.Sanpham>
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = ViewBag.TenDanhMuc;
+}
+<style>
+    .category-page {
+        width: 100%;
+        margin: 30px auto;
+    }
+
+    .category-top {
+        width: 92%;
+        margin: 25px auto 20px;
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 8px 25px rgba(0,0,0,.08);
+        padding: 25px 35px;
+        border: 1px solid #eee;
+    }
+
+    .page-path {
+        font-size: 15px;
+        color: #888;
+        margin-bottom: 18px;
+    }
+
+        .page-path a {
+            color: #666;
+            text-decoration: none;
+        }
+
+            .page-path a:hover {
+                color: #ff6600;
+            }
+
+    .page-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .title-group {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+
+        .logo img {
+            width: 75px;
+            height: auto;
+            transition: .3s;
+        }
+
+            .logo img:hover {
+                transform: scale(1.05);
+            }
+
+    .category-banner {
+        width: 92%;
+        margin: 0 auto 35px;
+        height: 70px;
+        background: linear-gradient(90deg,#fff,#fff6f0);
+        border-radius: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 40px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .banner-left {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+    }
+
+    .icon-box {
+        width: 70px;
+        height: 70px;
+        background: #ff6600;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .icon-box i {
+            color: #fff;
+            font-size: 30px;
+        }
+
+    .category-banner h2 {
+        margin: 0;
+        font-size: 42px;
+        color: #ff6600;
+        font-weight: bold;
+    }
+
+    .category-banner p {
+        color: #666;
+        margin-top: 8px;
+    }
+
+    .shoe-bg {
+        position: absolute;
+        right: 40px;
+        font-size: 150px;
+        color: #ffd9c7;
+        opacity: .35;
+    }
+    .title-group h2 {
+        margin: 0;
+        font-size: 38px;
+        color: #ff6600;
+    }
+
+    .title-group span {
+        color: #777;
+        font-size: 16px;
+    }
+
+    .sort-box {
+        display: flex;
+        gap: 12px;
+    }
+
+    .sort-btn {
+        padding: 12px 18px;
+        border-radius: 30px;
+        background: #f5f5f5;
+        color: #333;
+        text-decoration: none;
+        font-weight: 600;
+        border: 1px solid #ddd;
+        transition: .3s;
+    }
+
+        .sort-btn:hover {
+            background: #111;
+            color: #fff;
+        }
+
+        .sort-btn.active {
+            background: #ff6600;
+            color: #fff;
+            border-color: #ff6600;
+        }
+    .product-list {
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 25px;
+    }
+
+    .empty-product {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: 400px;
+    }
+
+        .empty-product i {
+            font-size: 90px;
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+
+        .empty-product h2 {
+            font-size: 35px;
+            margin: 15px 0;
+            color: #333;
+        }
+
+        .empty-product p {
+            font-size: 18px;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+    .back-btn {
+        background: #111;
+        color: #fff;
+        padding: 14px 30px;
+        border-radius: 12px;
+        text-decoration: none;
+        transition: .3s;
+    }
+
+    .search-box {
+        flex: 1;
+        height: 62px;
+        border: 1px solid #ddd;
+        border-radius: 40px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        padding: 0 25px;
+        transition: .3s;
+    }
+
+        .search-box i {
+            color: #777;
+            font-size: 20px;
+            margin-right: 15px;
+        }
+
+        .search-box form {
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box input {
+            width: 700px;
+            border: none;
+            outline: none;
+            font-size: 22px;
+            background: transparent;
+        }
+
+    .product-list {
+        width: 92%;
+        margin: 30px auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+
+    .product-card {
+        width: 90%;
+        margin: auto;
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+        border-radius: 22px;
+        padding: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,.08);
+    }
+
+    .product-img {
+        width: 100%;
+        height: 240px;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #fff;
+    }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* hoặc contain */
+            display: block;
+        }
+
+        .product-card h4 {
+            margin: 15px 0 8px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 700;
+            color: #222;
+        }
+
+    .price {
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+        color: #e60000;
+    }
+    /* ================= DANH MỤC ================= */
+
+    .category {
+        width: 92%;
+        height: 75px;
+        margin: 0 auto 25px;
+        background: #111;
+        border-radius: 22px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 90px;
+        box-shadow: 0 8px 20px rgba(0,0,0,.18);
+    }
+
+
+        .category a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: 17px;
+            font-weight: 700;
+            min-width: 120px;
+            transition: .3s;
+        }
+
+
+            .category a i {
+                font-size: 18px;
+            }
+
+
+            .category a span {
+                font-size: 17px;
+            }
+
+
+            .category a:hover {
+                color: #ff6600;
+                transform: translateY(-3px);
+            }
+</style>
+
+<div class="category-page">
+
+    <!-- Tiêu đề -->
+    <div class="category-top">
+
+        <div class="page-info">
+
+            <div class="title-group">
+
+                <a asp-controller="@ViewBag.ReturnController"
+                   asp-action="Index"
+                   class="logo">
+                    <img src="~/images/starlogo.png" alt="StarPard">
+                </a>
+                <div class="search-box">
+
+                    <form asp-action="List" method="get">
+
+                        <input type="hidden"
+                               name="id"
+                               value="@Context.Request.RouteValues["id"]" />
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input type="text"
+                               name="searchString"
+                               value="@ViewBag.Search"
+                               placeholder="Tìm kiếm sản phẩm..." />
+
+                    </form>
+
+                </div>
+            </div>
+            <div class="sort-box">
+
+                <a class="sort-btn @(ViewBag.Sort == "" ? "active" : "")"
+                   href="@Url.Action("List", new { id = Context.Request.RouteValues["id"], sortOrder = "" })">
+                    🔥 Mới nhất
+                </a>
+
+                <a class="sort-btn @(ViewBag.Sort == "price_asc" ? "active" : "")"
+                   href="@Url.Action("List", new { id = Context.Request.RouteValues["id"], sortOrder = "price_asc" })">
+                    ↑ Giá tăng
+                </a>
+
+                <a class="sort-btn @(ViewBag.Sort == "price_desc" ? "active" : "")"
+                   href="@Url.Action("List", new { id = Context.Request.RouteValues["id"], sortOrder = "price_desc" })">
+                    ↓ Giá giảm
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- DANH MỤC -->
+
+    <div class="category">
+
+        <a asp-controller="Danhmuc"
+           asp-action="List"
+           asp-route-id="1"
+           asp-route-returnController="@ViewBag.ReturnController">
+
+            <i class="fa-solid fa-person-running"></i>
+            <span>Giày thể thao</span>
+        </a>
+
+        <a asp-controller="Danhmuc"
+           asp-action="List"
+           asp-route-id="2"
+           asp-route-returnController="@ViewBag.ReturnController">
+
+            <i class="fa-solid fa-briefcase"></i>
+            <span>Giày da</span>
+
+        </a>
+
+        <a asp-controller="Danhmuc"
+           asp-action="List"
+           asp-route-id="3"
+           asp-route-returnController="@ViewBag.ReturnController">
+
+            <i class="fa-solid fa-person-dress"></i>
+            <span>Giày cao gót</span>
+        </a>
+
+
+    </div>
+
+    <div class="category-banner">
+
+        <div class="banner-left">
+
+            <div class="icon-box">
+                <i class="fa-solid fa-shoe-prints"></i>
+            </div>
+
+            <div>
+
+                <h2>@ViewBag.TenDanhMuc.ToString().ToUpper()</h2>
+
+                <p>
+                    @Model.Count sản phẩm
+                    &nbsp;&nbsp;•&nbsp;&nbsp;
+                    Hàng chính hãng 100%
+                </p>
+
+            </div>
+
+        </div>
+
+        <i class="fa-solid fa-shoe-prints shoe-bg"></i>
+
+    </div>
+    <!-- Danh sách sản phẩm -->
+    @if (Model.Any())
+    {
+        <div class="product-list">
+
+            @foreach (var item in Model)
+            {
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="~/images/@item.Hinhanh" alt="">
+                    </div>
+
+                    <h4>@item.Tensp</h4>
+                    <p class="price">@String.Format("{0:N0} đ", item.Gia)</p>
+                </div>
+            }
+        </div>
+
+    }
+    else
+    {
+        <div class="empty-product">
+            <i class="fa-solid fa-box-open"></i>
+            <h2>Chưa có sản phẩm</h2>
+            <p>Danh mục này hiện chưa có sản phẩm nào.</p>
+
+            <a asp-controller="Giaodien"
+               asp-action="Index"
+               class="back-btn">
+                ← Quay lại mua sắm
+            </a>
+        </div>
+    }
+
+</div>

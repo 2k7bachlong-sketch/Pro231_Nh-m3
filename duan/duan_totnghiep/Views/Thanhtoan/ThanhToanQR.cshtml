@@ -1,0 +1,95 @@
+﻿@model duan_totnghiep.Models.Donhang
+
+@{
+    ViewData["Title"] = "Thanh toán QR";
+}
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4 mx-auto" style="max-width:500px;border-radius:20px;">
+
+        <h2 class="text-center mb-4">
+            Thanh toán bằng QR
+        </h2>
+
+        <div class="text-center">
+
+            <img src="@ViewBag.QR"
+                 class="img-fluid"
+                 style="max-width:320px;" />
+
+        </div>
+        <div id="paymentStatus"
+             style="
+        margin-top:20px;
+        padding:15px;
+        border-radius:10px;
+        background:#fff3cd;
+        color:#856404;
+        font-size:18px;
+        font-weight:bold;
+        text-align:center;">
+
+            ⏳ Đang chờ thanh toán...
+
+        </div>
+        <hr />
+
+        <p>
+            <b>Mã đơn:</b>
+            #@(Model.Madh)
+        </p>
+
+        <p>
+            <b>Số tiền:</b>
+            <span style="color:red;font-size:22px;font-weight:bold;">
+                @Model.Tongtien.ToString("N0") đ
+            </span>
+        </p>
+
+        <p>
+            <b>Nội dung chuyển khoản:</b>
+            <span style="color:#0d6efd;font-weight:bold;">
+                DH@(Model.Madh)
+            </span>
+        </p>
+
+        <div class="alert alert-warning mt-4">
+
+            <b>Lưu ý:</b><br />
+
+            ✔ Chuyển đúng số tiền.<br />
+
+            ✔ Không thay đổi nội dung chuyển khoản.<br />
+
+            ✔ Sau khi thanh toán thành công hệ thống sẽ tự xác nhận.
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+    setInterval(function () {
+
+        fetch('/Thanhtoan/KiemTraThanhToan?id=@Model.Madh')
+            .then(res => res.json())
+            .then(data => {
+
+                if (data.daThanhToan) {
+
+                    let box = document.getElementById("paymentStatus");
+
+                    box.innerHTML = "✅ Đã thanh toán thành công";
+                    box.style.background = "#d1e7dd";
+                    box.style.color = "#0f5132";
+
+                    setTimeout(function () {
+                        window.location.href = "/ThongTin/DonHang";
+                    }, 2000);
+                }
+
+            });
+
+    }, 3000);
+</script>

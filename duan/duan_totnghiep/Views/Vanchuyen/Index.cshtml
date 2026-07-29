@@ -1,0 +1,1092 @@
+﻿@model IEnumerable<duan_totnghiep.Models.Donhang>
+
+@{
+    ViewData["Title"] = "Vận chuyển";
+    Layout = null;
+
+    var lichSu = ViewBag.LichSu as List<duan_totnghiep.Models.Donhang> ?? new List<duan_totnghiep.Models.Donhang>();
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Quản lý vận chuyển</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f1f5f9;
+            padding: 30px;
+        }
+
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg,#2563eb,#1d4ed8);
+            border-radius: 30px;
+            padding: 35px 40px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 45px rgba(37,99,235,.25);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .truck-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 25px;
+            background: rgba(255,255,255,.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 35px;
+        }
+
+        .header h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .header p {
+            color: #dbeafe;
+            font-size: 17px;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 20px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #1e293b;
+            margin: 45px 0 25px;
+        }
+
+            .section-title i {
+                width: 55px;
+                height: 55px;
+                border-radius: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #2563eb;
+                color: white;
+            }
+
+        .history-title i {
+            background: #10b981;
+        }
+
+        .section-line {
+            height: 2px;
+            background: #e5e7eb;
+            margin: 25px 0 10px;
+        }
+
+        .stat-card {
+            width: 130px;
+            border-radius: 20px;
+            text-align: center;
+            padding: 20px;
+            background: white;
+            transition: .35s;
+        }
+
+            .stat-card:hover {
+                transform: translateY(-8px);
+            }
+
+            .stat-card h2 {
+                font-size: 34px;
+                margin-bottom: 8px;
+            }
+
+            .stat-card span {
+                font-weight: bold;
+                color: #555;
+            }
+
+        .blue h2 {
+            color: #2563eb;
+        }
+
+        .orange h2 {
+            color: #f59e0b;
+        }
+
+        .green h2 {
+            color: #10b981;
+        }
+
+        .order-card {
+            background: #fff;
+            border-radius: 28px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 18px 45px rgba(0,0,0,.08);
+            transition: .35s;
+            border: 1px solid #eef2f7;
+        }
+
+            .order-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 30px 60px rgba(0,0,0,.12);
+            }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 35px;
+        }
+
+        .customer-left {
+            display: flex;
+            gap: 22px;
+        }
+
+        .avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 22px;
+            background: linear-gradient(135deg,#3b82f6,#2563eb);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+        }
+
+        .order-id {
+            font-size: 26px;
+            font-weight: bold;
+            color: #111827;
+        }
+
+        .customer-name {
+            margin-top: 8px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .customer-info {
+            margin-top: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            color: #6b7280;
+        }
+
+            .customer-info span {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+            }
+
+        .money {
+            font-size: 32px;
+            font-weight: bold;
+            color: #10b981;
+            text-align: right;
+        }
+
+        .status-badge {
+            margin-top: 18px;
+            background: #dbeafe;
+            color: #2563eb;
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+
+        /* TIMELINE */
+
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 40px 20px;
+        }
+
+
+            .timeline:before {
+                content: "";
+                position: absolute;
+                top: 25px;
+                left: 50px;
+                right: 50px;
+                height: 5px;
+                background: #e2e8f0;
+                z-index: 0;
+            }
+
+
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            width: 25%;
+        }
+
+
+
+        .circle {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+            background: #e2e8f0;
+            color: white;
+        }
+
+
+        .done .circle {
+            background: #16a34a;
+        }
+
+
+        .active .circle {
+            background: #2563eb;
+        }
+
+
+        .step span {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+            color: #334155;
+        }
+
+
+
+        /* BOTTOM */
+
+
+        .bottom {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        .info {
+            color: #64748b;
+            line-height: 30px;
+        }
+
+
+
+        .buttons button {
+            border: none;
+            padding: 12px 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+            margin-left: 10px;
+            font-size: 15px;
+        }
+
+
+
+        .success {
+            background: #10b981;
+        }
+
+
+
+        .danger {
+            background: #ef4444;
+        }
+
+
+
+        .success:hover {
+            background: #059669;
+        }
+
+
+
+        .danger:hover {
+            background: #dc2626;
+        }
+
+        .back-btn {
+            margin-bottom: 25px;
+        }
+
+            .back-btn a {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                background: #334155;
+                color: white;
+                padding: 12px 22px;
+                border-radius: 12px;
+                text-decoration: none;
+                font-weight: bold;
+                transition: .3s;
+            }
+
+                .back-btn a:hover {
+                    background: #0f172a;
+                }
+
+        .empty-box {
+            margin-top: 80px;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+            .empty-box i {
+                font-size: 60px;
+                color: #94a3b8;
+                margin-bottom: 20px;
+            }
+
+            .empty-box h2 {
+                color: #334155;
+                font-size: 26px;
+            }
+
+            .empty-box p {
+                margin-top: 10px;
+                color: #64748b;
+            }
+
+
+        .delivery-progress {
+            margin: 35px 0;
+            position: relative;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 25%;
+        }
+
+        .circle {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: #d1d5db;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 22px;
+            transition: .35s;
+        }
+
+        .step.done .circle {
+            background: #10b981;
+            transform: scale(1.08);
+        }
+
+        .step span {
+            margin-top: 12px;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        .step.done span {
+            color: #111827;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 28px;
+            left: 12%;
+            width: 76%;
+            display: flex;
+            z-index: 1;
+        }
+
+        .line {
+            flex: 1;
+            height: 6px;
+            background: #e5e7eb;
+            margin: 0 5px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+            .line.active {
+                background: #10b981;
+            }
+
+        .back-btn2 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #334155;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 22px;
+            border-radius: 12px;
+            font-weight: bold;
+            transition: .3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,.15);
+        }
+
+            .back-btn2:hover {
+                background: #1e293b;
+                transform: translateY(-2px);
+            }
+
+        .product-list {
+            margin: 25px 0;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .product-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 18px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+            .product-item:last-child {
+                border-bottom: none;
+            }
+
+            .product-item img {
+                width: 95px;
+                height: 95px;
+                object-fit: cover;
+                border-radius: 15px;
+                border: 1px solid #ddd;
+                background: #fff;
+            }
+
+        .product-info {
+            flex: 1;
+        }
+
+            .product-info h3 {
+                font-size: 20px;
+                margin-bottom: 8px;
+                color: #111827;
+            }
+
+            .product-info p {
+                margin: 5px 0;
+                color: #6b7280;
+            }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ef4444;
+            min-width: 150px;
+            text-align: right;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <div class="header">
+
+        
+            <div class="header-left">
+
+                <div class="truck-icon">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+
+                <div>
+
+                    <h1>Quản lý vận chuyển</h1>
+
+                    <p>
+                        Theo dõi toàn bộ đơn hàng đang giao và cập nhật trạng thái nhanh chóng.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="header-right">
+
+                <div class="stat-card blue">
+
+                    <h2>@(Model.Count() + lichSu.Count)</h2>
+
+                    <span>Tổng đơn</span>
+
+                </div>
+
+                <div class="stat-card orange">
+
+                    <h2>@Model.Count(x => x.Trangthai == "Đang giao")</h2>
+
+                    <span>Đang giao</span>
+
+                </div>
+
+                <div class="stat-card green">
+                    <h2>@lichSu.Count(x => x.Trangthai == "Đã hoàn thành")</h2>
+
+                    <span>Hoàn thành</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:40px;">
+
+            <div class="section-title" style="margin:0;">
+
+                <i class="fa-solid fa-truck-fast"></i>
+
+                <div>
+                    <div>Đơn cần xử lý</div>
+
+                    <small style="font-size:15px;color:#64748b;font-weight:500">
+                        Các đơn hàng đang chờ xử lý và vận chuyển
+                    </small>
+                </div>
+
+            </div>
+
+            <a asp-controller="Taikhoan"
+               asp-action="Index"
+               class="back-btn2">
+                <i class="fa-solid fa-arrow-left"></i>
+                Quay lại
+            </a>
+
+        </div>
+
+        <div class="section-line"></div>
+        @if (Model == null || !Model.Any())
+        {
+            <div class="empty-box">
+                <i class="fa-solid fa-box-open"></i>
+                <h2>Hiện tại chưa có đơn hàng</h2>
+                <p>Chưa có đơn hàng nào cần vận chuyển.</p>
+            </div>
+        }
+        else
+        {
+        @foreach (var item in Model)
+        {
+
+                <div class="order-card">
+
+                    <div class="card-top">
+
+                        @{
+                            int step = item.Trangthai switch
+                            {
+                                "Chờ xác nhận" => 1,
+                                "Đã xác nhận" => 2,
+                                "Đang giao" => 3,
+                                "Đã giao" => 4,
+                                _ => 0
+                            };
+                        }
+
+                        <div class="customer-left">
+
+                            <div class="avatar">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+
+                            <div>
+
+                                <div class="order-id">
+                                    #DH@(item.Madh.ToString("D4"))
+                                </div>
+
+                                <div class="customer-name">
+                                    @item.Khachhang.Hoten
+                                </div>
+
+                                <div class="customer-info">
+
+                                    <span>
+                                        <i class="fa-solid fa-calendar-days"></i>
+                                        @Convert.ToDateTime(item.Ngaydat).ToString("dd/MM/yyyy")
+                                    </span>
+
+                                    <span>
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        @item.Diachinhan
+                                    </span>
+
+                                    <span>
+                                        <i class="fa-solid fa-phone"></i>
+                                        @item.Khachhang.Sdt
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="right-box">
+
+                            <div class="money">
+
+                                @item.Tongtien.ToString("N0") VNĐ
+
+                            </div>
+
+                            <div class="status-badge">
+
+                                🚚 @item.Trangthai
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="product-list">
+
+                        @foreach (var ct in item.Chitietdonhangs)
+                        {
+                            <div class="product-item">
+
+                                <img src="~/images/@ct.Sanpham.Hinhanh"
+                                     alt="@ct.Sanpham.Tensp" />
+
+                                <div class="product-info">
+
+                                    <h3>@ct.Sanpham.Tensp</h3>
+
+                                    <p>
+                                        <b>Thương hiệu:</b>
+                                        @ct.Sanpham.Thuonghieu.Tenth
+                                    </p>
+
+                                    <p>Size: <b>@ct.Size</b></p>
+
+                                    <p>
+                                        <b>Số lượng:</b>
+                                        @ct.Soluong
+                                    </p>
+
+                                </div>
+
+                                <div class="product-price">
+                                    @ct.Dongia.ToString("N0") VNĐ
+                                </div>
+
+                            </div>
+                        }
+
+                    </div>
+
+                    <div class="delivery-progress">
+
+                        <div class="progress-line">
+
+                            <div class="line @(step >= 1 ? "active" : "")"></div>
+
+                            <div class="line @(step >= 2 ? "active" : "")"></div>
+
+                            <div class="line @(step >= 3 ? "active" : "")"></div>
+
+                        </div>
+
+                        <div class="steps">
+
+                            <div class="step @(step >= 1 ? "done" : "")">
+                                <div class="circle">
+                                    <i class="fa-solid fa-box"></i>
+                                </div>
+                                <span>Đặt hàng</span>
+                            </div>
+
+                            <div class="step @(step >= 2 ? "done" : "")">
+                                <div class="circle">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                </div>
+                                <span>Xác nhận</span>
+                            </div>
+
+                            <div class="step @(step >= 3 ? "done" : "")">
+                                <div class="circle">
+                                    <i class="fa-solid fa-truck-fast"></i>
+                                </div>
+                                <span>Đang giao</span>
+                            </div>
+
+                            <div class="step @(step >= 4 ? "done" : "")">
+                                <div class="circle">
+                                    <i class="fa-solid fa-house"></i>
+                                </div>
+                                <span>Đã giao</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="buttons">
+                        <form asp-controller="Vanchuyen" asp-action="DaGiao" method="post" style="display:inline">
+
+                            <input type="hidden" name="id" value="@item.Madh" />
+
+                            <button class="success">
+                                ✔ Đã giao
+                            </button>
+
+                        </form>
+
+
+                        <form asp-controller="Vanchuyen" asp-action="GiaoThatBai" method="post" style="display:inline">
+
+                            <input type="hidden" name="id" value="@item.Madh" />
+
+                            <button class="danger">
+                                ✖ Thất bại
+                            </button>
+
+                        </form>
+                    </div>
+
+
+                </div>
+        }
+    }
+            <div class="section-title history-title"
+                 id="historyBtn"
+                 style="cursor:pointer;justify-content:space-between;">
+
+                <div style="display:flex;align-items:center;gap:12px;">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+
+                    <div>
+                        <div>Lịch sử giao hàng</div>
+
+                        <small style="font-size:15px;color:#64748b;font-weight:500">
+                            Các đơn hàng đã hoàn tất
+                        </small>
+                    </div>
+                </div>
+
+                <i class="fa-solid fa-chevron-down" id="historyArrow"></i>
+
+            </div>
+
+            <div id="historyContent" style="display:none;">
+
+            <div class="section-line"></div>
+
+            @if (lichSu.Any())
+            {
+                @foreach (var item in lichSu)
+                {
+                    <div class="order-card">
+
+                        <div class="card-top">
+
+                            @{
+                                int step = item.Trangthai switch
+                                {
+                                    "Chờ xác nhận" => 1,
+                                    "Đã xác nhận" => 2,
+                                    "Đang giao" => 3,
+                                    "Đã giao" => 4,
+                                    _ => 0
+                                };
+                            }
+
+                            <div class="customer-left">
+
+                                <div class="avatar">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+
+                                <div>
+
+                                    <div class="order-id">
+                                        #DH@(item.Madh.ToString("D4"))
+                                    </div>
+
+                                    <div class="customer-name">
+                                        @item.Khachhang.Hoten
+                                    </div>
+
+                                    <div class="customer-info">
+
+                                        <span>
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            @Convert.ToDateTime(item.Ngaydat).ToString("dd/MM/yyyy")
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            @item.Diachinhan
+                                        </span>
+
+                                        <span>
+                                            <i class="fa-solid fa-phone"></i>
+                                            @item.Khachhang.Sdt
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="right-box">
+
+                                <div class="money">
+
+                                    @item.Tongtien.ToString("N0") VNĐ
+
+                                </div>
+
+                                <div class="status-badge">
+
+                                    🚚 @item.Trangthai
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                            <div class="product-list">
+
+                                @foreach (var ct in item.Chitietdonhangs)
+                                {
+                                    <div class="product-item">
+
+                                        <img src="~/images/@ct.Sanpham.Hinhanh"
+                                             alt="@ct.Sanpham.Tensp" />
+
+                                        <div class="product-info">
+
+                                            <h3>@ct.Sanpham.Tensp</h3>
+
+                                            <p>
+                                                <b>Thương hiệu:</b>
+                                                @ct.Sanpham.Thuonghieu.Tenth
+                                            </p>
+
+                                            <p>
+                                                <b>Số lượng:</b>
+                                                @ct.Soluong
+                                            </p>
+
+                                        </div>
+
+                                        <div class="product-price">
+                                            @ct.Dongia.ToString("N0") VNĐ
+                                        </div>
+
+                                    </div>
+                                }
+
+                            </div>
+
+
+                        <div class="delivery-progress">
+
+                            <div class="progress-line">
+
+                                <div class="line @(step >= 1 ? "active" : "")"></div>
+
+                                <div class="line @(step >= 2 ? "active" : "")"></div>
+
+                                <div class="line @(step >= 3 ? "active" : "")"></div>
+
+                            </div>
+
+                            <div class="steps">
+
+                                <div class="step @(step >= 1 ? "done" : "")">
+                                    <div class="circle">
+                                        <i class="fa-solid fa-box"></i>
+                                    </div>
+                                    <span>Đặt hàng</span>
+                                </div>
+
+                                <div class="step @(step >= 2 ? "done" : "")">
+                                    <div class="circle">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                    </div>
+                                    <span>Xác nhận</span>
+                                </div>
+
+                                <div class="step @(step >= 3 ? "done" : "")">
+                                    <div class="circle">
+                                        <i class="fa-solid fa-truck-fast"></i>
+                                    </div>
+                                    <span>Đang giao</span>
+                                </div>
+
+                                <div class="step @(step >= 4 ? "done" : "")">
+                                    <div class="circle">
+                                        <i class="fa-solid fa-house"></i>
+                                    </div>
+                                    <span>Đã giao</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="empty-box">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <h2>Chưa có lịch sử giao hàng</h2>
+                    <p>Hiện chưa có đơn hàng nào đã hoàn tất hoặc giao thất bại.</p>
+                </div>
+            }
+            </div>
+        </div>
+
+
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+
+    document.querySelectorAll("form").forEach(form => {
+
+        form.addEventListener("submit", function(e){
+
+            e.preventDefault();
+
+            Swal.fire({
+                title: "Xác nhận cập nhật",
+                text: "Bạn có muốn cập nhật trạng thái đơn hàng không?",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonText: "Có",
+                cancelButtonText: "Không",
+                confirmButtonColor: "#16a34a",
+                cancelButtonColor: "#dc2626"
+
+            }).then((result)=>{
+
+                if(result.isConfirmed){
+                    form.submit();
+                }
+
+            });
+
+        });
+
+    });
+
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded",()=>{
+
+        document.querySelectorAll(".line.active").forEach((e,i)=>{
+
+            e.animate(
+            [
+                {transform:"scaleX(0)"},
+                {transform:"scaleX(1)"}
+            ],
+            {
+                duration:600,
+                delay:i*180,
+                fill:"forwards"
+            });
+
+        });
+
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const btn = document.getElementById("historyBtn");
+        const content = document.getElementById("historyContent");
+        const arrow = document.getElementById("historyArrow");
+
+        if (!btn || !content || !arrow) return;
+
+        btn.addEventListener("click", function () {
+
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block";
+                arrow.classList.replace("fa-chevron-down", "fa-chevron-up");
+            } else {
+                content.style.display = "none";
+                arrow.classList.replace("fa-chevron-up", "fa-chevron-down");
+            }
+
+        });
+
+    });
+</script>

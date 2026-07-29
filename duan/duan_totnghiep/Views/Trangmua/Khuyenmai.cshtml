@@ -1,0 +1,111 @@
+﻿@model List<duan_totnghiep.Models.Khuyenmai>
+
+@{
+    ViewData["Title"] = "Khuyến mãi";
+}
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+      <style>
+    body {
+        background: #f5f6fa;
+    }
+
+    .km-container {
+        width: 90%;
+        margin: 40px auto;
+    }
+
+        .km-container h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #ff5722;
+        }
+
+    .km-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+        gap: 25px;
+    }
+
+    .km-card {
+        background: linear-gradient(135deg,#ff7043,#ff9800);
+        color: white;
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0,0,0,.15);
+        transition: .3s;
+    }
+
+        .km-card:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+    .km-icon {
+        font-size: 50px;
+        margin-bottom: 20px;
+    }
+
+    .discount {
+        font-size: 36px;
+        font-weight: bold;
+        margin: 20px 0;
+    }
+
+    .date {
+        margin-top: 15px;
+    }
+
+    .status {
+        margin-top: 20px;
+        background: white;
+        color: #ff5722;
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 30px;
+        font-weight: bold;
+    }
+      </style>
+<div class="km-container">
+
+    <h1>
+        <i class="fa-solid fa-gift"></i>
+        Khuyến mãi StarPard
+    </h1>
+
+    <div class="km-grid">
+
+        @foreach (var item in Model)
+        {
+            <div class="km-card">
+
+                <div class="km-icon">
+                    <i class="fa-solid fa-tags"></i>
+                </div>
+
+                <h3>@item.Tenkm</h3>
+
+                <div class="discount">
+                    Giảm @item.Phantramgiam%
+                </div>
+
+                <div class="date">
+                    <i class="fa-solid fa-calendar"></i>
+
+                    @item.Ngaybatdau - @item.Ngayketthuc
+                </div>
+
+                <div class="status">
+
+                    @item.Trangthai
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</div>

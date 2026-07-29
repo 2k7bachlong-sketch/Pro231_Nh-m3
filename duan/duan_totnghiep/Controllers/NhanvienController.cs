@@ -39,111 +39,92 @@ namespace duan_totnghiep.Controllers
 
         public IActionResult Them()
         {
-            var dsTaiKhoan = _context.Taikhoans
-    .Where(t =>
-        !_context.Nhanviens
-            .Any(n => n.Matk == t.Matk))
-    .ToList();
-
-            ViewBag.Matk = new SelectList(
-                dsTaiKhoan,
-                "Matk",
-                "Tendangnhap");
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Them(Nhanvien nv)
+        public async Task<IActionResult> Them(
+     Nhanvien nv,
+     string TenDangNhap,
+     string MatKhau)
         {
-            // Họ tên
             if (string.IsNullOrWhiteSpace(nv.Hoten))
-            {
                 ModelState.AddModelError("Hoten", "Họ tên không được để trống.");
-            }
 
-            // Email
+            if (string.IsNullOrWhiteSpace(TenDangNhap))
+                ModelState.AddModelError("", "Tên đăng nhập không được để trống.");
+
+            if (string.IsNullOrWhiteSpace(MatKhau))
+                ModelState.AddModelError("", "Mật khẩu không được để trống.");
+
             if (!string.IsNullOrWhiteSpace(nv.Email) &&
                 await _context.Nhanviens.AnyAsync(x => x.Email == nv.Email))
             {
                 ModelState.AddModelError("Email", "Email đã tồn tại.");
             }
 
-            // SĐT
             if (!string.IsNullOrWhiteSpace(nv.Sdt) &&
                 await _context.Nhanviens.AnyAsync(x => x.Sdt == nv.Sdt))
             {
                 ModelState.AddModelError("Sdt", "Số điện thoại đã tồn tại.");
             }
 
-            // Tài khoản
-            if (nv.Matk != null &&
-                await _context.Nhanviens.AnyAsync(x => x.Matk == nv.Matk))
+            if (await _context.Taikhoans.AnyAsync(x => x.Tendangnhap == TenDangNhap))
             {
-                ModelState.AddModelError("Matk", "Tài khoản này đã được gán cho nhân viên khác.");
-            }
-            if (ModelState.IsValid)
-            {
-                _context.Nhanviens.Add(nv);
-                var tk = await _context.Taikhoans
-                     .FindAsync(nv.Matk);
-
-                if (tk != null)
-                {
-                    tk.Vaitro = nv.Chucvu;
-                }
-
-                if (tk != null)
-                {
-                    tk.Vaitro = "Nhân viên";
-                }
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction(nameof(Index));
+                ModelState.AddModelError("", "Tên đăng nhập đã tồn tại.");
             }
 
-            ViewBag.Matk = new SelectList(_context.Taikhoans, "Matk", "Tendangnhap", nv.Matk);
+            if (!ModelState.IsValid)
+            {
+                return View(nv);
+            }
 
-            return View(nv);
+            var tk = new Taikhoan
+            {
+                Tendangnhap = TenDangNhap,
+                Matkhau = MatKhau,
+                Vaitro = nv.Chucvu,      // Nhân viên hoặc Quản lý
+                Trangthai = "Đã đăng kí"
+            };
+
+            _context.Taikhoans.Add(tk);
+            await _context.SaveChangesAsync();
+
+            nv.Matk = tk.Matk;
+
+            _context.Nhanviens.Add(nv);
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Đã thêm nhân viên thành công.";
+
+            return RedirectToAction(nameof(Index));
         }
 
         //================ SỬA =================
 
         public async Task<IActionResult> Sua(int id)
         {
-            var nv = await _context.Nhanviens.FindAsync(id);
+            var nv = await _context.Nhanviens
+    .Include(x => x.Taikhoan)
+    .FirstOrDefaultAsync(x => x.Manv == id);
 
             if (nv == null)
                 return NotFound();
-
-            var dsTaiKhoan = _context.Taikhoans
-    .Where(t =>
-        !_context.Nhanviens.Any(n =>
-            n.Matk == t.Matk &&
-            n.Manv != nv.Manv))
-    .ToList();
-
-            ViewBag.Matk =
-                new SelectList(
-                    dsTaiKhoan,
-                    "Matk",
-                    "Tendangnhap",
-                    nv.Matk);
 
             return View(nv);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Sua(int id, Nhanvien nv)
+        public async Task<IActionResult> Sua(
+    int id,
+    Nhanvien nv,
+    string Tendangnhap,
+    string Matkhau)
         {
-            // Họ tên
             if (string.IsNullOrWhiteSpace(nv.Hoten))
-            {
                 ModelState.AddModelError("Hoten", "Họ tên không được để trống.");
-            }
 
-            // Email
             if (!string.IsNullOrWhiteSpace(nv.Email) &&
                 await _context.Nhanviens.AnyAsync(x =>
                     x.Email == nv.Email &&
@@ -152,7 +133,6 @@ namespace duan_totnghiep.Controllers
                 ModelState.AddModelError("Email", "Email đã tồn tại.");
             }
 
-            // SĐT
             if (!string.IsNullOrWhiteSpace(nv.Sdt) &&
                 await _context.Nhanviens.AnyAsync(x =>
                     x.Sdt == nv.Sdt &&
@@ -161,26 +141,49 @@ namespace duan_totnghiep.Controllers
                 ModelState.AddModelError("Sdt", "Số điện thoại đã tồn tại.");
             }
 
-            // Tài khoản
-            if (nv.Matk != null &&
-                await _context.Nhanviens.AnyAsync(x =>
-                    x.Matk == nv.Matk &&
-                    x.Manv != nv.Manv))
+            var nvDb = await _context.Nhanviens
+                .Include(x => x.Taikhoan)
+                .FirstOrDefaultAsync(x => x.Manv == id);
+
+            if (nvDb == null)
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return View(nv);
+
+            nvDb.Hoten = nv.Hoten;
+            nvDb.Sdt = nv.Sdt;
+            nvDb.Email = nv.Email;
+            nvDb.Diachi = nv.Diachi;
+            nvDb.Chucvu = nv.Chucvu;
+
+            if (nvDb.Taikhoan != null)
             {
-                ModelState.AddModelError("Matk", "Tài khoản này đã được gán cho nhân viên khác.");
+                bool trung = await _context.Taikhoans.AnyAsync(x =>
+                    x.Tendangnhap == Tendangnhap &&
+                    x.Matk != nvDb.Taikhoan.Matk);
+
+                if (trung)
+                {
+                    ModelState.AddModelError("", "Tên đăng nhập đã tồn tại.");
+                    return View(nvDb);
+                }
+
+                nvDb.Taikhoan.Tendangnhap = Tendangnhap;
+
+                if (!string.IsNullOrWhiteSpace(Matkhau))
+                {
+                    nvDb.Taikhoan.Matkhau = Matkhau;
+                }
+
+                nvDb.Taikhoan.Vaitro = nv.Chucvu;
             }
 
-            if (ModelState.IsValid)
-            {
-                _context.Update(nv);
-                await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Index));
-            }
+            TempData["Success"] = "Cập nhật nhân viên thành công.";
 
-            ViewBag.Matk = new SelectList(_context.Taikhoans, "Matk", "Tendangnhap", nv.Matk);
-
-            return View(nv);
+            return RedirectToAction(nameof(Index));
         }
 
         //================ XÓA =================
@@ -203,6 +206,7 @@ namespace duan_totnghiep.Controllers
         public async Task<IActionResult> XoaConfirmed(int id)
         {
             var nv = await _context.Nhanviens
+                .Include(x => x.Taikhoan)
                 .Include(x => x.Donhangs)
                 .FirstOrDefaultAsync(x => x.Manv == id);
 
@@ -217,6 +221,13 @@ namespace duan_totnghiep.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            // Xóa tài khoản nếu có
+            if (nv.Taikhoan != null)
+            {
+                _context.Taikhoans.Remove(nv.Taikhoan);
+            }
+
+            // Xóa nhân viên
             _context.Nhanviens.Remove(nv);
 
             await _context.SaveChangesAsync();
@@ -240,6 +251,42 @@ namespace duan_totnghiep.Controllers
                 return NotFound();
 
             return View(nv);
+        }
+
+        public async Task<IActionResult> Khoa(int id)
+        {
+            var nv = await _context.Nhanviens
+                .Include(x => x.Taikhoan)
+                .FirstOrDefaultAsync(x => x.Manv == id);
+
+            if (nv == null || nv.Taikhoan == null)
+                return NotFound();
+
+            nv.Taikhoan.Trangthai = "Đã khóa";
+
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Đã khóa tài khoản nhân viên.";
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> MoKhoa(int id)
+        {
+            var nv = await _context.Nhanviens
+                .Include(x => x.Taikhoan)
+                .FirstOrDefaultAsync(x => x.Manv == id);
+
+            if (nv == null || nv.Taikhoan == null)
+                return NotFound();
+
+            nv.Taikhoan.Trangthai = "Đã đăng kí";
+
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Đã mở khóa tài khoản.";
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

@@ -1,0 +1,711 @@
+﻿@model IEnumerable<duan_totnghiep.Models.Donhang>
+
+@{
+    ViewData["Title"] = "Đơn hàng của tôi";
+    Layout = null;
+}
+
+
+<style>
+
+    body {
+        background: #f5f5f5;
+    }
+
+    .order-container {
+        width: 1200px;
+        max-width: 95%;
+        margin: 40px auto;
+    }
+
+
+    .title-box {
+        background: linear-gradient(135deg,#111827,#1f2937);
+        color: #fff;
+        padding: 35px 40px;
+        border-radius: 24px;
+        box-shadow: 0 18px 35px rgba(0,0,0,.15);
+        margin-bottom: 30px;
+    }
+
+    .title-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+
+    .title-box h1 {
+        font-size: 38px;
+        margin: 0;
+        font-weight: 700;
+    }
+
+    .title-box p {
+        margin-top: 8px;
+        color: #d1d5db;
+        font-size: 16px;
+    }
+
+    .btn-back-shop {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 13px 25px;
+        background: #fff;
+        color: #111827;
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: 700;
+        transition: .3s;
+    }
+
+        .btn-back-shop:hover {
+            background: #ef4444;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+    .order-tabs {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+        .order-tabs a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            background: rgba(255,255,255,.15);
+            transition: .3s;
+            font-weight: 600;
+        }
+
+            .order-tabs a:hover,
+            .order-tabs .active {
+                background: #fff;
+                color: #111827;
+            }
+
+
+    .order-card {
+        background: white;
+        border-radius: 22px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 15px 35px rgba(0,0,0,.08);
+        opacity: 0;
+        transform: translateY(40px);
+        transition: .6s;
+    }
+
+        .order-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .order-card:hover {
+            transform: translateY(-5px);
+        }
+
+
+    .order-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+    }
+
+        .order-header h3 {
+            font-size: 30px;
+        }
+
+    .status {
+        padding: 10px 25px;
+        border-radius: 30px;
+        font-size: 15px;
+    }
+
+    .price {
+        color: #ef4444;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .cho {
+        background: #fff3cd;
+        color: #856404;
+    }
+
+
+    .xacnhan {
+        background: #cfe2ff;
+        color: #084298;
+    }
+
+
+    .giaohang {
+        background: #cff4fc;
+        color: #055160;
+    }
+
+
+    .hoanthanh {
+        background: #d1e7dd;
+        color: #0f5132;
+    }
+
+
+    .huy {
+        background: #f8d7da;
+        color: #842029;
+    }
+
+
+    .order-info {
+        margin-top: 20px;
+    }
+
+
+    .btn-cancel {
+        background: #dc3545;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+
+        .btn-cancel:hover {
+            background: #bb2d3b;
+        }
+
+
+    .empty {
+        background: white;
+        padding: 50px;
+        text-align: center;
+        border-radius: 20px;
+        font-size: 20px;
+    }
+
+    .popup-bg {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.45);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+    }
+
+
+    .popup-box {
+        width: 380px;
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        animation: show .25s ease;
+    }
+
+
+
+    .popup-icon {
+        font-size: 40px;
+        width: 70px;
+        height: 70px;
+        background: #fff3cd;
+        border-radius: 50%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+
+    .popup-box h2 {
+        margin-top: 20px;
+    }
+
+
+
+    .popup-box p {
+        color: #666;
+        margin: 15px 0 25px;
+    }
+
+    .btn-back {
+        background: #ddd;
+    }
+
+
+
+    .btn-confirm {
+        background: #dc3545;
+        color: white;
+    }
+
+
+
+        .btn-confirm:hover {
+            background: #bb2d3b;
+        }
+
+    .tracking {
+        margin: 30px 0;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .step {
+        width: 110px;
+        text-align: center;
+    }
+
+    .circle {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background: #e5e7eb;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        font-size: 24px;
+        transition: .3s;
+    }
+
+    .step span {
+        display: block;
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #666;
+    }
+
+    .step.active .circle {
+        background: #ef4444;
+        color: white;
+    }
+
+    .step.active span {
+        color: #ef4444;
+    }
+
+    .line {
+        flex: 1;
+        height: 4px;
+        background: #ddd;
+        margin-top: 27px;
+    }
+
+        .line.active {
+            background: #ef4444;
+        }
+
+    .product-box {
+        margin-top: 25px;
+        padding: 20px;
+        border: 1px solid #eee;
+        border-radius: 18px;
+        background: #fafafa;
+    }
+
+    .product-item {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+    }
+
+        .product-item img {
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 1px solid #ddd;
+            background: white;
+        }
+
+    .product-detail {
+        flex: 1;
+    }
+
+        .product-detail h4 {
+            margin-bottom: 10px;
+            font-size: 22px;
+            color: #111827;
+        }
+
+        .product-detail p {
+            margin: 6px 0;
+            color: #666;
+        }
+
+    .product-price {
+        color: #ef4444;
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    @@keyframes show {
+        from
+
+    {
+        transform: scale(.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    }
+</style>
+
+
+
+<div class="order-container">
+
+
+    <div class="title-box">
+
+        <div class="title-top">
+
+            <div>
+
+                <h1>
+                    <i class="fa-solid fa-box-open"></i>
+                    Đơn hàng của tôi
+                </h1>
+
+                <p>
+                    Theo dõi tiến trình giao hàng và quản lý các đơn hàng của bạn tại StarPard Shop.
+                </p>
+
+            </div>
+
+            <a asp-controller="Trangmua"
+               asp-action="Index"
+               class="btn-back-shop">
+
+                <i class="fa-solid fa-arrow-left"></i>
+                Tiếp tục mua sắm
+
+            </a>
+
+        </div>
+
+        <div class="order-tabs">
+
+            <a asp-action="Cuatoi"
+               asp-route-trangThai="TatCa"
+               class="@(ViewBag.TrangThai == "TatCa" ? "active" : "")">
+                Tất cả
+            </a>
+
+            <a asp-action="Cuatoi"
+               asp-route-trangThai="Chờ xác nhận"
+               class="@(ViewBag.TrangThai == "Chờ xác nhận" ? "active" : "")">
+                Chờ xác nhận
+            </a>
+
+            <a asp-action="Cuatoi"
+               asp-route-trangThai="Đã xác nhận"
+               class="@(ViewBag.TrangThai == "Đã xác nhận" ? "active" : "")">
+                Đã xác nhận
+            </a>
+
+            <a asp-action="Cuatoi"
+               asp-route-trangThai="Đang giao"
+               class="@(ViewBag.TrangThai == "Đang giao" ? "active" : "")">
+                Đang giao
+            </a>
+
+            <a asp-action="Cuatoi"
+               asp-route-trangThai="Đã hoàn thành"
+               class="@(ViewBag.TrangThai == "Đã hoàn thành" ? "active" : "")">
+                Đã giao
+            </a>
+
+            <a asp-action="Cuatoi"
+               asp-route-trangThai="Đã hủy"
+               class="@(ViewBag.TrangThai == "Đã hủy" ? "active" : "")">
+                Đã hủy
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    @if (!Model.Any())
+    {
+        <div class="empty">
+
+            Bạn chưa có đơn hàng nào.
+
+        </div>
+    }
+    else
+    {
+
+        foreach (var item in Model)
+        {
+
+            <div class="order-card">
+
+
+                <div class="order-header">
+
+
+                    <h3>
+                        #DH@(item.Madh.ToString("D4"))
+                    </h3>
+
+
+                    @if (item.Trangthai == "Chờ xác nhận")
+                    {
+                        <span class="status cho">
+                            @item.Trangthai
+                        </span>
+                    }
+                    else if (item.Trangthai == "Đã xác nhận")
+                    {
+                        <span class="status xacnhan">
+                            @item.Trangthai
+                        </span>
+                    }
+                    else if (item.Trangthai == "Đang giao")
+                    {
+                        <span class="status giaohang">
+                            @item.Trangthai
+                        </span>
+                    }
+                    else if (item.Trangthai == "Đã hoàn thành")
+                    {
+                        <span class="status hoanthanh">
+                            @item.Trangthai
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="status huy">
+                            @item.Trangthai
+                        </span>
+                    }
+
+
+                </div>
+
+
+
+                <div class="order-info">
+
+
+                    <p>
+                        <b>Ngày đặt:</b>
+                        @item.Ngaydat?.ToString("dd/MM/yyyy HH:mm")
+                    </p>
+
+
+                    <p>
+                        <b>Tổng tiền:</b>
+
+                        <span style="color:red;font-weight:bold">
+                            @item.Tongtien.ToString("N0") VNĐ
+                        </span>
+
+                    </p>
+                    <p>
+                        <b>Địa chỉ:</b>
+                        @item.Diachinhan
+                    </p>
+
+
+                </div>
+
+                <div class="product-box">
+
+                    @foreach (var ct in item.Chitietdonhangs)
+                    {
+                        <div class="product-item">
+
+                            <img src="~/images/@ct.Sanpham.Hinhanh"
+                                 alt="@ct.Sanpham.Tensp" />
+
+                            <div class="product-detail">
+
+                                <h4>@ct.Sanpham.Tensp</h4>
+
+                                <p>
+                                    <b>Thương hiệu:</b>
+                                    @ct.Sanpham.Thuonghieu.Tenth
+                                </p>
+
+                                <p>
+                                    <b>Size:</b>
+                                    <span class="badge bg-dark">@ct.Size</span>
+                                </p>
+
+                                <p>
+                                    <b>Số lượng:</b>
+                                    @ct.Soluong
+                                </p>
+
+                                <div class="product-price">
+                                    @ct.Dongia.ToString("N0") VNĐ
+                                </div>
+
+                            </div>
+
+                        </div>
+                    }
+
+                </div>
+
+                <div class="tracking">
+
+                    <div class="step @(item.Trangthai == "Chờ xác nhận" || item.Trangthai == "Đã xác nhận" || item.Trangthai == "Đang giao" || item.Trangthai == "Đã hoàn thành" ? "active" : "")">
+                        <div class="circle">🛒</div>
+                        <span>Đặt hàng</span>
+                    </div>
+
+                    <div class="line @(item.Trangthai == "Đã xác nhận" || item.Trangthai == "Đang giao" || item.Trangthai == "Đã hoàn thành" ? "active" : "")"></div>
+
+                    <div class="step @(item.Trangthai == "Đã xác nhận" || item.Trangthai == "Đang giao" || item.Trangthai == "Đã hoàn thành" ? "active" : "")">
+                        <div class="circle">📦</div>
+                        <span>Xác nhận</span>
+                    </div>
+
+                    <div class="line @(item.Trangthai == "Đang giao" || item.Trangthai == "Đã hoàn thành" ? "active" : "")"></div>
+
+                    <div class="step @(item.Trangthai == "Đang giao" || item.Trangthai == "Đã hoàn thành" ? "active" : "")">
+                        <div class="circle">🚚</div>
+                        <span>Đang giao</span>
+                    </div>
+
+                    <div class="line @(item.Trangthai == "Đã hoàn thành" ? "active" : "")"></div>
+
+                    <div class="step @(item.Trangthai == "Đã hoàn thành" ? "active" : "")">
+                        <div class="circle">🏠</div>
+                        <span>Đã giao</span>
+                    </div>
+
+                </div>
+
+                @if (item.Trangthai == "Chờ xác nhận")
+                {
+
+                    <button class="btn-cancel"
+                            onclick="openPopup(@item.Madh)">
+                        <i class="fa-solid fa-trash"></i>
+                        Huỷ đơn
+                    </button>
+
+                }
+                <div id="popupCancel" class="popup-bg">
+
+                    <div class="popup-box">
+
+                        <div class="popup-icon">
+                            ⚠️
+                        </div>
+
+
+                        <h2>
+                            Xác nhận huỷ đơn
+                        </h2>
+
+
+                        <p>
+                            Bạn có chắc muốn huỷ đơn hàng này?
+                        </p>
+
+
+
+                        <form asp-action="HuyDon"
+                              method="post">
+
+                            @Html.AntiForgeryToken()
+
+                            <input type="hidden"
+                                   id="donHangId"
+                                   name="id" />
+
+
+                            <button type="button"
+                                    class="btn-back"
+                                    onclick="closePopup()">
+                                Quay lại
+                            </button>
+
+
+                            <button type="submit"
+                                    class="btn-confirm">
+                                Huỷ đơn
+                            </button>
+
+
+                        </form>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        }
+
+    }
+
+
+</div>
+<script>
+
+    function openPopup(id)
+    {
+        document.getElementById("donHangId").value=id;
+
+        document.getElementById("popupCancel").style.display="flex";
+    }
+
+
+    function closePopup()
+    {
+        document.getElementById("popupCancel").style.display="none";
+    }
+
+
+    document.getElementById("popupCancel")
+    .addEventListener("click",function(e){
+
+        if(e.target === this)
+        {
+            closePopup();
+        }
+
+    });
+
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const cards = document.querySelectorAll(".order-card");
+
+        cards.forEach((card, index) => {
+            setTimeout(() => {
+                card.classList.add("show");
+            }, index * 150);
+        });
+
+    });
+</script>

@@ -19,6 +19,52 @@ namespace duan_totnghiep.Controllers
         }
 
         [HttpPost]
+        public IActionResult DoiMK(string MatKhauCu, string MatKhauMoi, string NhapLai)
+        {
+            var matk = HttpContext.Session.GetInt32("Matk");
+
+            if (matk == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+
+            var tk = _context.Taikhoans
+                .FirstOrDefault(x => x.Matk == matk);
+
+
+            if (tk == null)
+            {
+                ViewBag.Error = "Không tìm thấy tài khoản.";
+                return View("Index");
+            }
+
+
+            if (tk.Matkhau != MatKhauCu)
+            {
+                ViewBag.Error = "Mật khẩu hiện tại không đúng.";
+                return View("Index");
+            }
+
+
+            if (MatKhauMoi != NhapLai)
+            {
+                ViewBag.Error = "Mật khẩu nhập lại không khớp.";
+                return View("Index");
+            }
+
+
+            tk.Matkhau = MatKhauMoi;
+
+            _context.SaveChanges();
+
+
+            TempData["Success"] = "Đổi mật khẩu thành công.";
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
         public IActionResult Index(Taikhoan model)
         {
             var tk = _context.Taikhoans
@@ -38,11 +84,14 @@ namespace duan_totnghiep.Controllers
                 return View(model);
             }
 
+
             HttpContext.Session.SetString("Username", tk.Tendangnhap);
             HttpContext.Session.SetString("VaiTro", tk.Vaitro);
             HttpContext.Session.SetInt32("Matk", tk.Matk);
 
             var kh = _context.Khachhangs.FirstOrDefault(x => x.Matk == tk.Matk);
+
+
             if (kh != null)
             {
                 HttpContext.Session.SetInt32("Makh", kh.Makh);
@@ -56,6 +105,11 @@ namespace duan_totnghiep.Controllers
             if (tk.Vaitro == "Nhân viên")
             {
                 return RedirectToAction("Indexnv", "Home");
+            }
+
+            if (tk.Vaitro == "Vận chuyển")
+            {
+                return RedirectToAction("Index", "VanChuyen");
             }
 
             return RedirectToAction("Index", "Trangmua");

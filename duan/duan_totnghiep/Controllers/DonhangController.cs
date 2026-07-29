@@ -21,6 +21,10 @@ namespace duan_totnghiep.Controllers
                 .Include(x => x.Khachhang)
                 .Include(x => x.Nhanvien);
 
+            // Đếm đơn hàng mới
+            ViewBag.SoDonMoi = await _context.Donhangs
+                .CountAsync(x => x.Trangthai == "Chờ xác nhận");
+
             return View(await ds.ToListAsync());
         }
 
@@ -137,16 +141,40 @@ namespace duan_totnghiep.Controllers
             if (don == null)
                 return NotFound();
 
-            // Không cho sửa nếu đã kết thúc
+            // Không cho sửa nếu đơn đã kết thúc
             if (don.Trangthai == "Đã hoàn thành" ||
                 don.Trangthai == "Đã hủy")
             {
+                TempData["Error"] = "Đơn hàng đã kết thúc.";
                 return RedirectToAction(nameof(Index));
             }
 
             don.Trangthai = trangThai;
 
             await _context.SaveChangesAsync();
+
+            switch (trangThai)
+            {
+                case "Đã xác nhận":
+                    TempData["Success"] = $"Đơn #{don.Madh} đã được xác nhận.";
+                    break;
+
+                case "Đang giao":
+                    TempData["Success"] = $"Đơn #{don.Madh} đã bàn giao cho vận chuyển.";
+                    break;
+
+                case "Đã giao":
+                    TempData["Success"] = $"Đơn #{don.Madh} đã giao thành công, chờ Admin xác nhận.";
+                    break;
+
+                case "Đã hoàn thành":
+                    TempData["Success"] = $"Đơn #{don.Madh} đã hoàn thành.";
+                    break;
+
+                case "Đã hủy":
+                    TempData["Success"] = $"Đơn #{don.Madh} đã bị hủy.";
+                    break;
+            }
 
             return RedirectToAction(nameof(Index));
         }
@@ -162,9 +190,21 @@ namespace duan_totnghiep.Controllers
             if (dh == null)
                 return NotFound();
 
-            if (dh.Trangthai != "Đang xử lý")
+            if (dh.Trangthai == "Đã hoàn thành")
             {
-                TempData["Error"] = "Chỉ có thể xóa đơn đang xử lý.";
+                TempData["Error"] = "Không thể xóa đơn hàng đã hoàn thành.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            if (dh.Trangthai == "Đang giao")
+            {
+                TempData["Error"] = "Không thể xóa đơn hàng đang giao.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            if (dh.Trangthai == "Đã hủy")
+            {
+                TempData["Error"] = "Không thể xóa đơn hàng đã hủy.";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -178,13 +218,83 @@ namespace duan_totnghiep.Controllers
         {
             var dh = await _context.Donhangs.FindAsync(id);
 
-            if (dh != null)
+            if (dh == null)
+                return RedirectToAction(nameof(Index));
+
+            // Xóa tất cả chi tiết đơn hàng trước
+            var chiTiet = _context.Chitietdonhangs
+                                  .Where(x => x.Madh == id)
+                                  .ToList();
+
+            _context.Chitietdonhangs.RemoveRange(chiTiet);
+
+            // Sau đó mới xóa đơn hàng
+            _context.Donhangs.Remove(dh);
+
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Đã xóa đơn hàng thành công.";
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        // ================= ĐƠN HÀNG CỦA KHÁCH =================
+
+        public async Task<IActionResult> Cuatoi(string trangThai = "TatCa")
+        {
+            int? maKh = HttpContext.Session.GetInt32("Makh");
+
+            if (maKh == null)
+                return RedirectToAction("Index", "Taikhoan");
+
+            var ds = _context.Donhangs
+                .Include(x => x.Chitietdonhangs)
+                .ThenInclude(x => x.Sanpham)
+                .ThenInclude(x => x.Thuonghieu)
+                .Where(x => x.Makh == maKh);
+
+            if (trangThai != "TatCa")
             {
-                _context.Donhangs.Remove(dh);
+                ds = ds.Where(x => x.Trangthai == trangThai);
+            }
+
+            ViewBag.TrangThai = trangThai;
+
+            return View(await ds
+                .OrderByDescending(x => x.Ngaydat)
+                .ToListAsync());
+        }
+
+
+        // Khách huỷ đơn
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> HuyDon(int id)
+        {
+            int? maKh = HttpContext.Session.GetInt32("Makh");
+
+            if (maKh == null)
+                return RedirectToAction("Index", "Taikhoan");
+
+
+            var don = await _context.Donhangs
+                .FirstOrDefaultAsync(x => x.Madh == id && x.Makh == maKh);
+
+
+            if (don == null)
+                return NotFound();
+
+
+            // Chỉ cho huỷ khi chưa xác nhận
+            if (don.Trangthai == "Chờ xác nhận")
+            {
+                don.Trangthai = "Đã hủy";
+
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToAction(nameof(Index));
+
+            return RedirectToAction("Cuatoi");
         }
     }
 }

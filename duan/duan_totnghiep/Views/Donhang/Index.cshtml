@@ -58,7 +58,21 @@
 </style>
 
 <!-- Header -->
+@if (ViewBag.SoDonMoi > 0)
+{
+    <div class="alert alert-warning mb-3">
+        🔔 Có <b>@ViewBag.SoDonMoi</b> đơn hàng mới đang chờ xác nhận.
+    </div>
+}
 
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger mb-4">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        @TempData["Error"]
+    </div>
+}
+}
 <div class="dashboard-header">
 
     <div>
@@ -261,63 +275,87 @@
 
                     </td>
 
-                        <td>
+                    <td>
 
-                            <form asp-action="CapNhatTrangThai"
-                                  method="post"
-                                  class="d-flex">
+                        @if (item.Trangthai == "Chờ xác nhận thanh toán")
+                        {
+                            <span class="badge bg-warning text-dark p-2 w-100">
+                                ⏳ Đang chờ thanh toán
+                            </span>
+                        }
+                        else if (item.Trangthai == "Chờ xác nhận")
+                        {
+                            if (item.Phuongthucthanhtoan == "QR")
+                            {
+                                <form asp-action="CapNhatTrangThai" method="post">
+                                    <input type="hidden" name="id" value="@item.Madh" />
+                                    <input type="hidden" name="trangThai" value="Đã xác nhận" />
 
-                                <input type="hidden"
-                                       name="id"
-                                       value="@item.Madh" />
+                                    <button class="btn btn-warning btn-sm w-100">
+                                        ✔ Xác nhận
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <form asp-action="CapNhatTrangThai" method="post">
+                                    <input type="hidden" name="id" value="@item.Madh" />
+                                    <input type="hidden" name="trangThai" value="Đã xác nhận" />
 
+                                    <button class="btn btn-warning btn-sm w-100">
+                                        💵 Xác nhận COD
+                                    </button>
+                                </form>
+                            }
+                        }
+                        else if (item.Trangthai == "Đã xác nhận")
+                        {
+                            <form asp-action="CapNhatTrangThai" method="post">
+                                <input type="hidden" name="id" value="@item.Madh" />
+                                <input type="hidden" name="trangThai" value="Đang giao" />
 
-                                <select name="trangThai"
-                                        class="form-select form-select-sm status-select"
-                                        onchange="this.form.submit()"
-                                    @(item.Trangthai == "Đã hoàn thành" || item.Trangthai == "Đã hủy" ? "disabled" : "")>
-
-                                    @if (item.Trangthai == "Đang xử lý")
-                                    {
-                                        <option selected>Đang xử lý</option>
-                                    }
-                                    else
-                                    {
-                                        <option>Đang xử lý</option>
-                                    }
-
-                                    @if (item.Trangthai == "Đang giao")
-                                    {
-                                        <option selected>Đang giao</option>
-                                    }
-                                    else
-                                    {
-                                        <option>Đang giao</option>
-                                    }
-
-                                    @if (item.Trangthai == "Đã hoàn thành")
-                                    {
-                                        <option selected>Đã hoàn thành</option>
-                                    }
-                                    else
-                                    {
-                                        <option>Đã hoàn thành</option>
-                                    }
-
-                                    @if (item.Trangthai == "Đã hủy")
-                                    {
-                                        <option selected>Đã hủy</option>
-                                    }
-                                    else
-                                    {
-                                        <option>Đã hủy</option>
-                                    }
-
-                                </select>
-
+                                <button class="btn btn-primary btn-sm w-100">
+                                    🚚 Bàn giao vận chuyển
+                                </button>
                             </form>
+                        }
+                        else if (item.Trangthai == "Đang giao")
+                        {
+                            <span class="badge bg-info p-2 w-100">
+                                🚚 Đang giao
+                            </span>
+                        }
+                        else if (item.Trangthai == "Đã giao")
+                        {
+                            <form asp-action="CapNhatTrangThai" method="post">
+                                <input type="hidden" name="id" value="@item.Madh" />
+                                <input type="hidden" name="trangThai" value="Đã hoàn thành" />
 
-                        </td>
+                                <button class="btn btn-success btn-sm w-100">
+                                    ✔ Hoàn thành
+                                </button>
+                            </form>
+                        }
+                        else if (item.Trangthai == "Đã hoàn thành")
+                        {
+                            <span class="badge bg-success p-2 w-100">
+                                ✔ Hoàn thành
+                            </span>
+                        }
+                        else if (item.Trangthai == "Giao thất bại")
+                        {
+                            <span class="badge bg-danger p-2 w-100">
+                                ❌ Giao thất bại
+                            </span>
+                        }
+                        else if (item.Trangthai == "Đã hủy")
+                        {
+                            <span class="badge bg-dark p-2 w-100">
+                                Đã hủy
+                            </span>
+                        }
+
+                    </td>
 
                     <td>
 

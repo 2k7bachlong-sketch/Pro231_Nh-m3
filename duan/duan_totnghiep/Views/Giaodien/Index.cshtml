@@ -79,8 +79,8 @@
         .icon-btn {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 18px;
+            gap: 10px;
+            padding: 20px 20px;
             border-radius: 35px;
             text-decoration: none;
             color: #333;
@@ -202,8 +202,7 @@
 
             .banner img {
                 width: 92%;
-                max-width: 1400px;
-                height: 430px;
+                height: 830px;
                 object-fit: cover;
                 border-radius: 25px;
                 transition: .4s;
@@ -294,7 +293,7 @@
             background: #fff;
             border: 5px solid #111;
             border-radius: 22px;
-            padding: 20px;
+            padding: 0px;
             text-align: center;
             overflow: hidden;
             transition: .3s;
@@ -306,10 +305,17 @@
             }
 
             .card img {
-                width: 130px;
-                height: 130px;
-                object-fit: contain;
-                margin-top: 10px;
+                width: 100%;
+                height: 200px;
+                border-radius: 8px;
+                object-fit: cover;
+                display: block;
+                margin: 0 auto 10px;
+                transition: .3s;
+            }
+
+            .card:hover img {
+                transform: scale(1.05);
             }
 
             .card h3 {
@@ -499,10 +505,6 @@
 
         <div class="header-right">
 
-            <a href="#" class="icon-btn">
-                <i class="fa-solid fa-phone"></i>
-                <span>Liên hệ</span>
-            </a>
 
             <a href="/Taikhoan/Index" class="main-btn login">
                 <i class="fa-regular fa-user"></i>
@@ -544,11 +546,6 @@
            asp-route-returnController="Giaodien">
             <i class="fa-solid fa-person-dress"></i>
             Giày cao gót
-        </a>
-
-        <a href="#">
-            <i class="fa-solid fa-fire"></i>
-            Khuyến mãi
         </a>
 
     </div>

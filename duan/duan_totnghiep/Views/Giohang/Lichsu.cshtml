@@ -1,0 +1,303 @@
+﻿@model List<duan_totnghiep.Models.Donhang>
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Lịch sử mua hàng";
+}
+
+<style>
+
+    body {
+        background: #f4f6fb;
+    }
+
+    .history-title {
+        text-align: center;
+        margin: 30px 0;
+    }
+
+        .history-title h1 {
+            font-size: 42px;
+            font-weight: bold;
+            color: #111;
+        }
+
+        .history-title p {
+            color: #666;
+            margin-top: 10px;
+        }
+
+    .history-container {
+        width: 92%;
+        margin: auto;
+    }
+
+    .order-card {
+        background: white;
+        border-radius: 18px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.08);
+        border-left: 6px solid #111;
+        transition: .3s;
+    }
+
+        .order-card:hover {
+            transform: translateY(-4px);
+        }
+
+    .order-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .order-id {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .order-date {
+        color: #777;
+        margin-top: 8px;
+    }
+
+    .status {
+        padding: 8px 18px;
+        border-radius: 30px;
+        color: white;
+        font-weight: bold;
+    }
+
+    .done {
+        background: #16a34a;
+    }
+
+    .pending {
+        background: #f59e0b;
+    }
+
+    .cancel {
+        background: #ef4444;
+    }
+
+    .shipping {
+        background: #2563eb;
+    }
+
+    .order-info {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 20px;
+    }
+
+    .info-box {
+        background: #f8fafc;
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+        .info-box span {
+            color: #777;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .info-box b {
+            font-size: 18px;
+        }
+
+    .btn-detail {
+        display: inline-block;
+        margin-top: 20px;
+        background: #111;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: .3s;
+    }
+
+        .btn-detail:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+    .empty {
+        text-align: center;
+        background: white;
+        padding: 60px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+
+    .product-list {
+        margin-top: 25px;
+    }
+
+    .product-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 18px 0;
+        border-top: 1px solid #eee;
+    }
+
+        .product-item img {
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 1px solid #ddd;
+            background: #fff;
+        }
+
+    .product-content {
+        flex: 1;
+    }
+
+        .product-content h3 {
+            margin-bottom: 8px;
+            font-size: 22px;
+        }
+
+        .product-content p {
+            margin: 6px 0;
+            color: #666;
+        }
+
+    .product-price {
+        font-size: 22px;
+        color: #ef4444;
+        font-weight: bold;
+    }
+</style>
+
+<div class="history-title">
+    <h1>📦 Lịch sử mua hàng</h1>
+    <p>Xem lại các đơn hàng đã đặt</p>
+</div>
+
+<div class="history-container">
+
+
+    @if (Model.Count == 0)
+    {
+        <div class="empty">
+            <h2>Bạn chưa có đơn hàng nào</h2>
+        </div>
+    }
+    else
+    {
+        @foreach (var item in Model)
+        {
+            string css = "pending";
+
+            if (item.Trangthai == "Đã giao")
+                css = "done";
+
+            else if (item.Trangthai == "Đã hủy")
+                css = "cancel";
+
+            else if (item.Trangthai == "Đang giao")
+                css = "shipping";
+
+            <div class="order-card">
+
+                <div class="order-top">
+
+                    <div>
+                        <div class="order-id">
+                            Đơn hàng #@item.Madh
+                        </div>
+
+                        <div class="order-date">
+                            Ngày đặt:
+                            @(item.Ngaydat?.ToString("dd/MM/yyyy HH:mm"))
+                        </div>
+                    </div>
+
+                    <div class="status @css">
+                        @item.Trangthai
+                    </div>
+
+                </div>
+
+                <div class="order-info">
+
+                    <div class="info-box">
+                        <span>Tổng tiền</span>
+
+                        <b style="color:red;">
+                            @string.Format("{0:N0}", item.Tongtien) đ
+                        </b>
+                    </div>
+
+                    <div class="info-box">
+                        <span>Thanh toán</span>
+
+                        <b>
+                            @item.Phuongthucthanhtoan
+                        </b>
+                    </div>
+
+                    <div class="info-box">
+                        <span>Địa chỉ nhận</span>
+
+                        <b>
+                            @item.Diachinhan
+                        </b>
+                    </div>
+
+                </div>
+
+                <div class="product-list">
+
+                    @foreach (var ct in item.Chitietdonhangs)
+                    {
+                        <div class="product-item">
+
+                            <img src="~/images/@ct.Sanpham.Hinhanh"
+                                 alt="@ct.Sanpham.Tensp" />
+
+                            <div class="product-content">
+
+                                <h3>@ct.Sanpham.Tensp</h3>
+
+                                <p>
+                                    Thương hiệu:
+                                    <b>@ct.Sanpham.Thuonghieu.Tenth</b>
+                                </p>
+
+                                <p>
+                                    Size:
+                                    <b style="color:#2563eb">@ct.Size</b>
+                                </p>
+
+                                <p>Số lượng: @ct.Soluong</p>
+
+                            </div>
+
+                            <div class="product-price">
+                                @string.Format("{0:N0}", ct.Dongia) đ
+                            </div>
+
+                        </div>
+                    }
+
+                </div>
+
+                <a asp-action="ChiTietDonHang"
+                   asp-route-id="@item.Madh"
+                   class="btn-detail">
+
+                    Xem chi tiết
+
+                </a>
+
+            </div>
+        }
+    }
+
+</div>

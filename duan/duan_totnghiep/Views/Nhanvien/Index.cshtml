@@ -325,6 +325,25 @@
 
                             </a>
 
+                        @if (item.Taikhoan.Trangthai == "Đã đăng kí")
+                            {
+                                <a asp-action="Khoa"
+                                   asp-route-id="@item.Manv"
+                                   class="action-btn btn-warning"
+                                   title="Khóa">
+                                    <i class="bi bi-lock-fill"></i>
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-action="MoKhoa"
+                                   asp-route-id="@item.Manv"
+                                   class="action-btn btn-success"
+                                   title="Mở khóa">
+                                    <i class="bi bi-unlock-fill"></i>
+                                </a>
+                            }
+
                             <a asp-action="Xoa"
                                asp-route-id="@item.Manv"
                                class="action-btn btn-delete">

@@ -15,6 +15,8 @@ public partial class Giohang
 
     public DateTime? Ngaytao { get; set; }
 
+    public string? Size { get; set; }
+
     public virtual Khachhang Khachhang { get; set; } = null!;
 
     public virtual Sanpham Sanpham { get; set; } = null!;

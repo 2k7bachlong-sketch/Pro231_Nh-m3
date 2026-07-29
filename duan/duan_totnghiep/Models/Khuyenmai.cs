@@ -17,6 +17,10 @@ public partial class Khuyenmai
 
     public string? Trangthai { get; set; }
 
+    public virtual ICollection<Donhang> Donhangs { get; set; } = new List<Donhang>();
+
+    public virtual ICollection<KhachhangKhuyenmai> KhachhangKhuyenmais { get; set; } = new List<KhachhangKhuyenmai>();
+
     //Hàm tính Ngày 
     public string TrangThaiHienThi
     {

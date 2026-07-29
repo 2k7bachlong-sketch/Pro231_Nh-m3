@@ -1474,8 +1474,6 @@ D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\rjsmcshtml.d
 D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\scopedcss\bundle\duan_totnghiep.styles.css
 D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\scopedcss\projectbundle\duan_totnghiep.bundle.scp.css
-D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\j7ufet6aju-p1sc8qure8.gz
-D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\l4lyddmde9-20xsj5daoe.gz
 D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\s5lum5a15k-61n19gt1b8.gz
 D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\okupp21yai-xtxxf3hu2r.gz
 D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\dvbcaqgocy-t1cqhe9u97.gz
@@ -1550,3 +1548,9 @@ D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\refint\duan_
 D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\duan_totnghiep.pdb
 D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\duan_totnghiep.genruntimeconfig.cache
 D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\ref\duan_totnghiep.dll
+D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\opz7jjx72t-ep8fvt6vxo.gz
+D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\j7ufet6aju-0b9ytat0mt.gz
+D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\797g0788c2-en545xzs6a.gz
+D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\rero09tpuc-q10pbeg6sr.gz
+D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\2w8yg398xs-cxa6079bks.gz
+D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\l4lyddmde9-nleb9cydbw.gz

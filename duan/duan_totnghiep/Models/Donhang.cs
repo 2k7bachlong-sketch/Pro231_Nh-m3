@@ -21,9 +21,13 @@ public partial class Donhang
 
     public string? Phuongthucthanhtoan { get; set; }
 
+    public int? Makm { get; set; }
+
     public virtual ICollection<Chitietdonhang> Chitietdonhangs { get; set; } = new List<Chitietdonhang>();
 
     public virtual Khachhang Khachhang { get; set; } = null!;
+
+    public virtual Khuyenmai? Khuyenmai { get; set; }
 
     public virtual Nhanvien? Nhanvien { get; set; }
 }

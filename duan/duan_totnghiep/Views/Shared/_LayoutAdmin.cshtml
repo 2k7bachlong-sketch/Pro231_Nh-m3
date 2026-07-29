@@ -10,48 +10,761 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
     <style>
-        .footer {
-            margin-top: 100px;
-            background: #333;
-            color: white;
-            padding: 40px 0;
+        /* ===========================
+                        STARPARD FOOTER
+                ===========================*/
+
+        .sp-footer {
+            position: relative;
+            margin-top: 80px;
+            background: #0f172a;
+            overflow: hidden;
+            color: #fff;
         }
 
-        .main-content {
-            min-height: 700px;
-        }
-
-        .footer-content {
-            width: 80%;
+        .sp-footer-container {
+            width: 90%;
+            max-width: 1450px;
             margin: auto;
+            padding: 90px 0 60px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .sp-logo {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+            .sp-logo i {
+                color: #f59e0b;
+                font-size: 45px;
+            }
+
+            .sp-logo span {
+                letter-spacing: 2px;
+            }
+
+        .sp-desc {
+            color: #cbd5e1;
+            line-height: 33px;
+            font-size: 17px;
+            margin-bottom: 35px;
+            max-width: 430px;
+        }
+
+        /*============================*/
+
+        .sp-footer-box h3 {
+            font-size: 26px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            position: relative;
+        }
+
+            .sp-footer-box h3::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -10px;
+                width: 55px;
+                height: 4px;
+                border-radius: 20px;
+                background: #f59e0b;
+            }
+
+        .sp-footer-box ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .sp-footer-box li {
+            margin: 18px 0;
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: .35s;
+        }
+
+            .sp-footer-box li:hover {
+                transform: translateX(10px);
+            }
+
+        .sp-footer-box a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+            .sp-footer-box a:hover {
+                color: #f59e0b;
+            }
+
+        .sp-footer-box i {
+            color: #f59e0b;
+            width: 22px;
+        }
+
+        /*============================*/
+
+        .sp-social {
+            display: flex;
+            gap: 18px;
+        }
+
+            .sp-social a {
+                width: 52px;
+                height: 52px;
+                border-radius: 18px;
+                background: rgba(255,255,255,.06);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                text-decoration: none;
+                font-size: 20px;
+                transition: .35s;
+                border: 1px solid rgba(255,255,255,.08);
+            }
+
+                .sp-social a:hover {
+                    background: #f59e0b;
+                    transform: translateY(-8px) rotate(8deg);
+                }
+
+            .sp-social i {
+                transition: .3s;
+            }
+
+        /*============================*/
+
+        .sp-newsletter {
+            width: 90%;
+            max-width: 1450px;
+            margin: auto;
+            margin-top: 15px;
+            padding: 40px 55px;
+            border-radius: 30px;
+            background: linear-gradient(90deg,#1e293b,#334155);
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(255,255,255,.08);
+        }
+
+        .sp-news-content {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            gap: 40px;
         }
 
-        .footer-box {
-            width: 30%;
+            .sp-news-content h2 {
+                font-size: 34px;
+                margin-bottom: 10px;
+            }
+
+            .sp-news-content p {
+                color: #cbd5e1;
+                font-size: 17px;
+            }
+
+        .sp-news-form {
+            display: flex;
+            width: 470px;
+            max-width: 100%;
+            background: white;
+            padding: 8px;
+            border-radius: 60px;
         }
 
-            .footer-box h3 {
-                margin-bottom: 15px;
+            .sp-news-form input {
+                flex: 1;
+                border: none;
+                outline: none;
+                padding: 18px 22px;
+                font-size: 16px;
+                border-radius: 50px;
             }
 
-            .footer-box p {
-                line-height: 30px;
+            .sp-news-form button {
+                width: 65px;
+                border: none;
+                border-radius: 50%;
+                background: #f59e0b;
+                color: white;
+                font-size: 20px;
+                cursor: pointer;
+                transition: .35s;
             }
 
-        .footer-bottom {
+                .sp-news-form button:hover {
+                    transform: scale(1.08);
+                    background: #ff8c00;
+                }
+
+        /*=====================================
+                        WATERMARK
+                ======================================*/
+
+        .sp-watermark {
+            position: absolute;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-size: 170px;
+            font-weight: 900;
+            letter-spacing: 18px;
+            color: white;
+            opacity: .025;
+            user-select: none;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        /*=====================================
+                        COPYRIGHT
+                ======================================*/
+
+        .sp-copy {
+            width: 90%;
+            max-width: 1450px;
+            margin: 60px auto 0;
+            padding: 25px 0;
+            border-top: 1px solid rgba(255,255,255,.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #94a3b8;
+            position: relative;
+            z-index: 2;
+        }
+
+            .sp-copy i {
+                color: #f59e0b;
+            }
+
+        /*=====================================
+                          DECORATION
+                ======================================*/
+
+        .sp-footer::before {
+            content: "";
+            position: absolute;
+            width: 550px;
+            height: 550px;
+            background: #f59e0b;
+            filter: blur(220px);
+            opacity: .08;
+            left: -180px;
+            top: -180px;
+        }
+
+        .sp-footer::after {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: #2563eb;
+            filter: blur(260px);
+            opacity: .08;
+            right: -220px;
+            bottom: -220px;
+        }
+
+        /*=====================================
+                        HOVER
+                ======================================*/
+
+        .sp-footer-box li {
+            transition: .35s;
+        }
+
+            .sp-footer-box li:hover {
+                color: white;
+            }
+
+            .sp-footer-box li i {
+                transition: .35s;
+            }
+
+            .sp-footer-box li:hover i {
+                transform: translateX(6px);
+            }
+
+        .sp-logo {
+            transition: .35s;
+        }
+
+            .sp-logo:hover {
+                transform: translateY(-5px);
+            }
+
+                .sp-logo:hover i {
+                    transform: rotate(-15deg);
+                }
+
+        /*=====================================
+                        RESPONSIVE
+                ======================================*/
+
+        @@media(max - width:1100px) {
+            .sp-footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 45px;
+            }
+
+            .sp-news-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .sp-news-form {
+                width: 100%;
+            }
+
+            .sp-copy {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .sp-watermark {
+                font-size: 100px;
+            }
+        }
+
+        @@media(max - width:768px) {
+            .sp-footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sp-logo {
+                font-size: 34px;
+            }
+
+                .sp-logo i {
+                    font-size: 38px;
+                }
+
+            .sp-newsletter {
+                padding: 30px;
+            }
+
+            .sp-news-content h2 {
+                font-size: 28px;
+            }
+
+            .sp-watermark {
+                display: none;
+            }
+
+        }
+        /*==========================================
+                            TOP SERVICES
+                ==========================================*/
+
+        .sp-footer {
+            padding-top: 140px;
+        }
+
+        .sp-services {
+            width: 90%;
+            max-width: 1450px;
+            position: absolute;
+            top: -65px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 25px;
+            z-index: 10;
+        }
+
+        .sp-service {
+            background: white;
+            border-radius: 25px;
+            padding: 28px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 20px 45px rgba(0,0,0,.08);
+            transition: .35s;
+        }
+
+            .sp-service:hover {
+                transform: translateY(-12px);
+                box-shadow: 0 35px 60px rgba(0,0,0,.15);
+            }
+
+        .sp-service-icon {
+            width: 68px;
+            height: 68px;
+            border-radius: 18px;
+            background: linear-gradient(135deg,#f59e0b,#ffbf47);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+        }
+
+        .sp-service h4 {
+            margin: 0;
+            color: #111827;
+            font-size: 19px;
+            font-weight: 700;
+        }
+
+        .sp-service p {
+            margin-top: 5px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /*==========================================
+                            SHINE EFFECT
+                ==========================================*/
+
+        .sp-footer::before {
+            animation: lightMove 8s linear infinite;
+        }
+
+        @@keyframes lightMove {
+            0% {
+                transform: translate(-30px,-20px);
+            }
+
+            50% {
+                transform: translate(50px,30px);
+            }
+
+            100% {
+                transform: translate(-30px,-20px);
+            }
+        }
+
+        /*==========================================
+                            LOGO EFFECT
+                ==========================================*/
+
+        .sp-logo {
+            position: relative;
+        }
+
+            .sp-logo::after {
+                content: "";
+                position: absolute;
+                width: 80px;
+                height: 80px;
+                background: #f59e0b;
+                border-radius: 50%;
+                filter: blur(55px);
+                opacity: 0;
+                transition: .4s;
+            }
+
+            .sp-logo:hover::after {
+                opacity: .45;
+            }
+
+        /*==========================================
+                            SOCIAL EFFECT
+                ==========================================*/
+
+        .sp-social a {
+            overflow: hidden;
+            position: relative;
+        }
+
+            .sp-social a::before {
+                content: "";
+                position: absolute;
+                width: 150%;
+                height: 150%;
+                background: rgba(255,255,255,.25);
+                transform: rotate(45deg);
+                left: -180%;
+                top: -50%;
+                transition: .6s;
+            }
+
+            .sp-social a:hover::before {
+                left: 160%;
+            }
+
+        /*==========================================
+                            LINK EFFECT
+                ==========================================*/
+
+        .sp-footer-box a {
+            position: relative;
+        }
+
+            .sp-footer-box a::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -3px;
+                width: 0;
+                height: 2px;
+                background: #f59e0b;
+                transition: .35s;
+            }
+
+            .sp-footer-box a:hover::after {
+                width: 100%;
+            }
+
+        /*==========================================
+                            NEWSLETTER
+                ==========================================*/
+
+        .sp-newsletter {
+            backdrop-filter: blur(20px);
+        }
+
+        .sp-news-form {
+            box-shadow: 0 15px 35px rgba(0,0,0,.18);
+        }
+
+        /*==========================================
+                            RESPONSIVE
+                ==========================================*/
+
+        @@media(max - width:1200px) {
+            .sp-services {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+
+        @@media(max - width:768px) {
+            .sp-services {
+                grid-template-columns: 1fr;
+                position: relative;
+                top: 0;
+                transform: none;
+                left: 0;
+                width: 100%;
+                margin-bottom: 40px;
+            }
+
+            .sp-footer {
+                padding-top: 60px;
+            }
+        }
+
+        .service-title {
+            width: 100%;
+            margin: 70px auto 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+            .service-title::before,
+            .service-title::after {
+                content: "";
+                flex: 1;
+                height: 2px;
+                background: #ddd;
+            }
+
+        .service-text {
             text-align: center;
-            margin-top: 30px;
-            border-top: 1px solid #555;
-            padding-top: 20px;
+        }
+
+            .service-text h2 {
+                font-size: 36px;
+                color: #111;
+                margin-bottom: 8px;
+            }
+
+                .service-text h2 span {
+                    color: #E63946;
+                }
+
+            .service-text p {
+                color: #666;
+                font-size: 17px;
+            }
+
+        .support-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #eee;
+            margin-bottom: 15px;
+        }
+        /* Hover avatar */
+        .support-avatar {
+            transition: .3s;
+        }
+
+            .support-avatar:hover {
+                transform: scale(1.08);
+                border-color: #0084ff;
+            }
+        .support-status {
+            margin: 18px 0;
+            padding: 10px;
+            background: #dcfce7;
+            color: #16a34a;
+            font-weight: bold;
+            border-radius: 12px;
+        }
+
+        .support-messenger {
+            display: block;
+            background: #0084ff;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: .3s;
+        }
+
+            .support-messenger:hover {
+                background: #006ee6;
+            }
+
+        .zalo-qr {
+            width: 220px;
+            margin-top: 18px;
+            border-radius: 15px;
+            border: 1px solid #ddd;
+        }
+
+        .qr-note {
+            margin-top: 15px;
+            color: #666;
+            font-size: 15px;
+            line-height: 24px;
+        }
+
+        #closeSupport {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 34px;
+            cursor: pointer;
+        }
+
+        .support-btn {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            width: 60px;
+            height: 60px;
+            background: #111;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            cursor: pointer;
+            z-index: 9999;
+        }
+
+            .support-btn:hover {
+                transform: scale(1.15) rotate(5deg);
+                background: #E63946;
+            }
+
+        /* nền popup */
+
+        .support-popup {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.45);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9998;
+        }
+
+
+
+        /* hộp popup */
+
+        .support-box {
+            width: 380px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+        
         }
 </style>
       
 </head>
+<!-- ================= HỖ TRỢ KHÁCH HÀNG ================= -->
+
 
 <body>
+    <!-- ================= HỖ TRỢ KHÁCH HÀNG ================= -->
 
+    <div class="support-btn" id="openSupport">
+        <i class="fa-solid fa-headset"></i>
+    </div>
+
+
+    <div class="support-popup" id="supportPopup">
+
+        <div class="support-box">
+
+            <span id="closeSupport">&times;</span>
+
+            <img src="~/images/hieu.jpg" class="support-avatar">
+
+            <h2>Nguyễn Huỳnh Công Hốn</h2>
+
+            <p>Nhân viên tư vấn StarPard Shop</p>
+
+            <div class="support-status">
+                🟢 Đang hỗ trợ khách hàng
+            </div>
+
+            <a href="https://m.me/nguyen.huynh.cong.hieu"
+               target="_blank"
+               class="support-messenger">
+
+                <i class="fa-brands fa-facebook-messenger"></i>
+                Chat Messenger
+
+            </a>
+
+            <hr>
+
+            <h3>Hoặc quét mã Zalo</h3>
+
+            <img src="~/images/zaloqr.png"
+                 class="zalo-qr">
+
+            <p class="qr-note">
+                Mở Zalo trên điện thoại
+                <br>
+                Quét mã để trò chuyện.
+            </p>
+
+        </div>
+
+    </div>
     <!-- Banner đầu trang -->
   
 
@@ -59,35 +772,243 @@
         @RenderBody()
     </div>
 
-    <footer class="footer">
-        <div class="footer-content">
+    <footer class="sp-footer">
 
-            <div class="footer-box">
-                <h3>Về chúng tôi</h3>
-                    <p> Cửa hàng chuyên cung cấp giày chất lượng cao. </p>
+        <div class="sp-footer-container">
+
+            <!-- Cột 1 -->
+            <div class="sp-footer-about">
+
+                <div class="sp-logo">
+                    <i class="fa-solid fa-shoe-prints"></i>
+                    <span>StarPard</span>
+                </div>
+
+                <p class="sp-desc">
+                    StarPard là thương hiệu thời trang giày hướng đến phong cách trẻ trung,
+                    hiện đại và chất lượng. Chúng tôi cam kết mang đến trải nghiệm mua sắm
+                    tốt nhất cho khách hàng.
+                </p>
+
+                <div class="sp-social">
+
+                    <a href="javascript:void(0)">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="javascript:void(0)">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="javascript:void(0)">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+
+                    <a href="javascript:void(0)">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+
+                </div>
+
             </div>
 
-            <div class="footer-box">
+            <!-- Cột 2 -->
+            <div class="sp-footer-box">
+
                 <h3>Liên hệ</h3>
-                <p>📍 Biên Hoà, Việt Nam</p>
-                <p>📞 0353279883</p>
-                <p>✉️ hungndtb02210@gmail.com</p>
+
+                <ul>
+
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        Biên Hòa, Đồng Nai
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        0353 279 883
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        hungndtb02210@gmail.com
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-clock"></i>
+                        08:00 - 22:00
+                    </li>
+
+                </ul>
+
             </div>
 
-            <div class="footer-box">
+            <!-- Cột 3 -->
+            <div class="sp-footer-box">
+
+                <h3>Dịch vụ</h3>
+
+                <ul>
+
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa-solid fa-angle-right"></i>
+                            Mua hàng
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa-solid fa-angle-right"></i>
+                            Kiểm tra đơn hàng
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa-solid fa-angle-right"></i>
+                            Chọn Size
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa-solid fa-angle-right"></i>
+                            Liên hệ hỗ trợ
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <!-- Cột 4 -->
+            <div class="sp-footer-box">
+
                 <h3>Chính sách</h3>
-                <p>Chính sách đổi trả</p>
-                <p>Chính sách bảo mật</p>
-                <p>Điều khoản sử dụng</p>
+
+                <ul>
+
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa-solid fa-angle-right"></i>
+                            Chính sách đổi trả
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa-solid fa-angle-right"></i>
+                            Chính sách bảo mật
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa-solid fa-angle-right"></i>
+                            Điều khoản sử dụng
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa-solid fa-angle-right"></i>
+                            Hướng dẫn mua hàng
+                        </a>
+                    </li>
+
+                </ul>
+
             </div>
 
         </div>
 
-        <div class="footer-bottom">
-            © 2026 - Website bán hàng thời trang uy tín StarPard
-        </div>
-    </footer>
+        <!-- Newsletter -->
+        <div class="sp-newsletter">
 
-    @await RenderSectionAsync("Scripts", required: false)
+            <div class="sp-news-content">
+
+                <div>
+
+                    <h2>Đăng ký nhận tin mới</h2>
+
+                    <p>
+                        Cập nhật những mẫu giày mới và các chương trình khuyến mãi hấp dẫn.
+                    </p>
+
+                </div>
+
+                <div class="sp-news-form">
+
+                    <input type="email"
+                           placeholder="Nhập Email của bạn">
+
+                    <button>
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Copyright -->
+
+        <div class="sp-copy">
+
+            <div class="sp-copy-left">
+
+                © 2026 StarPard Premium Shoes Store.
+
+            </div>
+
+            <div class="sp-copy-right">
+
+                Designed with
+                <i class="fa-solid fa-heart"></i>
+                by StarPard
+
+            </div>
+
+        </div>
+
+        <!-- Watermark -->
+
+        <div class="sp-watermark">
+
+            STARPARD
+
+        </div>
+
+
+    </footer>
 </body>
+<script>
+        const supportPopup=document.getElementById("supportPopup");
+
+    document.getElementById("openSupport").onclick=function(){
+
+    supportPopup.style.display="flex";
+
+    }
+
+    document.getElementById("closeSupport").onclick=function(){
+
+    supportPopup.style.display="none";
+
+    }
+
+    supportPopup.onclick=function(e){
+
+    if(e.target==supportPopup){
+
+    supportPopup.style.display="none";
+
+    }
+
+    }
+</script>
 </html>

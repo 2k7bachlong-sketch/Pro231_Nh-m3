@@ -518,10 +518,13 @@ input[type=file] {
     }
 
 .detail-card {
+    width: 100%;
+    max-width: 900px;
+    margin: 30px auto;
     background: #fff;
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.05);
 }
 
 .detail-row {
@@ -544,3 +547,113 @@ input[type=file] {
     .detail-row strong {
         color: #222;
     }
+/*=========================
+      DETAIL PAGE
+=========================*/
+
+.detail-container {
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.05);
+}
+
+    .detail-header h2 {
+        margin: 10px 0 5px;
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+    .detail-header p {
+        color: #6B7280;
+        margin: 0;
+    }
+/*=========================
+    NHANVIEN DETAIL
+=========================*/
+
+.detail-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 15px 35px rgba(0,0,0,.06);
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid #EEF2F7;
+}
+
+    .detail-row:last-child {
+        border-bottom: none;
+    }
+
+    .detail-row span:first-child {
+        color: #64748B;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .detail-row strong {
+        color: #0F172A;
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(0,0,0,.05);
+    margin-bottom: 30px;
+}
+
+    .dashboard-header h2 {
+        margin: 10px 0;
+        font-size: 34px;
+        font-weight: 700;
+    }
+
+    .dashboard-header p {
+        color: #64748B;
+        margin: 0;
+    }
+
+.page-tag {
+    display: inline-block;
+    background: #EEF2FF;
+    color: #4F46E5;
+    padding: 6px 15px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.badge {
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.btn-secondary {
+    border-radius: 12px;
+    padding: 10px 18px;
+}

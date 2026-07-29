@@ -47,6 +47,8 @@ namespace duan_totnghiep.Controllers
                 .OrderByDescending(x => x.Ngaytao)
                 .Take(5)
                 .ToList();
+
+            ViewBag.SoDonMoi = _context.Donhangs.Count(x => x.Trangthai == "Chờ xác nhận");
             return View();
         }
 
@@ -95,6 +97,7 @@ namespace duan_totnghiep.Controllers
             {
                 return RedirectToAction("Index");
             }
+
 
             if (role == "Nhân viên")
             {

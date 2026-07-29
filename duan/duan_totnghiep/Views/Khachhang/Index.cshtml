@@ -48,6 +48,28 @@
             background: #DC2626;
             color: white;
         }
+
+    .btn-warning {
+        background: #FEF3C7;
+        color: #D97706;
+        border: none;
+    }
+
+        .btn-warning:hover {
+            background: #D97706;
+            color: white;
+        }
+
+    .btn-success {
+        background: #DCFCE7;
+        color: #16A34A;
+        border: none;
+    }
+
+        .btn-success:hover {
+            background: #16A34A;
+            color: white;
+        }
 </style>
 
 <!-- Header -->
@@ -284,6 +306,26 @@
                                        class="action-btn btn-edit">
                                         <i class="bi bi-pencil-fill"></i>
                                     </a>
+
+                                    @if (item.Taikhoan != null)
+                                        @if (item.Taikhoan.Trangthai == "Đã đăng kí")
+                                        {
+                                            <a asp-action="Khoa"
+                                               asp-route-id="@item.Makh"
+                                               class="action-btn btn-warning"
+                                               title="Khóa tài khoản">
+                                                <i class="bi bi-lock-fill"></i>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="MoKhoa"
+                                               asp-route-id="@item.Makh"
+                                               class="action-btn btn-success"
+                                               title="Mở khóa tài khoản">
+                                                <i class="bi bi-unlock-fill"></i>
+                                            </a>
+                                        }
 
                                     <a asp-action="Xoa"
                                        asp-route-Makh="@item.Makh"

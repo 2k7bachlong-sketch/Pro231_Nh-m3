@@ -13,6 +13,8 @@ public partial class Chitietdonhang
 
     public decimal Dongia { get; set; }
 
+    public string? Size { get; set; }
+
     public virtual Donhang Donhang { get; set; } = null!;
 
     public virtual Sanpham Sanpham { get; set; } = null!;

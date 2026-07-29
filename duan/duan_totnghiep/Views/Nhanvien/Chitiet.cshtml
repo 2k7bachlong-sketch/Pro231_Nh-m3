@@ -4,128 +4,74 @@
     Layout = "_Layout";
 }
 
-<div class="detail-container">
+<div class="dashboard-header">
 
-    <div class="detail-header">
-
+    <div>
         <span class="page-tag">
             👨‍💼 Nhân viên
         </span>
 
         <h2>Chi tiết nhân viên</h2>
 
-        <p>
-            Thông tin và hiệu suất làm việc.
-        </p>
-
+        <p>Thông tin và hiệu suất làm việc của nhân viên.</p>
     </div>
 
-    <div class="detail-card">
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i>
+        Quay lại
+    </a>
 
-        <div class="detail-row">
+</div>
 
-            <span>Mã nhân viên</span>
+<div class="detail-card">
 
-            <strong>#@Model.Manv</strong>
-
-        </div>
-
-        <div class="detail-row">
-
-            <span>Họ tên</span>
-
-            <strong>@Model.Hoten</strong>
-
-        </div>
-
-        <div class="detail-row">
-
-            <span>Số điện thoại</span>
-
-            <strong>@Model.Sdt</strong>
-
-        </div>
-
-        <div class="detail-row">
-
-            <span>Email</span>
-
-            <strong>@Model.Email</strong>
-
-        </div>
-
-        <div class="detail-row">
-
-            <span>Địa chỉ</span>
-
-            <strong>@Model.Diachi</strong>
-
-        </div>
-
-        <div class="detail-row">
-
-            <span>Chức vụ</span>
-
-            <span class="badge bg-primary">
-
-                @Model.Chucvu
-
-            </span>
-
-        </div>
-
-        <div class="detail-row">
-
-            <span>Tài khoản</span>
-
-            <strong>
-
-                @Model.Taikhoan?.Tendangnhap
-
-            </strong>
-
-        </div>
-
-        <div class="detail-row">
-
-            <span>Số đơn xử lý</span>
-
-            <span class="badge bg-info">
-
-                @Model.Donhangs.Count
-
-            </span>
-
-        </div>
-
-        <div class="detail-row">
-
-            <span>Doanh thu</span>
-
-            <strong class="text-success">
-
-                @(Model.Donhangs
-                    .Where(x => x.Trangthai == "Đã hoàn thành")
-                    .Sum(x => x.Tongtien)
-                    .ToString("N0")) VNĐ
-
-            </strong>
-
-        </div>
-
+    <div class="detail-row">
+        <span>Mã nhân viên</span>
+        <strong>#@Model.Manv</strong>
     </div>
 
-    <div class="mt-4">
+    <div class="detail-row">
+        <span>Họ tên</span>
+        <strong>@Model.Hoten</strong>
+    </div>
 
-        <a asp-action="Index"
-           class="btn btn-secondary">
+    <div class="detail-row">
+        <span>Số điện thoại</span>
+        <strong>@Model.Sdt</strong>
+    </div>
 
-            <i class="bi bi-arrow-left"></i>
+    <div class="detail-row">
+        <span>Email</span>
+        <strong>@Model.Email</strong>
+    </div>
 
-            Quay lại
+    <div class="detail-row">
+        <span>Địa chỉ</span>
+        <strong>@Model.Diachi</strong>
+    </div>
 
-        </a>
+    <div class="detail-row">
+        <span>Chức vụ</span>
+        <span class="badge bg-primary">@Model.Chucvu</span>
+    </div>
 
+    <div class="detail-row">
+        <span>Tài khoản</span>
+        <strong>@Model.Taikhoan?.Tendangnhap</strong>
+    </div>
+
+    <div class="detail-row">
+        <span>Số đơn xử lý</span>
+        <span class="badge bg-info">
+            @(Model.Donhangs?.Count ?? 0)
+        </span>
+    </div>
+
+    <div class="detail-row">
+        <span>Doanh thu</span>
+        <strong class="text-success">
+            @((Model.Donhangs?.Sum(x => x.Tongtien) ?? 0).ToString("N0")) VNĐ
+        </strong>
     </div>
 
 </div>

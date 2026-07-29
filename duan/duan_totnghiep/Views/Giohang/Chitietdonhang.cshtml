@@ -1,0 +1,173 @@
+﻿@model duan_totnghiep.Models.Donhang
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<style>
+
+    body {
+        background: #f4f6fb;
+        font-family: Segoe UI;
+    }
+
+    .box {
+        width: 92%;
+        margin: 40px auto;
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.1);
+    }
+
+    .title {
+        font-size: 35px;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+
+    .info {
+        margin-bottom: 25px;
+        line-height: 35px;
+        font-size: 18px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th {
+        background: #111;
+        color: white;
+        padding: 15px;
+    }
+
+    td {
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+    }
+
+    img {
+        width: 90px;
+        border-radius: 10px;
+    }
+
+    .back {
+        margin-top: 30px;
+        display: inline-block;
+        padding: 12px 22px;
+        background: #2563eb;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+    }
+
+        .back:hover {
+            background: #1d4ed8;
+        }
+
+    .price {
+        color: red;
+        font-weight: bold;
+    }
+
+</style>
+
+<div class="box">
+
+    <h2 class="title">
+        Chi tiết đơn hàng #@Model.Madh
+    </h2>
+
+    <div class="info">
+
+        <b>Ngày đặt:</b>
+        @Model.Ngaydat?.ToString("dd/MM/yyyy HH:mm")
+        <br>
+
+        <b>Trạng thái:</b>
+        @Model.Trangthai
+        <br>
+
+        <b>Địa chỉ:</b>
+        @Model.Diachinhan
+        <br>
+
+        <b>Thanh toán:</b>
+        @Model.Phuongthucthanhtoan
+
+    </div>
+
+    <table>
+
+        <tr>
+
+            <th>Hình</th>
+            <th>Tên sản phẩm</th>
+            <th>Đơn giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+
+        </tr>
+
+        @foreach (var item in Model.Chitietdonhangs)
+        {
+
+            <tr>
+
+                <td>
+
+                    <img src="~/images/@item.Sanpham.Hinhanh">
+
+                </td>
+
+                <td>
+
+                    @item.Sanpham.Tensp
+
+                </td>
+
+                <td class="price">
+
+                    @item.Dongia.ToString("N0") đ
+
+                </td>
+
+                <td>
+
+                    @item.Soluong
+
+                </td>
+
+                <td class="price">
+
+                    @((item.Dongia * item.Soluong).ToString("N0")) đ
+
+                </td>
+
+            </tr>
+
+        }
+
+    </table>
+
+    <h2 style="margin-top:25px;text-align:right">
+
+        Tổng tiền:
+        <span style="color:red">
+
+            @Model.Tongtien.ToString("N0") đ
+
+        </span>
+
+    </h2>
+
+    <a asp-action="Index" class="back">
+
+        ← Quay lại
+
+    </a>
+
+</div>

@@ -1,0 +1,273 @@
+﻿@model List<duan_totnghiep.Models.KhachhangKhuyenmai>
+
+@{
+    ViewData["Title"] = "Voucher của tôi";
+    Layout = "_Layout";
+
+    int tongVoucher = Model.Count();
+
+    int chuaSuDung = Model.Count(x => x.Dasudung == false);
+
+    int daSuDung = Model.Count(x => x.Dasudung == true);
+}
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+<link rel="stylesheet"
+      href="~/css/voucher.css"
+      asp-append-version="true" />
+
+<div class="voucher-page">
+
+    <!-- Header -->
+    <div class="voucher-header">
+
+        <div class="header-left">
+
+            <div class="header-icon">
+                <i class="fa-solid fa-ticket"></i>
+            </div>
+
+            <div>
+
+                <h1>Voucher của tôi</h1>
+
+                <p>
+                    Quản lý toàn bộ voucher của tài khoản StarPard
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Banner -->
+    <div class="voucher-banner">
+
+        <div class="banner-content">
+
+            <span class="small-title">
+                STARPARD SHOP
+            </span>
+
+            <h2>
+                Kho Voucher
+            </h2>
+
+            <p>
+                Tất cả voucher quay được sẽ được lưu tại đây.
+            </p>
+
+        </div>
+
+        <div class="banner-right">
+
+            <div class="banner-circle">
+                <i class="fa-solid fa-gift"></i>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Thống kê -->
+
+    <div class="voucher-info">
+
+        <div class="info-card">
+
+            <i class="fa-solid fa-ticket"></i>
+
+            <div>
+
+                <h3>@tongVoucher</h3>
+
+                <span>Tổng voucher</span>
+
+            </div>
+
+        </div>
+
+        <div class="info-card green">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <div>
+
+                <h3>@chuaSuDung</h3>
+
+                <span>Chưa sử dụng</span>
+
+            </div>
+
+        </div>
+
+        <div class="info-card red">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            <div>
+
+                <h3>@daSuDung</h3>
+
+                <span>Đã sử dụng</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- PHẦN 2 BẮT ĐẦU TỪ ĐÂY -->
+    <!-- ================= DANH SÁCH VOUCHER ================= -->
+
+    <div class="voucher-section">
+
+        <div class="section-title">
+
+            <div>
+                <h2>Voucher khả dụng</h2>
+                <p>Sử dụng khi thanh toán để được giảm giá.</p>
+            </div>
+
+            <span class="count-badge">
+                @Model.Count(x => !(x.Dasudung ?? false))
+            </span>
+
+        </div>
+
+        @if (Model.Any(x => !(x.Dasudung ?? false)))
+        {
+            @foreach (var item in Model.Where(x => !(x.Dasudung ?? false)))
+            {
+                <div class="voucher-card">
+
+                    <div class="voucher-left">
+
+                        <div class="shop-logo">
+                            <i class="fa-solid fa-ticket"></i>
+                        </div>
+
+                        <div class="voucher-text">
+
+                            <h3>StarPard Shop</h3>
+
+                            <div class="discount">
+                                Giảm @item.Khuyenmai.Phantramgiam%
+                            </div>
+
+                            <p>
+                                @item.Khuyenmai.Tenkm
+                            </p>
+
+                            <small>
+                                HSD:
+                                @item.Khuyenmai.Ngayketthuc?.ToString("dd/MM/yyyy")
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="voucher-right">
+
+                        <div class="status available">
+
+                            Khả dụng
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+        }
+        else
+        {
+            <div class="empty-box">
+
+                <i class="fa-solid fa-ticket"></i>
+
+                <h3>Không có voucher</h3>
+
+                <p>Bạn chưa sở hữu voucher nào.</p>
+
+            </div>
+        }
+
+    </div>
+        <div class="voucher-section used-section">
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>Voucher đã sử dụng</h2>
+
+                    <p>Các voucher đã được dùng khi thanh toán.</p>
+
+                </div>
+
+                <span class="count-badge gray">
+
+                    @Model.Count(x => x.Dasudung ?? false)
+
+                </span>
+
+            </div>
+
+            @if (Model.Any(x => x.Dasudung ?? false))
+            {
+                @foreach (var item in Model.Where(x => x.Dasudung ?? false))
+                {
+                    <div class="voucher-card used">
+
+                        <div class="voucher-left">
+
+                            <div class="shop-logo gray">
+
+                                <i class="fa-solid fa-ticket"></i>
+
+                            </div>
+
+                            <div class="voucher-text">
+
+                                <h3>StarPard Shop</h3>
+
+                                <div class="discount">
+                                    Giảm @item.Khuyenmai.Phantramgiam%
+                                </div>
+
+                                <p>@item.Khuyenmai.Tenkm</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="voucher-right">
+
+                            <div class="status used">
+
+                                Đã sử dụng
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="empty-box">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    <h3>Chưa sử dụng voucher nào</h3>
+
+                </div>
+            }
+
+        </div>

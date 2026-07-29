@@ -1,123 +1,847 @@
 ﻿<!DOCTYPE html>
-<html>
+
+<html lang="vi">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - StarPard</title>
 
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet"
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 
-    <link rel="stylesheet" href="~/css/Admin.css" asp-append-version="true" />
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS của project -->
+    <link rel="stylesheet"
+          href="~/css/site.css"
+          asp-append-version="true" />
+
     <style>
-        .footer {
-            margin-top: 100px;
-            background: #333;
-            color: white;
-            padding: 40px 0;
+
+        /* =========================
+               HEADER
+            ========================= */
+
+        .header-top {
+            width: 98%;
+            margin: 10px auto 0;
+            background: linear-gradient(90deg, #1f2937, #374151);
+            padding: 18px 0;
+            border-radius: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .15);
+            position: sticky;
+            top: 10px;
+            z-index: 1000;
         }
 
-        .main-content {
-            min-height: 700px;
-        }
-
-        .footer-content {
-            width: 80%;
+        .header-container {
+            width: 92%;
+            max-width: 1450px;
             margin: auto;
             display: flex;
+            align-items: center;
             justify-content: space-between;
         }
 
-        .footer-box {
-            width: 30%;
-        }
-
-            .footer-box h3 {
-                margin-bottom: 15px;
-            }
-
-            .footer-box p {
-                line-height: 30px;
-            }
-
-        .footer-bottom {
+        .brand {
+            flex: 1;
             text-align: center;
-            margin-top: 30px;
-            border-top: 1px solid #555;
-            padding-top: 20px;
         }
 
-       
-
-        .back-home {
-            padding: 15px 30px;
-        }
-
-        .btn-home {
-            display: inline-block;
-            background: #007bff;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-
-            .btn-home:hover {
-                background: #0056b3;
+            .brand a {
+                display: inline-block;
                 color: white;
+                text-decoration: none;
+                transition: .3s;
             }
+
+                .brand a:hover {
+                    transform: scale(1.03);
+                }
+
+        .brand-title {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+            .brand-title i {
+                color: #f59e0b;
+                margin-right: 10px;
+            }
+
+        .brand-slogan {
+            margin-top: 6px;
+            color: #d1d5db;
+            font-size: 15px;
+            letter-spacing: .5px;
+        }
+
+        .home-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            border-radius: 30px;
+            background: #f59e0b;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: .3s;
+            white-space: nowrap;
+        }
+
+            .home-btn:hover {
+                background: #d97706;
+                color: white;
+                transform: translateY(-2px);
+                box-shadow: 0 10px 25px rgba(245,158,11,.35);
+            }
+
+        /* =========================
+               MAIN
+            ========================= */
+
+        .main-content {
+            min-height: 500px;
+        }
+
+        /* =========================
+               FOOTER
+            ========================= */
+
+        .sp-footer {
+            position: relative;
+            margin-top: 80px;
+            padding-top: 140px;
+            background: #0f172a;
+            overflow: hidden;
+            color: white;
+        }
+
+        .sp-footer-container {
+            width: 90%;
+            max-width: 1450px;
+            margin: auto;
+            padding: 90px 0 60px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* =========================
+               LOGO
+            ========================= */
+
+        .sp-logo {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            position: relative;
+            transition: .35s;
+        }
+
+            .sp-logo:hover {
+                transform: translateY(-5px);
+            }
+
+            .sp-logo i {
+                color: #f59e0b;
+                font-size: 45px;
+            }
+
+            .sp-logo span {
+                letter-spacing: 2px;
+            }
+
+        .sp-desc {
+            color: #cbd5e1;
+            line-height: 33px;
+            font-size: 17px;
+            margin-bottom: 35px;
+            max-width: 430px;
+        }
+
+        /* =========================
+               FOOTER BOX
+            ========================= */
+
+        .sp-footer-box h3 {
+            font-size: 26px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            position: relative;
+        }
+
+            .sp-footer-box h3::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -10px;
+                width: 55px;
+                height: 4px;
+                border-radius: 20px;
+                background: #f59e0b;
+            }
+
+        .sp-footer-box ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .sp-footer-box li {
+            margin: 18px 0;
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: .35s;
+        }
+
+            .sp-footer-box li:hover {
+                color: white;
+                transform: translateX(10px);
+            }
+
+        .sp-footer-box a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+            .sp-footer-box a:hover {
+                color: #f59e0b;
+            }
+
+        .sp-footer-box i {
+            color: #f59e0b;
+            width: 22px;
+        }
+
+        /* =========================
+               SOCIAL
+            ========================= */
+
+        .sp-social {
+            display: flex;
+            gap: 18px;
+        }
+
+            .sp-social a {
+                width: 52px;
+                height: 52px;
+                border-radius: 18px;
+                background: rgba(255,255,255,.06);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                text-decoration: none;
+                font-size: 20px;
+                transition: .35s;
+                border: 1px solid rgba(255,255,255,.08);
+            }
+
+                .sp-social a:hover {
+                    background: #f59e0b;
+                    transform: translateY(-8px) rotate(8deg);
+                }
+
+        /* =========================
+               NEWSLETTER
+            ========================= */
+
+        .sp-newsletter {
+            width: 90%;
+            max-width: 1450px;
+            margin: 15px auto 0;
+            padding: 40px 55px;
+            border-radius: 30px;
+            background: linear-gradient(90deg, #1e293b, #334155);
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(255,255,255,.08);
+        }
+
+        .sp-news-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+            .sp-news-content h2 {
+                font-size: 34px;
+                margin-bottom: 10px;
+            }
+
+            .sp-news-content p {
+                color: #cbd5e1;
+                font-size: 17px;
+                margin-bottom: 0;
+            }
+
+        .sp-news-form {
+            display: flex;
+            width: 470px;
+            max-width: 100%;
+            background: white;
+            padding: 8px;
+            border-radius: 60px;
+        }
+
+            .sp-news-form input {
+                flex: 1;
+                border: none;
+                outline: none;
+                padding: 18px 22px;
+                font-size: 16px;
+                border-radius: 50px;
+            }
+
+            .sp-news-form button {
+                width: 65px;
+                border: none;
+                border-radius: 50%;
+                background: #f59e0b;
+                color: white;
+                font-size: 20px;
+                cursor: pointer;
+                transition: .35s;
+            }
+
+                .sp-news-form button:hover {
+                    transform: scale(1.08);
+                    background: #ff8c00;
+                }
+
+        /* =========================
+               COPYRIGHT
+            ========================= */
+
+        .sp-copy {
+            width: 90%;
+            max-width: 1450px;
+            margin: 60px auto 0;
+            padding: 25px 0;
+            border-top: 1px solid rgba(255,255,255,.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #94a3b8;
+            position: relative;
+            z-index: 2;
+        }
+
+            .sp-copy i {
+                color: #f59e0b;
+            }
+
+        /* =========================
+               WATERMARK
+            ========================= */
+
+        .sp-watermark {
+            position: absolute;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-size: 170px;
+            font-weight: 900;
+            letter-spacing: 18px;
+            color: white;
+            opacity: .025;
+            user-select: none;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        /* =========================
+               DECORATION
+            ========================= */
+
+        .sp-footer::before {
+            content: "";
+            position: absolute;
+            width: 550px;
+            height: 550px;
+            background: #f59e0b;
+            filter: blur(220px);
+            opacity: .08;
+            left: -180px;
+            top: -180px;
+            animation: lightMove 8s linear infinite;
+        }
+
+        .sp-footer::after {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: #2563eb;
+            filter: blur(260px);
+            opacity: .08;
+            right: -220px;
+            bottom: -220px;
+        }
+
+        @@keyframes lightMove {
+            0% {
+                transform: translate(-30px, -20px);
+            }
+
+            50% {
+                transform: translate(50px, 30px);
+            }
+
+            100% {
+                transform: translate(-30px, -20px);
+            }
+        }
+
+        /* =========================
+               RESPONSIVE
+            ========================= */
+
+        @@media (max-width: 1200px) {
+
+            .sp-footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 45px;
+            }
+
+            .sp-services {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @@media (max-width: 768px) {
+
+            .header-container {
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            .brand-title {
+                font-size: 34px;
+            }
+
+            .brand-slogan {
+                font-size: 14px;
+            }
+
+            .sp-footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sp-news-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .sp-news-form {
+                width: 100%;
+            }
+
+            .sp-copy {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .sp-watermark {
+                display: none;
+            }
+
+            .sp-logo {
+                font-size: 34px;
+            }
+
+                .sp-logo i {
+                    font-size: 38px;
+                }
+
+            .sp-newsletter {
+                padding: 30px;
+            }
+
+            .sp-news-content h2 {
+                font-size: 28px;
+            }
+        }
+
     </style>
+
+
 </head>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <body>
 
-    <!-- Banner đầu trang -->
-    
-    <a asp-controller="Home"
-       asp-action="TrangChu"
-       class="btn-home">
+    <!-- HEADER -->
 
-        ← Quay về trang chủ
+    <header class="header-top">
 
-    </a>
-    </div>
-    <div class="main-content">
+        <div class="header-container">
+
+            <div class="brand">
+
+                <a asp-controller="Home"
+                   asp-action="TrangChu">
+
+                    <div class="brand-title">
+
+                        <i class="fa-solid fa-shoe-prints"></i>
+
+                        StarPard
+
+                    </div>
+
+                    <div class="brand-slogan">
+
+                        Giày thời trang cao cấp - Uy tín - Chất lượng
+
+                    </div>
+
+                </a>
+
+            </div>
+
+            <a asp-controller="Home"
+               asp-action="TrangChu"
+               class="home-btn">
+
+                <i class="fa-solid fa-house"></i>
+
+                Quay về trang chủ
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- NỘI DUNG -->
+
+    <main class="main-content">
+
         @RenderBody()
-    </div>
 
-    <footer class="footer">
-        <div class="footer-content">
+    </main>
 
-            <div class="footer-box">
-                <h3>Về chúng tôi</h3>
-                <p>Cửa hàng chuyên cung cấp giày chất lượng cao</p>
+
+    <!-- FOOTER -->
+
+    <footer class="sp-footer">
+
+        <div class="sp-footer-container">
+
+            <!-- CỘT 1 -->
+
+            <div class="sp-footer-about">
+
+                <div class="sp-logo">
+
+                    <i class="fa-solid fa-shoe-prints"></i>
+
+                    <span>StarPard</span>
+
+                </div>
+
+                <p class="sp-desc">
+
+                    StarPard là thương hiệu thời trang giày hướng đến phong cách trẻ trung,
+                    hiện đại và chất lượng. Chúng tôi cam kết mang đến trải nghiệm mua sắm
+                    tốt nhất cho khách hàng.
+
+                </p>
+
+                <div class="sp-social">
+
+                    <a href="javascript:void(0)">
+
+                        <i class="fa-brands fa-facebook-f"></i>
+
+                    </a>
+
+                    <a href="javascript:void(0)">
+
+                        <i class="fa-brands fa-instagram"></i>
+
+                    </a>
+
+                    <a href="javascript:void(0)">
+
+                        <i class="fa-brands fa-tiktok"></i>
+
+                    </a>
+
+                    <a href="javascript:void(0)">
+
+                        <i class="fa-brands fa-youtube"></i>
+
+                    </a>
+
+                </div>
+
             </div>
 
-            <div class="footer-box">
+
+            <!-- CỘT 2 -->
+
+            <div class="sp-footer-box">
+
                 <h3>Liên hệ</h3>
-                <p>📍 Biên Hoà, Việt Nam</p>
-                <p>📞 0353279883</p>
-                <p>✉️ hungndtb02210@gmail.com</p>
+
+                <ul>
+
+                    <li>
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Biên Hòa, Đồng Nai
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-phone"></i>
+
+                        0353 279 883
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        hungndtb02210@gmail.com
+
+                    </li>
+
+                    <li>
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        08:00 - 22:00
+
+                    </li>
+
+                </ul>
+
             </div>
 
-            <div class="footer-box">
+
+            <!-- CỘT 3 -->
+
+            <div class="sp-footer-box">
+
+                <h3>Dịch vụ</h3>
+
+                <ul>
+
+                    <li>
+
+                        <a href="javascript:void(0)">
+
+                            <i class="fa-solid fa-angle-right"></i>
+
+                            Mua hàng
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="javascript:void(0)">
+
+                            <i class="fa-solid fa-angle-right"></i>
+
+                            Kiểm tra đơn hàng
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="javascript:void(0)">
+
+                            <i class="fa-solid fa-angle-right"></i>
+
+                            Chọn Size
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="javascript:void(0)">
+
+                            <i class="fa-solid fa-angle-right"></i>
+
+                            Liên hệ hỗ trợ
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- CỘT 4 -->
+
+            <div class="sp-footer-box">
+
                 <h3>Chính sách</h3>
-                <p>Chính sách đổi trả</p>
-                <p>Chính sách bảo mật</p>
-                <p>Điều khoản sử dụng</p>
+
+                <ul>
+
+                    <li>
+
+                        <a href="javascript:void(0)">
+
+                            <i class="fa-solid fa-angle-right"></i>
+
+                            Chính sách đổi trả
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="javascript:void(0)">
+
+                            <i class="fa-solid fa-angle-right"></i>
+
+                            Chính sách bảo mật
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="javascript:void(0)">
+
+                            <i class="fa-solid fa-angle-right"></i>
+
+                            Điều khoản sử dụng
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="javascript:void(0)">
+
+                            <i class="fa-solid fa-angle-right"></i>
+
+                            Hướng dẫn mua hàng
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
             </div>
 
         </div>
 
-        <div class="footer-bottom">
-            © 2026 - Website bán hàng thời trang uy tín StarPard
+
+        <!-- NEWSLETTER -->
+
+        <div class="sp-newsletter">
+
+            <div class="sp-news-content">
+
+                <div>
+
+                    <h2>Đăng ký nhận tin mới</h2>
+
+                    <p>
+
+                        Cập nhật những mẫu giày mới và các chương trình khuyến mãi hấp dẫn.
+
+                    </p>
+
+                </div>
+
+                <div class="sp-news-form">
+
+                    <input type="email"
+                           placeholder="Nhập Email của bạn">
+
+                    <button type="button">
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
         </div>
+
+
+        <!-- COPYRIGHT -->
+
+        <div class="sp-copy">
+
+            <div>
+
+                © 2026 StarPard Premium Shoes Store.
+
+            </div>
+
+            <div>
+
+                Designed with
+
+                <i class="fa-solid fa-heart"></i>
+
+                by StarPard
+
+            </div>
+
+        </div>
+
+
+        <!-- WATERMARK -->
+
+        <div class="sp-watermark">
+
+            STARPARD
+
+        </div>
+
     </footer>
+
+
+    <!-- SCRIPT -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

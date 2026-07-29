@@ -25,16 +25,71 @@ namespace duan_totnghiep.Controllers
             }
 
             var gioHang = _context.Giohangs
-                                  .Include(x => x.Sanpham)
-                                  .Where(x => x.Makh == maKhachHang.Value)
-                                  .ToList();
+             .Include(x => x.Sanpham)
+             .ThenInclude(x => x.Khuyenmai)
+             .Where(x => x.Makh == maKhachHang.Value)
+             .ToList();
 
             return View(gioHang);
+        }
+
+        public IActionResult MuaNgay(int id, string size)
+        {
+     
+            int? maKhachHang = HttpContext.Session.GetInt32("Makh");
+
+            if (maKhachHang == null)
+                return RedirectToAction("Index", "DangNhap");
+
+            var sp = _context.Sanphams.FirstOrDefault(x => x.Masp == id);
+
+            if (sp == null)
+                return NotFound();
+
+            if (sp.Soluongton <= 0)
+            {
+                TempData["Loi"] = "Sản phẩm đã hết hàng!";
+                return RedirectToAction("ChiTiet", "Trangmua", new { id });
+            }
+            var item = _context.Giohangs.FirstOrDefault(x =>
+                x.Makh == maKhachHang &&
+                x.Masp == id &&
+                x.Size == size);
+
+            if (item == null)
+            {
+                _context.Giohangs.Add(new Giohang
+                {
+                    Makh = maKhachHang.Value,
+                    Masp = id,
+                    Soluong = 1,
+                    Size = size
+                });
+            }
+            else
+            {
+                item.Soluong++;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Thanhtoan");
         }
 
         // Thêm vào giỏ hàng
         public IActionResult ThemVaoGio(int id)
         {
+
+            var sps = _context.Sanphams.FirstOrDefault(x => x.Masp == id);
+
+            if (sps == null)
+                return NotFound();
+
+            if (sps.Soluongton <= 0)
+            {
+                TempData["Loi"] = "Sản phẩm đã hết hàng!";
+                return RedirectToAction("Index", "Trangmua");
+            }
             // Lấy mã khách hàng từ Session
             int? maKhachHang = HttpContext.Session.GetInt32("Makh");
 
@@ -57,8 +112,9 @@ namespace duan_totnghiep.Controllers
 
             // Kiểm tra sản phẩm đã có trong giỏ chưa
             var item = _context.Giohangs
-                .FirstOrDefault(x => x.Masp == id
-                                  && x.Makh == maKhachHang.Value);
+      .FirstOrDefault(x => x.Masp == id
+                        && x.Makh == maKhachHang.Value
+          );
 
             // Nếu chưa có thì thêm mới
             if (item == null)
@@ -67,7 +123,8 @@ namespace duan_totnghiep.Controllers
                 {
                     Makh = maKhachHang.Value,
                     Masp = id,
-                    Soluong = 1
+                    Soluong = 1,
+                 
                 };
 
                 _context.Giohangs.Add(gh);
@@ -149,6 +206,54 @@ namespace duan_totnghiep.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        // ======================= LỊCH SỬ MUA HÀNG =======================
+
+        public IActionResult LichSu()
+        {
+            int? maKhachHang = HttpContext.Session.GetInt32("Makh");
+
+            if (maKhachHang == null)
+                return RedirectToAction("Index", "Taikhoan");
+
+            var dsDonHang = _context.Donhangs
+                .Where(x => x.Makh == maKhachHang.Value)
+
+                .Include(x => x.Chitietdonhangs)
+                    .ThenInclude(x => x.Sanpham)
+                        .ThenInclude(x => x.Thuonghieu)
+
+                .OrderByDescending(x => x.Ngaydat)
+                .ToList();
+
+            return View(dsDonHang);
+        }
+
+
+
+        // ======================= CHI TIẾT ĐƠN HÀNG =======================
+
+        public IActionResult ChiTietDonHang(int id)
+        {
+            int? maKhachHang = HttpContext.Session.GetInt32("Makh");
+
+            if (maKhachHang == null)
+                return RedirectToAction("Index", "Taikhoan");
+
+            var donHang = _context.Donhangs
+
+                .Include(x => x.Chitietdonhangs)
+                    .ThenInclude(x => x.Sanpham)
+                        .ThenInclude(x => x.Thuonghieu)
+
+                .FirstOrDefault(x => x.Madh == id &&
+                                     x.Makh == maKhachHang.Value);
+
+            if (donHang == null)
+                return NotFound();
+
+            return View(donHang);
         }
     }
 }

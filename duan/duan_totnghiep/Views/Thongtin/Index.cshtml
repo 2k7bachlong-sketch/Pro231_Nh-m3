@@ -1,0 +1,1336 @@
+﻿@{
+    ViewData["Title"] = "Thông tin tài khoản";
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/thongtin.css" asp-append-version="true" />
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+<style>
+    /*==================================================
+                        RESET
+    ==================================================*/
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI",sans-serif;
+    }
+
+    body {
+        background: #f5f7fb;
+        color: #1f2937;
+    }
+
+    /*==================================================
+                        BANNER
+    ==================================================*/
+
+    .profile-banner {
+        width: 97%;
+        margin: 35px auto 30px;
+        background: linear-gradient(135deg,#4b5563,#374151);
+        border-radius: 26px;
+        padding: 45px 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 20px 45px rgba(0,0,0,.15);
+    }
+
+        .profile-banner::before {
+            content: "";
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.08);
+            right: -90px;
+            top: -90px;
+        }
+
+        .profile-banner::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.05);
+            left: 45%;
+            bottom: -70px;
+        }
+
+    .banner-left {
+        position: relative;
+        z-index: 2;
+    }
+
+    .welcome-text {
+        display: inline-block;
+        padding: 7px 18px;
+        border-radius: 40px;
+        background: rgba(255,255,255,.12);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 18px;
+    }
+
+    .banner-left h1 {
+        font-size: 46px;
+        color: white;
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+
+        .banner-left h1 span {
+            color: #ffd54f;
+        }
+
+    .banner-left p {
+        color: #e5e7eb;
+        font-size: 18px;
+        line-height: 1.7;
+    }
+
+    .banner-right {
+        position: relative;
+        z-index: 2;
+    }
+
+    .banner-icon {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        background: rgba(255,255,255,.13);
+        border: 2px solid rgba(255,255,255,.15);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(12px);
+    }
+
+        .banner-icon i {
+            color: white;
+            font-size: 48px;
+        }
+
+    /*==================================================
+                        LAYOUT
+    ==================================================*/
+
+    .account-container {
+        width: 97%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 30px;
+        align-items: start;
+        padding-bottom: 50px;
+    }
+
+    /*==================================================
+                        SIDEBAR
+    ==================================================*/
+
+    .account-sidebar {
+        background: white;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(15,23,42,.08);
+        border: 1px solid #edf1f7;
+        position: sticky;
+        top: 25px;
+    }
+
+    /*================ PROFILE =================*/
+
+    .profile-card {
+        background: linear-gradient(180deg,#4b5563,#374151);
+        text-align: center;
+        padding: 45px 25px;
+    }
+
+    .avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: white;
+        color: #374151;
+        font-size: 54px;
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        box-shadow: 0 10px 30px rgba(0,0,0,.18);
+    }
+
+    .profile-card h2 {
+        color: white;
+        margin-top: 25px;
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    .profile-card span {
+        display: inline-block;
+        margin-top: 10px;
+        color: #d1d5db;
+        font-size: 15px;
+    }
+
+    /*================ MENU =================*/
+
+    .side-menu {
+        padding: 20px;
+    }
+
+        .side-menu button {
+            width: 100%;
+            height: 62px;
+            border: none;
+            background: white;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 0 22px;
+            cursor: pointer;
+            transition: .3s;
+            font-size: 16px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 14px;
+            border: 1px solid transparent;
+        }
+
+            .side-menu button i {
+                width: 42px;
+                height: 42px;
+                border-radius: 12px;
+                background: #f3f4f6;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 18px;
+                color: #374151;
+                transition: .3s;
+            }
+
+            .side-menu button:hover {
+                transform: translateX(6px);
+                background: #f8fafc;
+                border-color: #e5e7eb;
+            }
+
+                .side-menu button:hover i {
+                    background: #4b5563;
+                    color: white;
+                }
+
+        .side-menu .active {
+            background: #374151;
+            color: white;
+            box-shadow: 0 12px 30px rgba(55,65,81,.25);
+        }
+
+            .side-menu .active i {
+                background: white;
+                color: #374151;
+            }
+
+    /*==================================================
+                        CONTENT
+    ==================================================*/
+
+    .account-content {
+        background: #fff;
+        border-radius: 24px;
+        border: 1px solid #edf1f7;
+        box-shadow: 0 15px 40px rgba(15,23,42,.08);
+        padding: 40px;
+    }
+
+    /*================ HEADER =================*/
+
+    .content-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 35px;
+    }
+
+    .small-title {
+        display: inline-block;
+        background: #eef2ff;
+        color: #4f46e5;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        padding: 7px 18px;
+        border-radius: 30px;
+        margin-bottom: 12px;
+    }
+
+    .content-title h2 {
+        font-size: 38px;
+        color: #111827;
+        font-weight: 700;
+    }
+
+    .content-title p {
+        color: #6b7280;
+        margin-top: 8px;
+        font-size: 16px;
+    }
+
+    /*================ BUTTON =================*/
+
+    .main-button {
+        height: 55px;
+        padding: 0 28px;
+        border: none;
+        border-radius: 15px;
+        background: #374151;
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: .3s;
+        box-shadow: 0 12px 30px rgba(55,65,81,.25);
+    }
+
+        .main-button:hover {
+            transform: translateY(-3px);
+            background: #111827;
+        }
+
+    /*==================================================
+                        INFO GRID
+    ==================================================*/
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 24px;
+    }
+
+    /*================ CARD =================*/
+
+    .info-box {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 25px;
+        background: #fff;
+        border-radius: 18px;
+        border: 1px solid #edf2f7;
+        transition: .35s;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .info-box::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            background: #374151;
+            transform: scaleY(0);
+            transition: .3s;
+        }
+
+        .info-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 40px rgba(0,0,0,.08);
+            border-color: #dbe2ea;
+        }
+
+            .info-box:hover::before {
+                transform: scaleY(1);
+            }
+
+    /*================ ICON =================*/
+
+    .info-icon {
+        min-width: 65px;
+        width: 65px;
+        height: 65px;
+        border-radius: 18px;
+        background: #f3f4f6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .3s;
+    }
+
+        .info-icon i {
+            font-size: 24px;
+            color: #374151;
+        }
+
+    .info-box:hover .info-icon {
+        background: #374151;
+    }
+
+        .info-box:hover .info-icon i {
+            color: white;
+        }
+
+    /*================ SUCCESS =================*/
+
+    .info-icon.success {
+        background: #dcfce7;
+    }
+
+        .info-icon.success i {
+            color: #16a34a;
+        }
+
+    .info-box:hover .info-icon.success {
+        background: #16a34a;
+    }
+
+        .info-box:hover .info-icon.success i {
+            color: white;
+        }
+
+    /*================ TEXT =================*/
+
+    .info-detail {
+        flex: 1;
+    }
+
+        .info-detail label {
+            display: block;
+            color: #9ca3af;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .info-detail span {
+            display: block;
+            color: #111827;
+            font-size: 20px;
+            font-weight: 700;
+            word-break: break-word;
+        }
+
+    /*================ HOVER =================*/
+
+    .info-box:hover .info-detail span {
+        color: #000;
+    }
+
+    .info-box:hover .info-detail label {
+        color: #6b7280;
+    }
+    /*==================================================
+                        POPUP
+    ==================================================*/
+
+    .popup {
+        position: fixed;
+        inset: 0;
+        background: rgba(15,23,42,.45);
+        backdrop-filter: blur(6px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: .3s;
+        z-index: 99999;
+    }
+
+        .popup.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+    /*================ CONTENT =================*/
+
+    .popup-content {
+        width: 560px;
+        max-width: 92%;
+        background: #fff;
+        border-radius: 24px;
+        overflow: hidden;
+        transform: translateY(40px) scale(.95);
+        transition: .35s;
+        box-shadow: 0 25px 60px rgba(0,0,0,.18);
+    }
+
+    .popup.show .popup-content {
+        transform: translateY(0) scale(1);
+    }
+
+    /*================ HEADER =================*/
+
+    .popup-header {
+        background: linear-gradient(135deg,#374151,#4b5563);
+        color: white;
+        padding: 28px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .popup-small {
+        display: inline-block;
+        font-size: 12px;
+        letter-spacing: 2px;
+        color: #d1d5db;
+        margin-bottom: 10px;
+    }
+
+    .popup-header h2 {
+        font-size: 28px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .close-popup {
+        width: 42px;
+        height: 42px;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255,255,255,.15);
+        color: white;
+        cursor: pointer;
+        transition: .3s;
+    }
+
+        .close-popup:hover {
+            background: white;
+            color: #111827;
+            transform: rotate(90deg);
+        }
+
+    /*================ BODY =================*/
+
+    .popup-body {
+        padding: 32px;
+    }
+
+    /*================ MESSAGE =================*/
+
+    #editMessage,
+    #passwordMessage {
+        display: none;
+        margin-bottom: 22px;
+        padding: 14px 18px;
+        border-radius: 12px;
+        background: #fef2f2;
+        color: #dc2626;
+        border: 1px solid #fecaca;
+        font-weight: 600;
+    }
+
+    /*================ INPUT =================*/
+
+    .input-group {
+        margin-bottom: 22px;
+    }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #374151;
+        }
+
+        .input-group input {
+            width: 100%;
+            height: 58px;
+            border: 2px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 0 18px;
+            font-size: 16px;
+            transition: .3s;
+            background: #fafafa;
+        }
+
+            .input-group input:focus {
+                outline: none;
+                background: white;
+                border-color: #374151;
+                box-shadow: 0 0 0 5px rgba(55,65,81,.08);
+            }
+
+    /*================ PASSWORD =================*/
+
+    .password-box {
+        position: relative;
+    }
+
+        .password-box input {
+            padding-right: 55px;
+        }
+
+    .toggle-password {
+        position: absolute;
+        top: 50%;
+        right: 18px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #6b7280;
+        font-size: 18px;
+        transition: .25s;
+    }
+
+        .toggle-password:hover {
+            color: #111827;
+        }
+
+    /*================ FOOTER =================*/
+
+    .popup-footer {
+        padding: 0 32px 32px;
+        display: flex;
+        gap: 16px;
+    }
+
+    .cancel-button,
+    .save-button {
+        flex: 1;
+        height: 55px;
+        border: none;
+        border-radius: 14px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: .3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .cancel-button {
+        background: #f3f4f6;
+        color: #374151;
+    }
+
+        .cancel-button:hover {
+            background: #e5e7eb;
+        }
+
+    .save-button {
+        background: #374151;
+        color: white;
+        box-shadow: 0 15px 30px rgba(55,65,81,.22);
+    }
+
+        .save-button:hover {
+            background: #111827;
+            transform: translateY(-2px);
+        }
+
+    /*==================================================
+                        SCROLLBAR
+    ==================================================*/
+
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 20px;
+    }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+    /*==================================================
+                        RESPONSIVE
+    ==================================================*/
+
+    @@media(max - width:1100px) {
+        .account-container
+
+    {
+        grid-template-columns: 1fr;
+    }
+
+    .account-sidebar {
+        position: static;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .content-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .main-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    }
+
+    @@media(max - width:700px) {
+        .profile-banner
+
+    {
+        padding: 35px 25px;
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .banner-left h1 {
+        font-size: 34px;
+    }
+
+    .banner-icon {
+        width: 90px;
+        height: 90px;
+    }
+
+        .banner-icon i {
+            font-size: 38px;
+        }
+
+    .account-content {
+        padding: 25px;
+    }
+
+    .popup-body {
+        padding: 24px;
+    }
+
+    .popup-footer {
+        padding: 0 24px 24px;
+        flex-direction: column;
+    }
+
+    }
+    /* ================= PASSWORD FORM ALIGN ================= */
+
+    #passwordPopup .input-group {
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 28px;
+    }
+
+        #passwordPopup .input-group label {
+            margin: 0;
+            white-space: nowrap;
+        }
+
+    #passwordPopup .password-box {
+        width: 100%;
+    }
+
+        #passwordPopup .password-box input {
+            width: 100%;
+            height: 58px;
+        }
+
+    /* icon mắt */
+    #passwordPopup .toggle-password {
+        right: 20px;
+    }
+
+    /*================ ORDER BUTTON =================*/
+
+    .side-menu button:nth-child(2) i {
+        background: #fff7ed;
+        color: #ea580c;
+    }
+
+    .side-menu button:nth-child(2):hover i {
+        background: #ea580c;
+        color: white;
+    }
+</style>
+<!-- ===================== PROFILE BANNER ===================== -->
+
+<div class="profile-banner">
+
+    <div class="banner-left">
+
+        <span class="welcome-text">
+            STARPARD ACCOUNT
+        </span>
+
+        <h1>
+            Xin chào,
+            <span>@ViewBag.TenDangNhap</span>
+        </h1>
+
+        <p>
+            Quản lý thông tin cá nhân, cập nhật tài khoản và đổi mật khẩu.
+        </p>
+
+    </div>
+
+    <div class="banner-right">
+
+        <div class="banner-icon">
+
+            <i class="fa-solid fa-user"></i>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===================== ACCOUNT ===================== -->
+
+<div class="account-container">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="account-sidebar">
+
+        @{
+            var hoTen = ViewBag.TenDangNhap?.ToString() ?? "";
+            var kyTu = string.IsNullOrWhiteSpace(hoTen)
+            ? "?"
+            : hoTen.Substring(0, 1).ToUpper();
+        }
+
+        <div class="profile-card">
+
+            <div class="avatar">
+
+                @kyTu
+
+            </div>
+
+            <h2>
+
+                @ViewBag.TenDangNhap
+
+            </h2>
+
+            <span>
+
+                Thành viên StarPard
+
+            </span>
+
+        </div>
+
+        <div class="side-menu">
+
+            <button class="active">
+
+                <i class="fa-solid fa-user"></i>
+
+                <span>
+
+                    Thông tin cá nhân
+
+                </span>
+
+            </button>
+            @if (ViewBag.VaiTro == "người dùng")
+            {
+                <button onclick="location.href='/Donhang/CuaToi'">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Đơn hàng của tôi</span>
+                </button>
+            }
+
+            <button id="openPassword">
+
+                <i class="fa-solid fa-lock"></i>
+
+                <span>
+
+                    Đổi mật khẩu
+
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+    <!-- ================= CONTENT ================= -->
+
+    <div class="account-content">
+
+        <div class="content-title">
+
+            <div>
+
+                <span class="small-title">
+
+                    ACCOUNT
+
+                </span>
+
+                <h2>
+
+                    Thông tin tài khoản
+
+                </h2>
+
+            </div>
+
+            <button id="openEdit"
+                    class="main-button">
+
+                <i class="fa-solid fa-pen"></i>
+
+                Chỉnh sửa
+
+            </button>
+
+        </div>
+
+        <!-- ================= INFO GRID ================= -->
+
+        <div class="info-grid">
+
+            <div class="info-box">
+
+                <div class="info-icon">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+                <div class="info-detail">
+
+                    <label>
+
+                        Họ và tên
+
+                    </label>
+
+                    <span id="showHoTen">
+
+                        @ViewBag.HoTen
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="info-box">
+
+                <div class="info-icon">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                </div>
+
+                <div class="info-detail">
+
+                    <label>
+
+                        Email
+
+                    </label>
+
+                    <span id="showEmail">
+
+                        @ViewBag.Email
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="info-box">
+
+                <div class="info-icon">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                </div>
+
+                <div class="info-detail">
+
+                    <label>
+
+                        Số điện thoại
+
+                    </label>
+
+                    <span id="showSDT">
+
+                        @ViewBag.SDT
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="info-box">
+
+                <div class="info-icon">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                </div>
+
+                <div class="info-detail">
+
+                    <label>
+
+                        Địa chỉ
+
+                    </label>
+
+                    <span id="showDiaChi">
+
+                        @ViewBag.DiaChi
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="info-box">
+
+                <div class="info-icon">
+
+                    <i class="fa-solid fa-id-card"></i>
+
+                </div>
+
+                <div class="info-detail">
+
+                    <label>
+
+                        Tên đăng nhập
+
+                    </label>
+
+                    <span>
+
+                        @ViewBag.TenDangNhap
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="info-box">
+
+                <div class="info-icon success">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                </div>
+
+                <div class="info-detail">
+
+                    <label>
+
+                        Trạng thái
+
+                    </label>
+
+                    <span>
+
+                        @ViewBag.TrangThai
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- ===================================================== -->
+<!-- POPUP CHỈNH SỬA THÔNG TIN -->
+<!-- ===================================================== -->
+
+<div class="popup" id="editPopup">
+
+    <div class="popup-content">
+
+        <div class="popup-header">
+
+            <div>
+
+                <span class="popup-small">
+                    STARPARD ACCOUNT
+                </span>
+
+                <h2>
+
+                    <i class="fa-solid fa-user-pen"></i>
+
+                    Chỉnh sửa thông tin
+
+                </h2>
+
+            </div>
+
+            <button class="close-popup"
+                    id="closeEdit">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <div class="popup-body">
+
+            <div id="editMessage"></div>
+
+            <div class="input-group">
+
+                <label>
+
+                    Họ và tên
+
+                </label>
+
+                <input type="text"
+                       id="editHoTen"
+                       value="@ViewBag.HoTen">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>
+
+                    Email
+
+                </label>
+
+                <input type="email"
+                       id="editEmail"
+                       value="@ViewBag.Email">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>
+
+                    Số điện thoại
+
+                </label>
+
+                <input type="text"
+                       id="editSDT"
+                       value="@ViewBag.SDT">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>
+
+                    Địa chỉ
+
+                </label>
+
+                <input type="text"
+                       id="editDiaChi"
+                       value="@ViewBag.DiaChi">
+
+            </div>
+
+        </div>
+
+        <div class="popup-footer">
+
+            <button class="cancel-button"
+                    id="cancelEdit">
+
+                <i class="fa-solid fa-xmark"></i>
+
+                Hủy
+
+            </button>
+
+            <button class="save-button"
+                    id="saveInfo">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Lưu thay đổi
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- POPUP ĐỔI MẬT KHẨU -->
+<!-- ===================================================== -->
+
+<div class="popup" id="passwordPopup">
+
+    <div class="popup-content">
+
+        <div class="popup-header">
+
+            <div>
+
+                <span class="popup-small">
+
+                    STARPARD ACCOUNT
+
+                </span>
+
+                <h2>
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    Đổi mật khẩu
+
+                </h2>
+
+            </div>
+
+            <button class="close-popup"
+                    id="closePassword">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <div class="popup-body">
+
+            <div id="passwordMessage"></div>
+
+            <div class="input-group">
+
+                <label>
+
+                    Mật khẩu hiện tại
+
+                </label>
+
+                <div class="password-box">
+
+                    <input id="oldPassword"
+                           type="password">
+
+                    <i class="fa-solid fa-eye toggle-password"
+                       data-target="oldPassword">
+
+                    </i>
+
+                </div>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>
+
+                    Mật khẩu mới
+
+                </label>
+
+                <div class="password-box">
+
+                    <input id="newPassword"
+                           type="password">
+
+                    <i class="fa-solid fa-eye toggle-password"
+                       data-target="newPassword">
+
+                    </i>
+
+                </div>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>
+
+                    Nhập lại mật khẩu
+
+                </label>
+
+                <div class="password-box">
+
+                    <input id="confirmPassword"
+                           type="password">
+
+                    <i class="fa-solid fa-eye toggle-password"
+                       data-target="confirmPassword">
+
+                    </i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="popup-footer">
+
+            <button class="cancel-button"
+                    id="cancelPassword">
+
+                <i class="fa-solid fa-xmark"></i>
+
+                Hủy
+
+            </button>
+
+            <button class="save-button"
+                    id="savePassword">
+
+                <i class="fa-solid fa-lock"></i>
+
+                Đổi mật khẩu
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="~/js/thongtin.js" asp-append-version="true"></script>
