@@ -32,12 +32,14 @@
 
         <div class="info-row">
             <span>Tổng tiền:</span>
-            <p>@Model.Tongtien.ToString("N0") VNĐ</p>
+            <span class="badge bg-success text-light">@Model.Tongtien.ToString("N0") VNĐ</span>
         </div>
 
         <div class="info-row">
             <span>Trạng thái:</span>
-            <p>@Model.Trangthai</p>
+            <span class="badge bg-info text-dark">
+                @Model.Trangthai
+            </span>
         </div>
 
         <a asp-action="Index" class="btn-back">

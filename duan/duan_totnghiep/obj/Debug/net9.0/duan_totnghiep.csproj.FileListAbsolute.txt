@@ -1251,7 +1251,6 @@ F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\rjsmcshtml.dswa.ca
 F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\scopedcss\bundle\duan_totnghiep.styles.css
 F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\scopedcss\projectbundle\duan_totnghiep.bundle.scp.css
-F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\8oyvaxxkv5-{0}-20xsj5daoe-20xsj5daoe.gz
 F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\nsbalt7m6x-{0}-61n19gt1b8-61n19gt1b8.gz
 F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\ek5yr8uinb-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
 F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\8b3mbm07wh-{0}-t1cqhe9u97-t1cqhe9u97.gz
@@ -1327,7 +1326,6 @@ F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\refint\duan_totngh
 F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\duan_totnghiep.pdb
 F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\duan_totnghiep.genruntimeconfig.cache
 F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\ref\duan_totnghiep.dll
-F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\ldv20tkdym-{0}-p1sc8qure8-p1sc8qure8.gz
 D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\bin\Debug\net9.0\appsettings.Development.json
 D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\bin\Debug\net9.0\appsettings.json
 D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\bin\Debug\net9.0\duan_totnghiep.staticwebassets.runtime.json
@@ -1554,3 +1552,9 @@ D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\7
 D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\rero09tpuc-q10pbeg6sr.gz
 D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\2w8yg398xs-cxa6079bks.gz
 D:\Nopbaigit\duan\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\l4lyddmde9-nleb9cydbw.gz
+F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\ldv20tkdym-{0}-0b9ytat0mt-0b9ytat0mt.gz
+F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\8oyvaxxkv5-{0}-nleb9cydbw-nleb9cydbw.gz
+F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\y653ow3xl1-{0}-cxa6079bks-cxa6079bks.gz
+F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\db2sjmaq66-{0}-q10pbeg6sr-q10pbeg6sr.gz
+F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\fgi4ct6zqo-{0}-ep8fvt6vxo-ep8fvt6vxo.gz
+F:\Download\Pro231_Nh-m3\duan\duan_totnghiep\obj\Debug\net9.0\compressed\6ak4vx0xv1-{0}-en545xzs6a-en545xzs6a.gz
